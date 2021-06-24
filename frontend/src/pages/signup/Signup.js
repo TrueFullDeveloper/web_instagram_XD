@@ -10,6 +10,7 @@ export const Signup = () => {
   });
 
   const onChange = event => {
+    event.preventDefault();
     setSignupForm({ ...signupForm, [event.target.name]: event.target.value });
   };
 
