@@ -1,7 +1,11 @@
 import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchSignup } from "../../reduxToolkit/api/authSlice";
 
 export const Signup = () => {
+  const dispatch = useDispatch();
+
   const [signupForm, setSignupForm] = useState({
     name: "",
     email: "",
@@ -15,7 +19,18 @@ export const Signup = () => {
   };
 
   const onClick = () => {
-    return;
+    //TODO: Add Normal Validation
+    if (
+      signupForm.password > 6 &&
+      signupForm.password === signupForm.passwordRep
+    ) {
+      dispatch(
+        fetchSignup(signupForm.name, signupForm.email, signupForm.password)
+      );
+    } else {
+      setSignupForm({ ...signupForm, password: "", passwordRep: "" });
+      alert("Пароль не совпадает");
+    }
   };
 
   return (

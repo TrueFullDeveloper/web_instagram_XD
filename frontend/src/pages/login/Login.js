@@ -1,7 +1,11 @@
 import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchLogin } from "../../reduxToolkit/api/authSlice";
 
 export const Login = () => {
+  const dispatch = useDispatch();
+
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
@@ -13,7 +17,9 @@ export const Login = () => {
   };
 
   const onClick = () => {
-    return;
+    dispatch(
+      fetchLogin({ email: loginForm.email, password: loginForm.password })
+    );
   };
 
   return (
@@ -40,7 +46,7 @@ export const Login = () => {
           Войти
         </button>
 
-        <Link to="/signup">Регистрация</Link>
+        <Link to="/signin">Регистрация</Link>
       </form>
     </Fragment>
   );
