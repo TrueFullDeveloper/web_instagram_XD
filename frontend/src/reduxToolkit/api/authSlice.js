@@ -3,56 +3,59 @@ import axios from "axios";
 
 const storageName = "UserData"; // TODO: Transfer it to Constants.js
 
-export const fetchLogin = createAsyncThunk(
-  "auth/fetchLogin",
-  async userData => {
-    try {
-      const res = await axios.post(
-        "https://jsonplaceholder.typicode.com/posts",
-        JSON.stringify(userData)
-      );
+export const fetchLogin = createAsyncThunk("auth/fetchLogin", async userData => {
+  try {
+    const res = await axios.post(
+      "https://jsonplaceholder.typicode.com/posts",
+      JSON.stringify(userData)
+    );
 
-      localStorage.setItem(
-        storageName,
-        JSON.stringify({
-          userId: 10, // TODO: Here Should Be res.userId
-        })
-      );
+    localStorage.setItem(
+      storageName,
+      JSON.stringify({
+        userId: 10, // Here Should Be res.userId
+        userConcierge: { сonciergeName: "Sam", conciergeId: 15 }, // Here Should Be res.userConcierge
+      })
+    );
 
-      return 10; // TODO: Here Should Be res.userId
-    } catch (e) {
-      console.log(e.message);
-    }
+    return {
+      userId: 10, // Here Should Be res.userId
+      userConcierge: { сonciergeName: "Sam", conciergeId: 15 }, // Here Should Be res.userConcierge
+    };
+  } catch (e) {
+    console.log(e.message);
   }
-);
+});
 
-export const fetchSignup = createAsyncThunk(
-  "auth/fetchSignup",
-  async userData => {
-    try {
-      const res = await axios.post(
-        "https://jsonplaceholder.typicode.com/posts",
-        JSON.stringify(userData)
-      );
+export const fetchSignup = createAsyncThunk("auth/fetchSignup", async userData => {
+  try {
+    const res = await axios.post(
+      "https://jsonplaceholder.typicode.com/posts",
+      JSON.stringify(userData)
+    );
 
-      localStorage.setItem(
-        storageName,
-        JSON.stringify({
-          userId: 10, // TODO: Here Should Be res.userId
-        })
-      );
+    localStorage.setItem(
+      storageName,
+      JSON.stringify({
+        userId: 10, // Here Should Be res.userId
+        userConcierge: { сonciergeName: "Sam", conciergeId: 15 }, // Here Should Be res.userConcierge
+      })
+    );
 
-      return 10; // TODO: Here Should Be res.userId
-    } catch (e) {
-      console.log(e.message);
-    }
+    return {
+      userId: 10, // Here Should Be res.userId
+      userConcierge: { сonciergeName: "Sam", conciergeId: 15 }, // Here Should Be res.userConcierge
+    };
+  } catch (e) {
+    console.log(e.message);
   }
-);
+});
 
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     userId: null,
+    userConcierge: null,
     isAuthenticated: false,
     loading: false,
   },
@@ -60,12 +63,14 @@ const authSlice = createSlice({
   reducers: {
     logout(state) {
       state.userId = null;
+      state.userConcierge = null;
       state.isAuthenticated = false;
       state.loading = false;
     },
 
-    login(state, { payload: userId }) {
+    login(state, { payload: { userId, userConcierge } }) {
       state.userId = userId;
+      state.userConcierge = userConcierge;
       state.isAuthenticated = true;
       state.loading = false;
     },
@@ -76,8 +81,9 @@ const authSlice = createSlice({
       state.loading = true;
     },
 
-    [fetchLogin.fulfilled]: (state, { payload: userId }) => {
+    [fetchLogin.fulfilled]: (state, { payload: { userId, userConcierge } }) => {
       state.userId = userId;
+      state.userConcierge = userConcierge;
       state.isAuthenticated = true;
       state.loading = false;
     },
@@ -86,8 +92,9 @@ const authSlice = createSlice({
       state.loading = true;
     },
 
-    [fetchSignup.fulfilled]: (state, { payload: userId }) => {
+    [fetchSignup.fulfilled]: (state, { payload: { userId, userConcierge } }) => {
       state.userId = userId;
+      state.userConcierge = userConcierge;
       state.isAuthenticated = true;
       state.loading = false;
     },
@@ -97,6 +104,8 @@ const authSlice = createSlice({
 export const { logout, login } = authSlice.actions;
 
 export const selectUserId = state => state.auth.userId;
+
+export const selectUserConcierge = state => state.auth.userConcierge;
 
 export const selectAuthenticateStatus = state => state.auth.isAuthenticated;
 
@@ -111,7 +120,7 @@ export const userLogin = () => dispatch => {
   const userData = JSON.parse(localStorage.getItem(storageName));
 
   if (userData && userData.userId) {
-    dispatch(login(userData.userId));
+    dispatch(login(userData.userId, userData.userConcierge));
   }
 };
 
