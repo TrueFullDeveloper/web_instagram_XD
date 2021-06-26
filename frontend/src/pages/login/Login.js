@@ -45,7 +45,7 @@ export const Login = () => {
         <button type="submit" onClick={onClick}>
           Войти
         </button>
-
+        <Link to="/passwordreset">Забыли пароль?</Link>
         <Link to="/signin">Регистрация</Link>
       </form>
     </Fragment>
