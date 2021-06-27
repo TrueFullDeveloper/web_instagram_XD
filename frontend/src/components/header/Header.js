@@ -5,7 +5,7 @@ export const Header = () => {
   return (
     <div>
       <div>
-        <NavLink to="/">Новости</NavLink>
+        <NavLink to="/">Главная</NavLink>
       </div>
     </div>
   );
