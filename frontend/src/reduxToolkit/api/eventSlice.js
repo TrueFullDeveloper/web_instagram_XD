@@ -53,6 +53,7 @@ const payload = [
     },
     feedbackList: [
       {
+        feedbackId: 0,
         authorId: 0,
         authorName: "Альберт",
         authorPhoto: fakeAuthor_1,
@@ -61,6 +62,7 @@ const payload = [
           "Буду краток в форме изложения своего мнения о данном мероприятии: Мероприятие стоищее, не пожалел, что сходил!",
       },
       {
+        feedbackId: 1,
         authorId: 1,
         authorName: "Евгений",
         authorPhoto: fakeAuthor_2,
@@ -68,6 +70,7 @@ const payload = [
         feedback: "Евгениальное мероприятие!",
       },
       {
+        feedbackId: 2,
         authorId: 2,
         authorName: "Ван",
         authorPhoto: fakeAuthor_3,
@@ -113,6 +116,7 @@ const payload = [
     },
     feedbackList: [
       {
+        feedbackId: 3,
         authorId: 0,
         authorName: "Альберт",
         authorPhoto: fakeAuthor_1,
@@ -121,6 +125,7 @@ const payload = [
           "Буду краток в форме изложения своего мнения о данном мероприятии: Мероприятие стоищее, не пожалел, что сходил!",
       },
       {
+        feedbackId: 4,
         authorId: 1,
         authorName: "Евгений",
         authorPhoto: fakeAuthor_2,
@@ -128,6 +133,7 @@ const payload = [
         feedback: "Евгениальное мероприятие!",
       },
       {
+        feedbackId: 5,
         authorId: 2,
         authorName: "Ван",
         authorPhoto: fakeAuthor_3,
@@ -173,6 +179,7 @@ const payload = [
     },
     feedbackList: [
       {
+        feedbackId: 6,
         authorId: 0,
         authorName: "Альберт",
         authorPhoto: fakeAuthor_1,
@@ -181,6 +188,7 @@ const payload = [
           "Буду краток в форме изложения своего мнения о данном мероприятии: Мероприятие стоищее, не пожалел, что сходил!",
       },
       {
+        feedbackId: 7,
         authorId: 1,
         authorName: "Евгений",
         authorPhoto: fakeAuthor_2,
@@ -188,6 +196,7 @@ const payload = [
         feedback: "Евгениальное мероприятие!",
       },
       {
+        feedbackId: 8,
         authorId: 2,
         authorName: "Ван",
         authorPhoto: fakeAuthor_3,
@@ -233,6 +242,7 @@ const payload = [
     },
     feedbackList: [
       {
+        feedbackId: 9,
         authorId: 0,
         authorName: "Альберт",
         authorPhoto: fakeAuthor_1,
@@ -241,6 +251,7 @@ const payload = [
           "Буду краток в форме изложения своего мнения о данном мероприятии: Мероприятие стоищее, не пожалел, что сходил!",
       },
       {
+        feedbackId: 10,
         authorId: 1,
         authorName: "Евгений",
         authorPhoto: fakeAuthor_2,
@@ -248,6 +259,7 @@ const payload = [
         feedback: "Евгениальное мероприятие!",
       },
       {
+        feedbackId: 11,
         authorId: 2,
         authorName: "Ван",
         authorPhoto: fakeAuthor_3,
@@ -293,6 +305,7 @@ const payload = [
     },
     feedbackList: [
       {
+        feedbackId: 12,
         authorId: 0,
         authorName: "Альберт",
         authorPhoto: fakePhotoTitle_1,
@@ -301,6 +314,7 @@ const payload = [
           "Буду краток в форме изложения своего мнения о данном мероприятии: Мероприятие стоищее, не пожалел, что сходил!",
       },
       {
+        feedbackId: 13,
         authorId: 1,
         authorName: "Евгений",
         authorPhoto: fakePhotoTitle_1,
@@ -308,6 +322,7 @@ const payload = [
         feedback: "Евгениальное мероприятие!",
       },
       {
+        feedbackId: 14,
         authorId: 2,
         authorName: "Ван",
         authorPhoto: fakePhotoTitle_1,
@@ -354,6 +369,6 @@ export const selectEventLoading = state => state.event.loading;
 
 export const selectEventAnnotation = state => state.event.eventAnnotation;
 
-export const selectFeedbackList = state => state.event.eventAnnotation;
+export const selectFeedbackList = state => state.event.feedbackList;
 
 export default eventSlice.reducer;

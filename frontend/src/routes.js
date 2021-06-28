@@ -1,4 +1,5 @@
 import { Route, Switch, Redirect } from "react-router-dom";
+import { EventPage } from "./pages/EventPage";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/login/Login";
 import { PasswordReset } from "./pages/passwordReset/PasswordReset";
@@ -9,6 +10,7 @@ export const useRoutes = isAuthenticated => {
     return (
       <Switch>
         <Route path={"/"} exact component={Home} />
+        <Route path={"/event"} exact component={EventPage} />
         <Redirect to="/" />
       </Switch>
     );
