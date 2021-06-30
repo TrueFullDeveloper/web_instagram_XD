@@ -1,19 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// FAKE DATA BEGIN
+import fakeUserPhoto from "../../static/images/fakeImages/fakeUserPhoto.jpg";
+
+const userData = {
+  userPhoto: fakeUserPhoto,
+  userName: "Sergio",
+  email: "wannakillms@gmail.com",
+  userInformation: "Hi, I am from Russia, I am professional event manager! :D",
+  contactInformation: [
+    { communicationWay: "Email", contact: "wannakillms@gmail.com" },
+    { communicationWay: "Телефон", contact: "8-(960)-906-10-87" },
+  ],
+};
+// FAKE DATA BEGIN
+
 export const fetchProfile = createAsyncThunk("profile/fetchProfile", async userId => {
   try {
     const res = await axios.get("https://jsonplaceholder.typicode.com/todos/?_start=0&_limit=5");
-
-    const userData = {
-      userName: "Cezar",
-      email: "wannakillms@gmail.com",
-      userInformation: "Hi, I am from Russia, I am professional event manager! :D",
-      contactInformation: [
-        { communicationWay: "Email", contact: "wannakillms@gmail.com" },
-        { communicationWay: "Телефон", contact: "8-(960)-906-10-87" },
-      ],
-    };
 
     const payload = { ...userData }; // Here Should be res from Server
 
@@ -23,7 +28,7 @@ export const fetchProfile = createAsyncThunk("profile/fetchProfile", async userI
   }
 });
 
-export const profileUpdate = createAsyncThunk("profile/profileUpdate", async userData => {
+export const profileUpdate = createAsyncThunk("profile/profileUpdate", async (userData, userId) => {
   try {
     await axios.post("https://jsonplaceholder.typicode.com/posts", JSON.stringify(userData));
 
@@ -39,6 +44,7 @@ const profileSlice = createSlice({
   name: "profile",
   initialState: {
     profileData: {
+      userPhoto: "",
       userName: "",
       email: "",
       userInformation: "",
