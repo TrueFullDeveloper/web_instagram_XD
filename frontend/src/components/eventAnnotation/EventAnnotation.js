@@ -1,6 +1,6 @@
 import React from "react";
 
-export const EventAnnotation = ({ eventAnnotation }) => {
+const EventAnnotation = ({ eventAnnotation }) => {
   return (
     <div>
       <img src={eventAnnotation.eventPhotoTitle} alt="No photo(" />
@@ -37,3 +37,5 @@ export const EventAnnotation = ({ eventAnnotation }) => {
     </div>
   );
 };
+
+export default EventAnnotation;

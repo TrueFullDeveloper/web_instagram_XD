@@ -1,6 +1,6 @@
 import React from "react";
 
-export const FeedbackList = ({ feedbackList }) => {
+const FeedbackList = ({ feedbackList }) => {
   return (
     <div>
       <h1>Отзывы о мероприятии:</h1>
@@ -16,3 +16,5 @@ export const FeedbackList = ({ feedbackList }) => {
     </div>
   );
 };
+
+export default FeedbackList;

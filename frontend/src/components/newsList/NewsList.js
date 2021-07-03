@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { fetchEvent } from "../../reduxToolkit/api/eventSlice";
+import { fetchEvent } from "../../store/api/eventSlice";
 
-export const NewsList = ({ newsItems }) => {
+const NewsList = ({ newsItems }) => {
   const dispatch = useDispatch();
 
   const onClick = eventId => {
@@ -39,3 +39,5 @@ export const NewsList = ({ newsItems }) => {
     </div>
   );
 };
+
+export default NewsList;

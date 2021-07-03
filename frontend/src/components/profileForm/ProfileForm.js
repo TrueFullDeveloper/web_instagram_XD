@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-export const ProfileForm = ({ profileData, setEditModel }) => {
+const ProfileForm = ({ profileData, setEditModel }) => {
   const [profileForm, setForm] = useState({
     userName: profileData.userName,
     email: profileData.email,
@@ -32,14 +32,18 @@ export const ProfileForm = ({ profileData, setEditModel }) => {
               value={profileForm.email}
               onChange={onChange}
             />
-            <span>Обо мне</span>
-            <textarea
-              type="text"
-              id="userInformation"
-              name="userInformation"
-              value={profileForm.userInformation}
-              onChange={onChange}
-            />
+            {profileForm.userInformation ? (
+              <>
+                <span>Обо мне</span>
+                <textarea
+                  type="text"
+                  id="userInformation"
+                  name="userInformation"
+                  value={profileForm.userInformation}
+                  onChange={onChange}
+                />
+              </>
+            ) : null}
           </div>
         </form>
 
@@ -48,3 +52,5 @@ export const ProfileForm = ({ profileData, setEditModel }) => {
     </Fragment>
   );
 };
+
+export default ProfileForm;

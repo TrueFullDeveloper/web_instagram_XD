@@ -1,9 +1,16 @@
 import React, { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
-import { userLogout } from "../../reduxToolkit/api/authSlice";
-import { ProfileForm } from "../profileForm/ProfileForm";
+import { userLogout } from "../../store/api/authSlice";
+import ProfileForm from "../profileForm";
 
-export const ProfileInfomation = ({ profileData }) => {
+const config = {
+  instagram: "url",
+  facebook: "url",
+};
+
+// const iconUrl = config[contactItem.iconName] || "defaultUrl";
+
+const ProfileInfomation = ({ profileData }) => {
   const dispatch = useDispatch();
   const [editModalIsOpen, setEditModel] = useState(false);
 
@@ -32,3 +39,5 @@ export const ProfileInfomation = ({ profileData }) => {
     </div>
   );
 };
+
+export default ProfileInfomation;

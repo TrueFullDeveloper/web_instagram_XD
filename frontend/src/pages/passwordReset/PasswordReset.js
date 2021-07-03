@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Loader } from "../../components/loader/Loader";
-import {
-  changePassword,
-  sendEmail,
-  selectResetLoading,
-} from "../../reduxToolkit/api/passwordResetSlice";
+import Loader from "../../components/loader";
+import { changePassword, sendEmail, selectResetLoading } from "../../store/api/passwordResetSlice";
 
 // TODO: Add Normal Validation for Reset Form
-
-export const PasswordReset = () => {
+const PasswordReset = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectResetLoading);
 
@@ -122,3 +117,5 @@ export const PasswordReset = () => {
     );
   }
 };
+
+export default PasswordReset;

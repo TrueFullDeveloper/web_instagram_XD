@@ -62,6 +62,7 @@ const authSlice = createSlice({
 
   reducers: {
     logout(state) {
+      console.log(state);
       state.userId = null;
       state.userConcierge = null;
       state.isAuthenticated = false;

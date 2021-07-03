@@ -1,15 +1,15 @@
 import React, { Fragment } from "react";
-import { Loader } from "../components/loader/Loader";
+import Loader from "../../components/loader";
 import { useSelector } from "react-redux";
 import {
   selectEventAnnotation,
   selectFeedbackList,
   selectEventLoading,
-} from "../reduxToolkit/api/eventSlice";
-import { EventAnnotation } from "../components/eventAnnotation/EventAnnotation";
-import { FeedbackList } from "../components/feedbackList/FeedbackList";
+} from "../../store/api/eventSlice";
+import FeedbackList from "../../components/feedbackList";
+import EventAnnotation from "../../components/eventAnnotation";
 
-export const EventPage = () => {
+const EventPage = () => {
   const eventAnnotation = useSelector(selectEventAnnotation);
   const feedbackList = useSelector(selectFeedbackList);
   const loading = useSelector(selectEventLoading);
@@ -27,3 +27,5 @@ export const EventPage = () => {
     </Fragment>
   );
 };
+
+export default EventPage;
