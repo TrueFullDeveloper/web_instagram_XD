@@ -9,10 +9,7 @@ const userData = {
   userName: "Sergio",
   email: "wannakillms@gmail.com",
   userInformation: "Hi, I am from Russia, I am professional event manager! :D",
-  contactInformation: [
-    { communicationWay: "Email", contact: "wannakillms@gmail.com" },
-    { communicationWay: "Телефон", contact: "8-(960)-906-10-87" },
-  ],
+  phoneNumber: "8-(960)-906-10-87",
 };
 // FAKE DATA BEGIN
 

@@ -24,8 +24,8 @@ export const getRoutes = isAuthenticated => {
   if (isAuthenticated) {
     return (
       <Switch>
-        {routesConfig.map(routeItem => (
-          <Route path={routeItem.path} exact component={routeItem.component} />
+        {routesConfig.map((routeItem, routeIndex) => (
+          <Route key={routeIndex} path={routeItem.path} exact component={routeItem.component} />
         ))}
         <Redirect to="/" />
       </Switch>

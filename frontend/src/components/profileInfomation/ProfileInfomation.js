@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { userLogout } from "../../store/api/authSlice";
 import ProfileForm from "../profileForm";
 
-const config = {
-  instagram: "url",
-  facebook: "url",
-};
+// const config = {
+//   instagram: "url",
+//   facebook: "url",
+// };
 
 // const iconUrl = config[contactItem.iconName] || "defaultUrl";
 
@@ -24,13 +24,34 @@ const ProfileInfomation = ({ profileData }) => {
       <h2>Обо мне</h2>
       <p>{profileData.userInformation}</p>
       <h2>Контакты:</h2>
-      <br />
-      {profileData.contactInformation.map(contactItem => (
-        <Fragment>
-          <span>{contactItem.communicationWay}</span>
-          <p>{contactItem.contact}</p>
-        </Fragment>
-      ))}
+
+      {profileData.phoneNumber ? (
+        <>
+          <h2>Телефон</h2>
+          <p>{profileData.phoneNumber}</p>
+        </>
+      ) : null}
+
+      {profileData.instagram ? (
+        <>
+          <h2>instagram</h2>
+          <p>{profileData.instagram}</p>
+        </>
+      ) : null}
+
+      {profileData.facebook ? (
+        <>
+          <h2>facebook</h2>
+          <p>{profileData.facebook}</p>
+        </>
+      ) : null}
+
+      {profileData.vkontacte ? (
+        <>
+          <h2>Vk</h2>
+          <p>{profileData.vkontacte}</p>
+        </>
+      ) : null}
 
       {editModalIsOpen && <ProfileForm profileData={profileData} setEditModel={setEditModel} />}
 
