@@ -49,7 +49,7 @@ const Login = () => {
 
       <button type="submit">Войти</button>
       <Link to="/passwordreset">Забыли пароль?</Link>
-      <Link to="/signin">Регистрация</Link>
+      <Link to="/signup">Регистрация</Link>
     </form>
   );
 };
