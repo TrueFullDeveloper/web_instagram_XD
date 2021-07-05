@@ -25,27 +25,36 @@ export const fetchProfile = createAsyncThunk("profile/fetchProfile", async userI
   }
 });
 
-export const profileUpdate = createAsyncThunk("profile/profileUpdate", async (userData, userId) => {
-  try {
-    await axios.post("https://jsonplaceholder.typicode.com/posts", JSON.stringify(userData));
+export const profileUpdate = createAsyncThunk(
+  "profile/profileUpdate",
+  async (userUpdateData, userId) => {
+    try {
+      await axios.post(
+        "https://jsonplaceholder.typicode.com/posts",
+        JSON.stringify(userUpdateData)
+      );
 
-    const payload = { ...userData };
+      const payload = { ...userUpdateData, userPhoto: userData.userPhoto }; // Here Should be Photo url from Server
 
-    return payload;
-  } catch (err) {
-    console.log(err.message);
+      return payload;
+    } catch (err) {
+      console.log(err.message);
+    }
   }
-});
+);
 
 const profileSlice = createSlice({
   name: "profile",
   initialState: {
     profileData: {
-      userPhoto: "",
-      userName: "",
-      email: "",
-      userInformation: "",
-      contactInformation: [],
+      userPhoto: null,
+      userName: null,
+      email: null,
+      userInformation: null,
+      phoneNumber: null,
+      instagram: null,
+      facebook: null,
+      vkontacte: null,
     },
     loading: false,
   },
