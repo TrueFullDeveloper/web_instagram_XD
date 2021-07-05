@@ -3,41 +3,51 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../../components/loader";
 import { changePassword, sendEmail, selectResetLoading } from "../../store/api/passwordResetSlice";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
-// TODO: Add Normal Validation for Reset Form
 const PasswordReset = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectResetLoading);
-
-  const [resetForm, setResetForm] = useState({
-    email: "",
-    code: "",
-    password: "",
-    passwordRep: "",
-  });
   const [step, setStep] = useState(1);
 
-  const onClick = () => {
-    if (step === 1) {
-      dispatch(sendEmail(resetForm.email));
-      setStep(2);
-    }
+  const { handleSubmit, handleChange, values, errors } = useFormik({
+    initialValues: {
+      email: "",
+      code: "",
+      password: "",
+      passwordRep: "",
+    },
 
-    if (step === 2) {
-      dispatch(
-        changePassword({
-          code: resetForm.code,
-          newPasswod: resetForm.password,
-          newPasswodRep: resetForm.passwordRep,
-        })
-      );
-      setStep(3);
-    }
-  };
+    validationSchema: yup.object({
+      email: yup.string().email("Should be valid Email").required("Email Shoud be Required"),
+      code: yup.string().required("Code Shoud be Required"),
+      password: yup
+        .string()
+        .min(6, "Password must be longer than 6 characters")
+        .max(40, "Password must be shorter than 40 characters")
+        .required("Password Shoud be Required"),
+      passwordRep: yup.string().required("Repeat Password Please"),
+    }),
 
-  const onChange = event => {
-    setResetForm({ ...resetForm, [event.target.name]: event.target.value });
-  };
+    onSubmit: ({ email, code, password, passwordRep }) => {
+      if (step === 1) {
+        dispatch(sendEmail(email));
+        setStep(2);
+      }
+
+      if (step === 2) {
+        dispatch(
+          changePassword({
+            code,
+            password,
+            passwordRep,
+          })
+        );
+        setStep(3);
+      }
+    },
+  });
 
   if (loading) {
     return <Loader />;
@@ -45,7 +55,7 @@ const PasswordReset = () => {
 
   if (step === 1) {
     return (
-      <form>
+      <form onSubmit={handleSubmit}>
         <h1>Забыли пароль?</h1>
         <p>
           Для восстановления пароля укажите e-mail, на
@@ -57,18 +67,18 @@ const PasswordReset = () => {
           id="email"
           name="email"
           value={resetForm.email}
-          onChange={onChange}
+          onChange={handleChange}
         />
-        <button type="button" onClick={onClick}>
-          Отправить
-        </button>
+        {errors.email ? <div>{errors.email}</div> : null}
+
+        <button type="submit">Отправить</button>
       </form>
     );
   }
 
   if (step === 2) {
     return (
-      <form>
+      <form onSubmit={handleSubmit}>
         <h1>Введите код</h1>
         <p>
           Введите код для подтверждения сброса пароля.
@@ -80,28 +90,32 @@ const PasswordReset = () => {
           type="text"
           id="code"
           name="code"
-          value={resetForm.code}
-          onChange={onChange}
+          value={values.code}
+          onChange={handleChange}
         />
+        {errors.code ? <div>{errors.code}</div> : null}
+
         <input
           placeholder="Новый Пароль"
           type="password"
           id="password"
           name="password"
-          value={resetForm.password}
-          onChange={onChange}
+          value={values.password}
+          onChange={handleChange}
         />
+        {errors.password ? <div>{errors.password}</div> : null}
+
         <input
           placeholder="Повторите Пароль"
           type="password"
           id="passwordRep"
           name="passwordRep"
-          value={resetForm.passwordRep}
-          onChange={onChange}
+          value={values.passwordRep}
+          onChange={handleChange}
         />
-        <button type="button" onClick={onClick}>
-          Востановить
-        </button>
+        {errors.passwordRep ? <div>{errors.passwordRep}</div> : null}
+
+        <button type="submit">Востановить</button>
       </form>
     );
   }
@@ -110,7 +124,7 @@ const PasswordReset = () => {
     return (
       <div>
         <h1>Вы успешно изменили свой пароль!</h1>
-        <button type="submit">
+        <button type="button">
           <Link to="/login">Ок</Link>
         </button>
       </div>

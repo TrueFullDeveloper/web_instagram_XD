@@ -81,6 +81,7 @@ const Signup = () => {
         value={values.passwordRep}
         onChange={handleChange}
       />
+      {errors.passwordRep ? <div>{errors.passwordRep}</div> : null}
 
       <button type="submit">Зарегистрироваться</button>
       <Link to="/login">Войти</Link>
