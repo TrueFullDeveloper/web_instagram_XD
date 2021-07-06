@@ -18,6 +18,10 @@ const routesConfig = [
     path: "/profile",
     component: lazy(() => import("./profile")),
   },
+  {
+    path: "/user",
+    component: lazy(() => import("./user")),
+  },
 ];
 
 export const getRoutes = isAuthenticated => {

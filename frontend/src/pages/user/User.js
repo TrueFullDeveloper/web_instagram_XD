@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import UserInfomation from "../../components/userInfomation";
+import UserInformation from "../../components/userInformation";
 import Loader from "../../components/loader";
 import { useSelector } from "react-redux";
 import { selectUserLoading, selectUser } from "../../store/api/userSlice";
@@ -22,7 +22,7 @@ const User = () => {
         <Loader />
       ) : (
         <Fragment>
-          <UserInfomation userData={userData} />
+          <UserInformation userData={userData} />
         </Fragment>
       )}
     </Fragment>
