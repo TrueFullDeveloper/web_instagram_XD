@@ -70,6 +70,6 @@ const userListSlice = createSlice({
 
 export const selectUserListLoading = state => state.userList.loading;
 
-export const selectUserList = state => state.userList.userListAnnotation;
+export const selectUserList = state => state.userList.userList;
 
 export default userListSlice.reducer;
