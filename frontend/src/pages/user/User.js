@@ -7,14 +7,6 @@ import { selectUserLoading, selectUser } from "../../store/api/userSlice";
 const User = () => {
   const loading = useSelector(selectUserLoading);
   const userData = useSelector(selectUser);
-  //const userId = useSelector(selectUserId);
-
-  //const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchUser(userId));
-  //   // eslint-disable-next-line
-  // }, []);
 
   return (
     <Fragment>

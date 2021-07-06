@@ -27,12 +27,12 @@ const payload = [
     userPhoto: fakeAuthor_3,
   },
   {
-    userId: 0,
+    userId: 3,
     userName: "Роман",
     userPhoto: fakeUserListManager_1,
   },
   {
-    userId: 1,
+    userId: 4,
     userName: "Егор",
     userPhoto: fakeUserListManager_2,
   },
