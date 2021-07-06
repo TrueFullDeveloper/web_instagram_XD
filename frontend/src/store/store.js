@@ -6,6 +6,7 @@ import newsReducer from "./api/newsSlice";
 import eventReducer from "./api/eventSlice";
 import profileReducer from "./api/profileSlice";
 import userReducer from "./api/userSlice";
+import userListReducer from "./api/userListSlice";
 
 export default configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export default configureStore({
     event: eventReducer,
     profile: profileReducer,
     user: userReducer,
+    userList: userListReducer,
   },
 });
