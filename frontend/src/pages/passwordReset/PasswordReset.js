@@ -66,7 +66,7 @@ const PasswordReset = () => {
           type="email"
           id="email"
           name="email"
-          value={resetForm.email}
+          value={values.email}
           onChange={handleChange}
         />
         {errors.email ? <div>{errors.email}</div> : null}

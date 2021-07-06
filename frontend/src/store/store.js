@@ -5,6 +5,7 @@ import passwordResetReducer from "./api/passwordResetSlice";
 import newsReducer from "./api/newsSlice";
 import eventReducer from "./api/eventSlice";
 import profileReducer from "./api/profileSlice";
+import userReducer from "./api/userSlice";
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     news: newsReducer,
     event: eventReducer,
     profile: profileReducer,
+    user: userReducer,
   },
 });
