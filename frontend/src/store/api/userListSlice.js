@@ -49,6 +49,16 @@ export const fetchUserList = createAsyncThunk("userList/fetchUserList", async us
   }
 });
 
+export const searchUser = createAsyncThunk("userList/searchUser", async userQuery => {
+  try {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/todos/?_start=0&_limit=5");
+
+    return payload;
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
 const userListSlice = createSlice({
   name: "userList",
   initialState: {
@@ -62,6 +72,15 @@ const userListSlice = createSlice({
     },
 
     [fetchUserList.fulfilled]: (state, { payload }) => {
+      state.userList = payload;
+      state.loading = false;
+    },
+
+    [searchUser.pending]: state => {
+      state.loading = true;
+    },
+
+    [searchUser.fulfilled]: (state, { payload }) => {
       state.userList = payload;
       state.loading = false;
     },
