@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import UserList from "../../components/userList";
+import UserSearchForm from "../../components/userSearchForm";
 import Loader from "../../components/loader";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -25,6 +26,7 @@ const User = () => {
         <Loader />
       ) : (
         <Fragment>
+          <UserSearchForm />
           <UserList userList={userList} />
         </Fragment>
       )}
