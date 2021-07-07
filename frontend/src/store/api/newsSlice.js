@@ -77,6 +77,16 @@ export const fetchNews = createAsyncThunk("news/fetchNews", async () => {
   }
 });
 
+export const searchEvent = createAsyncThunk("news/searchEvent", async userQuery => {
+  try {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/todos/?_start=0&_limit=5");
+
+    return payload;
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
 const newsSlice = createSlice({
   name: "news",
   initialState: {
@@ -90,6 +100,15 @@ const newsSlice = createSlice({
     },
 
     [fetchNews.fulfilled]: (state, { payload }) => {
+      state.newsList = payload;
+      state.loading = false;
+    },
+
+    [searchEvent.pending]: state => {
+      state.loading = true;
+    },
+
+    [searchEvent.fulfilled]: (state, { payload }) => {
       state.newsList = payload;
       state.loading = false;
     },
