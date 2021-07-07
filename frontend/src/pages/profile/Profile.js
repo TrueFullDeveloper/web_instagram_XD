@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import ProfileInfomation from "../../components/profileInfomation";
+import RepostList from "../../components/repostList";
 import Loader from "../../components/loader";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProfile, selectProfileLoading, selectProfile } from "../../store/api/profileSlice";
@@ -24,6 +25,11 @@ const Profile = () => {
       ) : (
         <Fragment>
           <ProfileInfomation profileData={profileData} />
+
+          {/* Looks like shity code */}
+          {profileData.userRepostList.lenght != 0 ? (
+            <RepostList repostList={profileData.userRepostList} />
+          ) : null}
         </Fragment>
       )}
     </Fragment>
