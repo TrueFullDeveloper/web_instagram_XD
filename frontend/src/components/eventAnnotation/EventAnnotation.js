@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../../store/api/userSlice";
+import { addRepost } from "../../store/api/repostSlice";
 
 const EventAnnotation = ({ eventAnnotation }) => {
   const dispatch = useDispatch();
@@ -31,7 +32,6 @@ const EventAnnotation = ({ eventAnnotation }) => {
           <h1>{eventAnnotation.eventManager.eventManagerName}</h1>
           <img src={eventAnnotation.eventManager.eventManagerPhoto} alt="No photo(" />
         </NavLink>
-
         <div>
           <h2>Список участников мероприятия:</h2>
           {eventAnnotation.parcicipantList.map(parcicipantItem => (
@@ -45,6 +45,8 @@ const EventAnnotation = ({ eventAnnotation }) => {
             </NavLink>
           ))}
         </div>
+        {/* // TODO: May be Add Repost Validation */}
+        <button onClick={dispatch(addRepost(eventAnnotation.eventId))}>Репост</button>
       </div>
     </div>
   );

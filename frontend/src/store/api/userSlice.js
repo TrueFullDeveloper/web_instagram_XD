@@ -5,6 +5,7 @@ import axios from "axios";
 import fakeUserPhoto from "../../static/images/fakeImages/fakeUserPhoto.jpg";
 
 const userData = {
+  userId: 0,
   userPhoto: fakeUserPhoto,
   userName: "Sergio",
   email: "wannakillms@gmail.com",

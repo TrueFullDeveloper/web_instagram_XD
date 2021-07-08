@@ -5,30 +5,34 @@ import Loader from "../../components/loader";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProfile, selectProfileLoading, selectProfile } from "../../store/api/profileSlice";
 import { selectUserId } from "../../store/api/authSlice";
+import { fetchRepost, selectRepostList, selectRepostLoading } from "../../store/api/repostSlice";
 
 const Profile = () => {
-  const loading = useSelector(selectProfileLoading);
+  const dispatch = useDispatch();
+
+  const profieLoading = useSelector(selectProfileLoading);
+  const repostlLoading = useSelector(selectRepostLoading);
   const profileData = useSelector(selectProfile);
   const userId = useSelector(selectUserId);
-
-  const dispatch = useDispatch();
+  const userRepostList = useSelector(selectRepostList);
 
   useEffect(() => {
     dispatch(fetchProfile(userId));
+    dispatch(fetchRepost(userId));
     // eslint-disable-next-line
   }, []);
 
   return (
     <Fragment>
-      {loading ? (
+      {profieLoading || repostlLoading ? (
         <Loader />
       ) : (
         <Fragment>
           <ProfileInfomation profileData={profileData} />
 
           {/* Looks like shity code */}
-          {profileData.userRepostList.lenght != 0 ? (
-            <RepostList repostList={profileData.userRepostList} />
+          {userRepostList.lenght != 0 ? (
+            <RepostList repostList={userRepostList} isOwener={true} />
           ) : null}
         </Fragment>
       )}

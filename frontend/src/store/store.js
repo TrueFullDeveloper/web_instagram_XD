@@ -7,6 +7,7 @@ import eventReducer from "./api/eventSlice";
 import profileReducer from "./api/profileSlice";
 import userReducer from "./api/userSlice";
 import userListReducer from "./api/userListSlice";
+import repostReducer from "./api/repostSlice";
 
 export default configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export default configureStore({
     profile: profileReducer,
     user: userReducer,
     userList: userListReducer,
+    repost: repostReducer,
   },
 });

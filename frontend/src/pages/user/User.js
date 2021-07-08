@@ -1,25 +1,34 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import UserInformation from "../../components/userInformation";
 import RepostList from "../../components/repostList";
 import Loader from "../../components/loader";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectUserLoading, selectUser } from "../../store/api/userSlice";
+import { fetchRepost, selectRepostList, selectRepostLoading } from "../../store/api/repostSlice";
 
 const User = () => {
-  const loading = useSelector(selectUserLoading);
+  const dispatch = useDispatch();
+
+  const userLoading = useSelector(selectUserLoading);
+  const repostlLoading = useSelector(selectRepostLoading);
   const userData = useSelector(selectUser);
+  const userRepostList = useSelector(selectRepostList);
+
+  useEffect(() => {
+    dispatch(fetchRepost(userData.userId));
+  }, []);
 
   return (
     <Fragment>
-      {loading ? (
+      {userLoading || repostlLoading ? (
         <Loader />
       ) : (
         <Fragment>
           <UserInformation userData={userData} />
 
           {/* Looks like shity code */}
-          {userData.userRepostList.lenght != 0 ? (
-            <RepostList repostList={userData.userRepostList} />
+          {userRepostList.lenght != 0 ? (
+            <RepostList repostList={userRepostList} isOwener={false} />
           ) : null}
         </Fragment>
       )}

@@ -2,8 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchEvent } from "../../store/api/eventSlice";
+import { deleteRepost } from "../../store/api/repostSlice";
 
-const RepostList = ({ repostList }) => {
+const RepostList = ({ repostList, isOwener }) => {
   const dispatch = useDispatch();
 
   return (
@@ -30,6 +31,9 @@ const RepostList = ({ repostList }) => {
                   Подробнее
                 </NavLink>
               </button>
+              {isOwener ? (
+                <button onClick={() => dispatch(deleteRepost(repostItem.repostId))}>Удалить</button>
+              ) : null}
             </div>
           </div>
         </div>

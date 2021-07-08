@@ -45,7 +45,7 @@ export const fetchRepost = createAsyncThunk("repost/fetchRepost", async userId =
   }
 });
 
-export const addRepost = createAsyncThunk("repost/fetchRepost", async (userId, eventId) => {
+export const addRepost = createAsyncThunk("repost/fetchRepost", async eventId => {
   try {
     const res = await axios.get("https://jsonplaceholder.typicode.com/todos/?_start=0&_limit=5");
 
@@ -57,9 +57,9 @@ export const addRepost = createAsyncThunk("repost/fetchRepost", async (userId, e
   }
 });
 
-export const deleteRepost = createAsyncThunk("repost/deleteRepost", async (repostId, userId) => {
+export const deleteRepost = createAsyncThunk("repost/deleteRepost", async repostId => {
   try {
-    await axios.post("https://jsonplaceholder.typicode.com/posts", JSON.stringify(userUpdateData));
+    const res = await axios.get("https://jsonplaceholder.typicode.com/todos/?_start=0&_limit=5");
 
     const payload = userRepostList; // Here Should be Photo url from Server
 
@@ -91,7 +91,7 @@ const repostSlice = createSlice({
     },
 
     [addRepost.fulfilled]: (state, { payload }) => {
-      state.profileData = payload;
+      state.userRepostList = payload;
       state.loading = false;
     },
 
@@ -100,7 +100,7 @@ const repostSlice = createSlice({
     },
 
     [deleteRepost.fulfilled]: (state, { payload }) => {
-      state.profileData = payload;
+      state.userRepostList = payload;
       state.loading = false;
     },
   },
