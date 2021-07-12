@@ -30,6 +30,10 @@ const routesConfig = [
     path: "/chats",
     component: lazy(() => import("./chatPage")),
   },
+  {
+    path: "/chatroom",
+    component: lazy(() => import("./chatRoom")),
+  },
 ];
 
 export const getRoutes = isAuthenticated => {

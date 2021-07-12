@@ -25,6 +25,6 @@ export const { setChat } = chatSlice.actions;
 
 export const selectMessageList = state => state.chat.messageList;
 export const selectCompanion = state => state.chat.companion;
-export const selectRoomId = state => state.chat.roomId;
+export const selectChatId = state => state.chat.chatId;
 
 export default chatSlice.reducer;

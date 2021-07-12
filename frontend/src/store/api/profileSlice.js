@@ -85,4 +85,6 @@ export const selectProfileLoading = state => state.profile.loading;
 
 export const selectProfile = state => state.profile.profileData;
 
+export const selectUserName = state => state.profile.profileData.userName;
+
 export default profileSlice.reducer;
