@@ -8,9 +8,11 @@ import profileReducer from "./api/profileSlice";
 import userReducer from "./api/userSlice";
 import userListReducer from "./api/userListSlice";
 import repostReducer from "./api/repostSlice";
+import chatReducer from "./api/chatSlice";
 
 export default configureStore({
   reducer: {
+    chat: chatReducer,
     // Reducers with API
     auth: authReducer,
     passwordReset: passwordResetReducer,
