@@ -9,11 +9,13 @@ import userReducer from "./api/userSlice";
 import userListReducer from "./api/userListSlice";
 import repostReducer from "./api/repostSlice";
 import chatReducer from "./api/chatSlice";
+import chatListReducer from "./api/chatListSlice";
 
 export default configureStore({
   reducer: {
     chat: chatReducer,
     // Reducers with API
+    chatList: chatListReducer,
     auth: authReducer,
     passwordReset: passwordResetReducer,
     news: newsReducer,
