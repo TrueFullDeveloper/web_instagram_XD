@@ -20,7 +20,7 @@ const chatSlice = createSlice({
     },
 
     addMessage(state, { payload: { message } }) {
-      state.messageList = [...messageList, message];
+      state.messageList = [...state.messageList, message];
     },
   },
 });

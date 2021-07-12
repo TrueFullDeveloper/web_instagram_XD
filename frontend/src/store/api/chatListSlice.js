@@ -59,7 +59,7 @@ const chatListSlice = createSlice({
     },
 
     [fetchChatList.fulfilled]: (state, { payload }) => {
-      state.userList = payload;
+      state.chatList = payload;
       state.loading = false;
     },
 
@@ -68,7 +68,7 @@ const chatListSlice = createSlice({
     },
 
     [searchCompanion.fulfilled]: (state, { payload }) => {
-      state.userList = payload;
+      state.chatList = payload;
       state.loading = false;
     },
   },

@@ -26,6 +26,10 @@ const routesConfig = [
     path: "/users",
     component: lazy(() => import("./usersPage")),
   },
+  {
+    path: "/chats",
+    component: lazy(() => import("./chatPage")),
+  },
 ];
 
 export const getRoutes = isAuthenticated => {

@@ -7,15 +7,17 @@ import {
   selectChatList,
   selectChatListLoading,
 } from "../../store/api/chatListSlice";
+import { selectUserId } from "../../store/api/authSlice";
 
 const ChatPage = () => {
   const dispatch = useDispatch();
 
   const chatList = useSelector(selectChatList);
   const loading = useSelector(selectChatListLoading);
+  const userId = useSelector(selectUserId);
 
   useEffect(() => {
-    dispatch(fetchChatList);
+    dispatch(fetchChatList(userId));
   }, []);
 
   return <>{loading ? <Loader /> : <ChatList chatList={chatList} />}</>;

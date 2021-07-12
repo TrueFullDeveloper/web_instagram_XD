@@ -7,6 +7,7 @@ const Header = () => {
       <NavLink to="/">Главная</NavLink>
       <NavLink to="/profile">Мой Профиль</NavLink>
       <NavLink to="/users">Пользователи</NavLink>
+      <NavLink to="/chats">Ваши чаты</NavLink>
     </div>
   );
 };
