@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useChat } from "hooks";
+import { useChat } from "../../hooks/useChat";
 import { MessageForm } from "./MessageForm";
 import { MessageList } from "./MessageList";
 import { selectUserName } from "../../store/api/profileSlice";

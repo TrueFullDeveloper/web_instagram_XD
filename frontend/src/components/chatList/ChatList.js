@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 //import { useDispatch } from "react-redux";
-import { fetchUser } from "../../store/api/userSlice";
+//TODO: Fix NavLink (search string should be look like this: "chatroom2412")
 
 const ChatList = ({ chatList }) => {
   return (
@@ -9,7 +9,7 @@ const ChatList = ({ chatList }) => {
       <h2>Список ваших чатов:</h2>
 
       {chatList.map(chatListItem => (
-        <NavLink to="/" key={chatListItem.chatId} onClick={() => console.log("Its work")}>
+        <NavLink to="/chatroom" key={chatListItem.chatId}>
           <div>
             <h1>{chatListItem.companion.userName}</h1>
             <div>
