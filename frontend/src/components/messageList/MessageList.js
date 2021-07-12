@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef, useEffect } from "react";
 
-export const MessageList = ({ messageList, removeMessage }) => {
+const MessageList = ({ messageList, removeMessage }) => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
