@@ -8,6 +8,7 @@ import {
   selectChatListLoading,
 } from "../../store/api/chatListSlice";
 import { selectUserId } from "../../store/api/authSlice";
+import { fetchProfile } from "../../store/api/profileSlice";
 
 const ChatPage = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const ChatPage = () => {
   const userId = useSelector(selectUserId);
 
   useEffect(() => {
+    dispatch(fetchProfile(userId)); // This is Need for ChatRoom
     dispatch(fetchChatList(userId));
   }, []);
 

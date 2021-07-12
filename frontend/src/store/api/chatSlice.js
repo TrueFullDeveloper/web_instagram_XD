@@ -18,14 +18,10 @@ const chatSlice = createSlice({
       state.companion = companion;
       state.chatId = chatId;
     },
-
-    addMessage(state, { payload: { message } }) {
-      state.messageList = [...state.messageList, message];
-    },
   },
 });
 
-export const { setChat, addMessage } = chatSlice.actions;
+export const { setChat } = chatSlice.actions;
 
 export const selectMessageList = state => state.chat.messageList;
 export const selectCompanion = state => state.chat.companion;
