@@ -10,6 +10,7 @@ import userListReducer from "./api/userListSlice";
 import repostReducer from "./api/repostSlice";
 import chatReducer from "./api/chatSlice";
 import chatListReducer from "./api/chatListSlice";
+import createEventReducer from "./api/createEventSlice";
 
 export default configureStore({
   reducer: {
@@ -24,5 +25,6 @@ export default configureStore({
     user: userReducer,
     userList: userListReducer,
     repost: repostReducer,
+    createEvent: createEventReducer,
   },
 });
