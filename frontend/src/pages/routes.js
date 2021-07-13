@@ -34,6 +34,10 @@ const routesConfig = [
     path: "/chatroom",
     component: lazy(() => import("./chatRoom")),
   },
+  {
+    path: "/create_event",
+    component: lazy(() => import("./createEventPage")),
+  },
 ];
 
 export const getRoutes = isAuthenticated => {
