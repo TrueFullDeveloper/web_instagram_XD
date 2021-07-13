@@ -344,6 +344,19 @@ export const fetchEvent = createAsyncThunk("event/fetchEvent", async eventId => 
   }
 });
 
+export const addFeedback = createAsyncThunk(
+  "event/addFeedback",
+  async (eventId, userId, feedback) => {
+    try {
+      const res = await axios.get("https://jsonplaceholder.typicode.com/todos/?_start=0&_limit=5");
+
+      return payload[eventId];
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+);
+
 const eventSlice = createSlice({
   name: "event",
   initialState: {
@@ -359,6 +372,15 @@ const eventSlice = createSlice({
 
     [fetchEvent.fulfilled]: (state, { payload: { eventAnnotation, feedbackList } }) => {
       state.eventAnnotation = eventAnnotation;
+      state.feedbackList = feedbackList;
+      state.loading = false;
+    },
+
+    [addFeedback.pending]: state => {
+      state.loading = true;
+    },
+
+    [addFeedback.fulfilled]: (state, { payload: { feedbackList } }) => {
       state.feedbackList = feedbackList;
       state.loading = false;
     },
