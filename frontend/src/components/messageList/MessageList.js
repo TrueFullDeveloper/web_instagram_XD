@@ -1,5 +1,6 @@
 import React from "react";
 import { useRef, useEffect } from "react";
+import MessageListItem from "../massageListItem";
 
 const MessageList = ({ messageList, removeMessage }) => {
   const messagesEndRef = useRef(null);
@@ -12,7 +13,7 @@ const MessageList = ({ messageList, removeMessage }) => {
 
   return (
     <div>
-      {messages.map(msgItem => (
+      {messageList.map(msgItem => (
         <MessageListItem key={msgItem.messageId} msgItem={msgItem} removeMessage={removeMessage} />
       ))}
       <span ref={messagesEndRef}></span>

@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useChat } from "../../hooks/useChat";
-import { MessageForm } from "./MessageForm";
-import { MessageList } from "./MessageList";
 import { selectUserName } from "../../store/api/profileSlice";
 import { selectCompanion, selectMessageList } from "../../store/api/chatSlice";
+import MessageForm from "../../components/messageForm";
+import MessageList from "../../components/messageList";
 
 const ChatRoom = ({ chatId }) => {
   const { sendMessage, removeMessage } = useChat(chatId);
