@@ -7,6 +7,7 @@ import {
   selectEventLoading,
 } from "../../store/api/eventSlice";
 import FeedbackList from "../../components/feedbackList";
+import FeedbackForm from "../../components/feedbackForm";
 import EventAnnotation from "../../components/eventAnnotation";
 
 const EventPage = () => {
@@ -21,6 +22,7 @@ const EventPage = () => {
       ) : (
         <Fragment>
           <EventAnnotation eventAnnotation={eventAnnotation} />
+          <FeedbackForm />
           <FeedbackList feedbackList={feedbackList} />
         </Fragment>
       )}

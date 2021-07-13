@@ -391,6 +391,8 @@ export const selectEventLoading = state => state.event.loading;
 
 export const selectEventAnnotation = state => state.event.eventAnnotation;
 
+export const selectEventId = state => state.event.eventAnnotation.eventId;
+
 export const selectFeedbackList = state => state.event.feedbackList;
 
 export default eventSlice.reducer;
