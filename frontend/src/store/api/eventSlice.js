@@ -17,6 +17,7 @@ import fakeAuthor_3 from "../../static/images/fakeImages/fakeAuthor_3.jpg";
 
 const payload = [
   {
+    userFeedbackId: null,
     eventAnnotation: {
       eventId: 0,
       eventPhotoTitle: fakePhotoTitle_1,
@@ -80,6 +81,7 @@ const payload = [
     ],
   },
   {
+    userFeedbackId: null,
     eventAnnotation: {
       eventId: 1,
       eventPhotoTitle: fakePhotoTitle_2,
@@ -143,6 +145,7 @@ const payload = [
     ],
   },
   {
+    userFeedbackId: null,
     eventAnnotation: {
       eventId: 2,
       eventPhotoTitle: fakePhotoTitle_3,
@@ -206,6 +209,7 @@ const payload = [
     ],
   },
   {
+    userFeedbackId: null,
     eventAnnotation: {
       eventId: 3,
       eventPhotoTitle: fakePhotoTitle_4,
@@ -269,6 +273,7 @@ const payload = [
     ],
   },
   {
+    userFeedbackId: 13,
     eventAnnotation: {
       eventId: 4,
       eventPhotoTitle: fakePhotoTitle_5,
@@ -334,7 +339,7 @@ const payload = [
 ];
 /// FAKE DATA END
 
-export const fetchEvent = createAsyncThunk("event/fetchEvent", async eventId => {
+export const fetchEvent = createAsyncThunk("event/fetchEvent", async (eventId, userId) => {
   try {
     const res = await axios.get("https://jsonplaceholder.typicode.com/todos/?_start=0&_limit=5");
 
@@ -357,9 +362,23 @@ export const addFeedback = createAsyncThunk(
   }
 );
 
+export const removeFeedback = createAsyncThunk(
+  "event/removeFeedback",
+  async (eventId, feedbackId) => {
+    try {
+      const res = await axios.get("https://jsonplaceholder.typicode.com/todos/?_start=0&_limit=5");
+
+      return payload[eventId];
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+);
+
 const eventSlice = createSlice({
   name: "event",
   initialState: {
+    userFeedbackId: null,
     eventAnnotation: null,
     feedbackList: [],
     loading: false,
@@ -370,7 +389,11 @@ const eventSlice = createSlice({
       state.loading = true;
     },
 
-    [fetchEvent.fulfilled]: (state, { payload: { eventAnnotation, feedbackList } }) => {
+    [fetchEvent.fulfilled]: (
+      state,
+      { payload: { userFeedbackId, eventAnnotation, feedbackList } }
+    ) => {
+      state.userFeedbackId = userFeedbackId;
       state.eventAnnotation = eventAnnotation;
       state.feedbackList = feedbackList;
       state.loading = false;
@@ -380,7 +403,18 @@ const eventSlice = createSlice({
       state.loading = true;
     },
 
-    [addFeedback.fulfilled]: (state, { payload: { feedbackList } }) => {
+    [addFeedback.fulfilled]: (state, { payload: { userFeedbackId, feedbackList } }) => {
+      state.userFeedbackId = userFeedbackId;
+      state.feedbackList = feedbackList;
+      state.loading = false;
+    },
+
+    [removeFeedback.pending]: state => {
+      state.loading = true;
+    },
+
+    [removeFeedback.fulfilled]: (state, { payload: { userFeedbackId, feedbackList } }) => {
+      state.userFeedbackId = userFeedbackId;
       state.feedbackList = feedbackList;
       state.loading = false;
     },
@@ -394,5 +428,7 @@ export const selectEventAnnotation = state => state.event.eventAnnotation;
 export const selectEventId = state => state.event.eventAnnotation.eventId;
 
 export const selectFeedbackList = state => state.event.feedbackList;
+
+export const selectUserFeedbackId = state => state.event.userFeedbackId;
 
 export default eventSlice.reducer;
