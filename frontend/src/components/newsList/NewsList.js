@@ -1,13 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchEvent } from "../../store/api/eventSlice";
+import { selectUserId } from "../../store/api/authSlice";
 
 const NewsList = ({ newsItems }) => {
   const dispatch = useDispatch();
+  const userId = useSelector(selectUserId);
 
   const onClick = eventId => {
-    dispatch(fetchEvent(eventId));
+    dispatch(fetchEvent(eventId, userId));
   };
 
   return (

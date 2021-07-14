@@ -1,10 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Loader from "../../components/loader";
 import { useSelector } from "react-redux";
 import {
   selectEventAnnotation,
   selectFeedbackList,
   selectEventLoading,
+  selectUserFeedbackId,
 } from "../../store/api/eventSlice";
 import FeedbackList from "../../components/feedbackList";
 import FeedbackForm from "../../components/feedbackForm";
@@ -14,19 +15,20 @@ const EventPage = () => {
   const eventAnnotation = useSelector(selectEventAnnotation);
   const feedbackList = useSelector(selectFeedbackList);
   const loading = useSelector(selectEventLoading);
+  const userFeedbackId = useSelector(selectUserFeedbackId);
 
   return (
-    <Fragment>
+    <>
       {loading ? (
         <Loader />
       ) : (
-        <Fragment>
+        <>
           <EventAnnotation eventAnnotation={eventAnnotation} />
-          <FeedbackForm />
-          <FeedbackList feedbackList={feedbackList} />
-        </Fragment>
+          {!userFeedbackId && <FeedbackForm />}
+          <FeedbackList feedbackList={feedbackList} userFeedbackId={userFeedbackId} />
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 
