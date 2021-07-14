@@ -121,7 +121,7 @@ export const userLogin = () => dispatch => {
   const userData = JSON.parse(localStorage.getItem(storageName));
 
   if (userData && userData.userId) {
-    dispatch(login(userData.userId, userData.userConcierge));
+    dispatch(login({ userId: userData.userId, userConcierge: userData.userConcierge }));
   }
 };
 
