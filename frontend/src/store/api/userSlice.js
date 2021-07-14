@@ -26,6 +26,20 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async userId => {
   }
 });
 
+export const sendMessage = createAsyncThunk(
+  "user/sendMessage",
+  async (userId, authorId, messageText) => {
+    try {
+      await axios.post(
+        "https://jsonplaceholder.typicode.com/posts",
+        JSON.stringify({ userId, authorId, messageText })
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -49,6 +63,14 @@ const userSlice = createSlice({
 
     [fetchUser.fulfilled]: (state, { payload }) => {
       state.userData = payload;
+      state.loading = false;
+    },
+
+    [sendMessage.pending]: state => {
+      state.loading = true;
+    },
+
+    [sendMessage.fulfilled]: state => {
       state.loading = false;
     },
   },
