@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { profileUpdate } from "../../store/api/profileSlice";
 import { selectUserId } from "../../store/api/authSlice";
+import { createPortal } from "react-dom";
 
 const ProfileForm = ({ profileData, setEditModel }) => {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
+  const profileFormModal = useRef(document.createElement("div"));
+
+  useEffect(() => {
+    document.body.appendChild(profileFormModal.current);
+
+    return () => document.body.removeChild(profileFormModal.current);
+  }, []);
 
   const { handleSubmit, handleChange, values, errors, handleBlur } = useFormik({
     initialValues: {
@@ -69,7 +77,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
     },
   });
 
-  return (
+  return createPortal(
     <div>
       <form onSubmit={handleSubmit}>
         <span>Имя</span>
@@ -178,7 +186,8 @@ const ProfileForm = ({ profileData, setEditModel }) => {
       </form>
 
       <button onClick={() => setEditModel(false)}>Закрыть</button>
-    </div>
+    </div>,
+    profileFormModal.current
   );
 };
 
