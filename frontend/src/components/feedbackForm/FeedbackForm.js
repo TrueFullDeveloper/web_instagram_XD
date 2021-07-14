@@ -13,25 +13,47 @@ const FeedbackForm = () => {
   const eventId = useSelector(selectEventId);
   const [pickerIsOpen, setPicker] = useState(false);
 
-  const { handleSubmit, handleChange, setFieldValue, values } = useFormik({
+  const { handleSubmit, handleChange, setFieldValue, values, errors } = useFormik({
     initialValues: {
+      userRating: "",
       feedbackText: "",
     },
 
     validationSchema: yup.object({
+      userRating: yup.number().required("Поставьте оценку!!!"),
       feedbackText: yup
         .string()
         .max(400, "Feedback must be shorter than 400 characters")
         .required("Feedback is not Required"),
     }),
 
-    onSubmit: ({ feedbackText }) => {
-      dispatch(addFeedback(eventId, userId, feedbackText));
+    onSubmit: ({ feedbackText, userRating }) => {
+      dispatch(addFeedback(eventId, userId, { feedbackText, userRating }));
     },
   });
 
   return (
     <form onSubmit={handleSubmit}>
+      <span>Ваша оценка</span>
+      <div>
+        <button type="button" onClick={() => setFieldValue("userRating", 1)}>
+          1
+        </button>
+        <button type="button" onClick={() => setFieldValue("userRating", 2)}>
+          2
+        </button>
+        <button type="button" onClick={() => setFieldValue("userRating", 3)}>
+          3
+        </button>
+        <button type="button" onClick={() => setFieldValue("userRating", 4)}>
+          4
+        </button>
+        <button type="button" onClick={() => setFieldValue("userRating", 5)}>
+          5
+        </button>
+      </div>
+      {errors.userRating ? <div>{errors.userRating}</div> : null}
+
       <span>Ваш отзыв</span>
       <textarea
         type="text"
@@ -51,6 +73,7 @@ const FeedbackForm = () => {
       <button type="button" onClick={() => setPicker(!pickerIsOpen)}>
         Смайлы
       </button>
+      {errors.feedbackText ? <div>{errors.feedbackText}</div> : null}
 
       <button type="submit">Оставить отзыв</button>
     </form>
