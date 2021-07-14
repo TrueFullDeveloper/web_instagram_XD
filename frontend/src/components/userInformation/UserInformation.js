@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import SendMessageForm from "../sendMessageForm";
 
 const UserInfomation = ({ userData }) => {
+  const [messageFormIsOpen, setMessageForm] = useState(false);
+
   return (
     <div>
       <h1>{userData.userName}</h1>
@@ -13,33 +15,41 @@ const UserInfomation = ({ userData }) => {
       <p>{userData.userInformation}</p>
       <h2>Контакты:</h2>
 
-      {userData.phoneNumber ? (
-        <>
+      {userData.phoneNumber && (
+        <div>
           <h2>Телефон</h2>
           <p>{userData.phoneNumber}</p>
-        </>
-      ) : null}
+        </div>
+      )}
 
-      {userData.instagram ? (
-        <>
+      {userData.instagram && (
+        <div>
           <h2>Instagram</h2>
           <p>{userData.instagram}</p>
-        </>
-      ) : null}
+        </div>
+      )}
 
-      {userData.facebook ? (
-        <>
+      {userData.facebook && (
+        <div>
           <h2>Facebook</h2>
           <p>{userData.facebook}</p>
-        </>
-      ) : null}
+        </div>
+      )}
 
-      {userData.vkontacte ? (
-        <>
+      {userData.vkontacte && (
+        <div>
           <h2>Vk</h2>
           <p>{userData.vkontacte}</p>
-        </>
-      ) : null}
+        </div>
+      )}
+
+      {messageFormIsOpen ? (
+        <SendMessageForm setMessageForm={setMessageForm} userId={userData.userId} />
+      ) : (
+        <button type="button" onClick={() => setMessageForm(true)}>
+          Написать сообщение
+        </button>
+      )}
     </div>
   );
 };

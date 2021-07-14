@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserId } from "../../store/api/authSlice";
+import { createPortal } from "react-dom";
+import { sendMessage } from "../../store/api/userSlice";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 
-const MessageForm = ({ userName, sendMessage }) => {
+const SendMessageForm = ({ setMessageForm, userId }) => {
+  const dispatch = useDispatch();
+  const authorId = useSelector(selectUserId);
+  const sendMessageModal = useRef(document.createElement("div"));
   const [pickerIsOpen, setPicker] = useState(false);
 
-  const { handleSubmit, handleChange, setFieldValue, values } = useFormik({
+  useEffect(() => {
+    document.body.appendChild(sendMessageModal.current);
+
+    return () => document.body.removeChild(sendMessageModal.current);
+  }, []);
+
+  const { handleSubmit, handleChange, setFieldValue, values, errors } = useFormik({
     initialValues: {
       messageText: "",
     },
@@ -20,12 +33,13 @@ const MessageForm = ({ userName, sendMessage }) => {
     }),
 
     onSubmit: ({ messageText }) => {
-      sendMessage({ messageText, authorName: userName });
+      dispatch(sendMessage(userId, authorId, messageText));
       setFieldValue("messageText", "");
+      setMessageForm(false);
     },
   });
 
-  return (
+  return createPortal(
     <form onSubmit={handleSubmit}>
       <textarea
         type="text"
@@ -34,6 +48,8 @@ const MessageForm = ({ userName, sendMessage }) => {
         value={values.messageText}
         onChange={handleChange}
       />
+      {errors.messageText ? <div>{errors.messageText}</div> : null}
+
       {pickerIsOpen && (
         <Picker
           set="apple"
@@ -46,8 +62,9 @@ const MessageForm = ({ userName, sendMessage }) => {
       </button>
 
       <button type="submit">Отправить</button>
-    </form>
+    </form>,
+    sendMessageModal.current
   );
 };
 
-export default MessageForm;
+export default SendMessageForm;
