@@ -4,39 +4,40 @@ import { useDispatch } from "react-redux";
 import { fetchLogin } from "../../store/api/authSlice";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import styles from "./Login.module.scss";
 
 const Login = () => {
   const dispatch = useDispatch();
 
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
-      email: "",
+      emailField: "",
       password: "",
     },
 
     validationSchema: yup.object({
-      email: yup.string().email("Should be valid Email").required("Email Shoud be Required"),
+      emailField: yup.string().email("Should be valid Email").required("Email Shoud be Required"),
       password: yup.string().required("Password Shoud be Required"),
     }),
 
-    onSubmit: ({ email, password }) => {
-      dispatch(fetchLogin({ email, password }));
+    onSubmit: ({ emailField, password }) => {
+      dispatch(fetchLogin({ emailField, password }));
     },
   });
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.login_form}>
       <h1>Авторизация</h1>
+      {errors.emailField ? <span className={styles.error_message}>{errors.emailField}</span> : null}
       <input
         placeholder="Почта"
-        type="email"
-        id="email"
-        name="email"
-        value={values.email}
+        type="text"
+        id="emailField"
+        name="emailField"
+        value={values.emailField}
         onChange={handleChange}
       />
-      {errors.email ? <div>{errors.email}</div> : null}
-
+      {errors.password ? <span className={styles.error_message}>{errors.password}</span> : null}
       <input
         placeholder="Пароль"
         type="password"
@@ -45,11 +46,14 @@ const Login = () => {
         value={values.password}
         onChange={handleChange}
       />
-      {errors.password ? <div>{errors.password}</div> : null}
 
       <button type="submit">Войти</button>
-      <Link to="/passwordreset">Забыли пароль?</Link>
-      <Link to="/signup">Регистрация</Link>
+      <div>
+        <Link to="/passwordreset">Забыли пароль?</Link>
+      </div>
+      <div>
+        <Link to="/signup">Регистрация</Link>
+      </div>
     </form>
   );
 };
