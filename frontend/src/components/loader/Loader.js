@@ -1,9 +1,12 @@
 import React from "react";
+import styles from "./Loader.module.scss";
 
 const Loader = () => {
   return (
-    <div>
-      <span>Loading...</span>
+    <div className={styles.loading_wraper}>
+      <div className={styles.loading}>
+        <span>Loading...</span>
+      </div>
     </div>
   );
 };
