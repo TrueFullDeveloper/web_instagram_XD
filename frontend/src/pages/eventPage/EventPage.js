@@ -10,6 +10,7 @@ import {
 import FeedbackList from "../../components/feedbackList";
 import FeedbackForm from "../../components/feedbackForm";
 import EventAnnotation from "../../components/eventAnnotation";
+import Footer from "../../components/footer/Footer";
 
 const EventPage = () => {
   const eventAnnotation = useSelector(selectEventAnnotation);
@@ -26,6 +27,7 @@ const EventPage = () => {
           <EventAnnotation eventAnnotation={eventAnnotation} />
           {!userFeedbackId && <FeedbackForm />}
           <FeedbackList feedbackList={feedbackList} userFeedbackId={userFeedbackId} />
+          <Footer />
         </>
       )}
     </>

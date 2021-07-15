@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Loader from "../../components/loader";
+import Footer from "../../components/footer/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import ChatList from "../../components/chatList";
 import {
@@ -22,7 +23,19 @@ const ChatPage = () => {
     dispatch(fetchChatList(userId));
   }, []);
 
-  return <>{loading ? <Loader /> : <ChatList chatList={chatList} />}</>;
+  return (
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          {" "}
+          <ChatList chatList={chatList} />
+          <Footer />
+        </>
+      )}
+    </>
+  );
 };
 
 export default ChatPage;

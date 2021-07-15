@@ -1,7 +1,8 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import NewsList from "../../components/newsList";
 import Loader from "../../components/loader";
 import FilterForm from "../../components/filterForm";
+import Footer from "../../components/footer";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchNews, selectNewsList, selectNewsLoading } from "../../store/api/newsSlice";
 
@@ -16,16 +17,17 @@ const Home = () => {
   }, []);
 
   return (
-    <Fragment>
+    <>
       {loading ? (
         <Loader />
       ) : (
-        <Fragment>
+        <>
           <FilterForm />
           <NewsList newsItems={newsItems} />
-        </Fragment>
+          <Footer />
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 

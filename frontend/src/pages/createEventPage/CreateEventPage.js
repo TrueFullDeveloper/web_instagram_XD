@@ -1,6 +1,7 @@
 import React from "react";
 import Loader from "../../components/loader";
 import CreateEventForm from "../../components/createEventForm";
+import Footer from "../../components/footer/Footer";
 import { useSelector } from "react-redux";
 import { selectCreateEventLoading } from "../../store/api/createEventSlice";
 
@@ -14,6 +15,7 @@ const CreateEventPage = ({ eventManagerId }) => {
       ) : (
         <>
           <CreateEventForm eventManagerId={eventManagerId} />
+          <Footer />
         </>
       )}
     </>

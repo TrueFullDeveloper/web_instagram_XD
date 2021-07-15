@@ -1,7 +1,8 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import UserInformation from "../../components/userInformation";
 import RepostList from "../../components/repostList";
 import Loader from "../../components/loader";
+import Footer from "../../components/footer/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUserLoading, selectUser } from "../../store/api/userSlice";
 import { fetchRepost, selectRepostList, selectRepostLoading } from "../../store/api/repostSlice";
@@ -19,20 +20,19 @@ const User = () => {
   }, []);
 
   return (
-    <Fragment>
+    <>
       {userLoading || repostlLoading ? (
         <Loader />
       ) : (
-        <Fragment>
+        <>
           <UserInformation userData={userData} />
-
-          {/* Looks like shity code */}
           {userRepostList.lenght != 0 ? (
             <RepostList repostList={userRepostList} isOwener={false} />
           ) : null}
-        </Fragment>
+          <Footer />
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 

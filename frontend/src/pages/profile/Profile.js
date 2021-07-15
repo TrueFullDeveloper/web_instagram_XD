@@ -1,7 +1,8 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import ProfileInfomation from "../../components/profileInfomation";
 import RepostList from "../../components/repostList";
 import Loader from "../../components/loader";
+import Footer from "../../components/footer/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProfile, selectProfileLoading, selectProfile } from "../../store/api/profileSlice";
 import { selectUserId } from "../../store/api/authSlice";
@@ -23,20 +24,19 @@ const Profile = () => {
   }, []);
 
   return (
-    <Fragment>
+    <>
       {profieLoading || repostlLoading ? (
         <Loader />
       ) : (
-        <Fragment>
+        <>
           <ProfileInfomation profileData={profileData} />
-
-          {/* Looks like shity code */}
           {userRepostList.lenght != 0 ? (
             <RepostList repostList={userRepostList} isOwener={true} />
           ) : null}
-        </Fragment>
+          <Footer />
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 
