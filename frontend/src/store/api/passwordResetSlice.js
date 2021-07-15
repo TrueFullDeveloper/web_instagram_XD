@@ -1,21 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const sendEmail = createAsyncThunk(
-  "passwordReset/sendEmail",
-  async userEmail => {
-    try {
-      const res = await axios.post(
-        "https://jsonplaceholder.typicode.com/posts",
-        JSON.stringify(userEmail)
-      );
+export const sendEmail = createAsyncThunk("passwordReset/sendEmail", async userEmail => {
+  try {
+    const res = await axios.post(
+      "https://jsonplaceholder.typicode.com/posts",
+      JSON.stringify(userEmail)
+    );
 
-      return "success"; // Passwod Reset Status, Should be res.emailStatus
-    } catch (err) {
-      console.log(err.message);
-    }
+    return "emailSuccess"; // Passwod Reset Status, Should be res.emailStatus
+  } catch (err) {
+    console.log(err.message);
   }
-);
+});
 
 export const changePassword = createAsyncThunk(
   "passwordReset/changePassword",
