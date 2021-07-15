@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
     <footer>
       <hr />
-      <a href="#">
+      <a className={styles.telegramm_link} href="#">
         <svg
           width="50"
           height="50"
@@ -18,7 +19,7 @@ const Footer = () => {
           />
         </svg>
       </a>
-      <a href="#">
+      <a className={styles.facebook_link} href="#">
         <svg
           width="50"
           height="50"
@@ -32,7 +33,7 @@ const Footer = () => {
           />
         </svg>
       </a>
-      <a href="#">
+      <a className={styles.vk_link} href="#">
         <svg
           width="50"
           height="50"
@@ -46,7 +47,7 @@ const Footer = () => {
           />
         </svg>
       </a>
-      <a href="#">
+      <a className={styles.twitter_link} href="#">
         <svg
           width="50"
           height="50"
