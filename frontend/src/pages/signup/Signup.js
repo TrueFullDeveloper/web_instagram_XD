@@ -4,14 +4,15 @@ import { useDispatch } from "react-redux";
 import { fetchSignup } from "../../store/api/authSlice";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import styles from "./Signup.module.scss";
 
 const Signup = () => {
   const dispatch = useDispatch();
 
-  const { handleSubmit, handleChange, values, errors } = useFormik({
+  const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues: {
       name: "",
-      email: "",
+      emailField: "",
       password: "",
       passwordRep: "",
     },
@@ -22,7 +23,7 @@ const Signup = () => {
         .min(1, "User Name must be longer than 1 character")
         .max(20, "User Name must be shorter than 20 characters")
         .required("User Name Shoud be Required"),
-      email: yup.string().email("Should be valid Email").required("Email Shoud be Required"),
+      emailField: yup.string().email("Should be valid Email").required("Email Shoud be Required"),
       password: yup
         .string()
         .min(6, "Password must be longer than 6 characters")
@@ -31,9 +32,9 @@ const Signup = () => {
       passwordRep: yup.string().required("Repeat Password Please"),
     }),
 
-    onSubmit: ({ name, email, password, passwordRep }) => {
+    onSubmit: ({ name, emailField, password, passwordRep }) => {
       if (password === passwordRep) {
-        dispatch(fetchSignup(name, email, password));
+        dispatch(fetchSignup(name, emailField, password));
       } else {
         alert("Пароли не совпадатю");
       }
@@ -41,8 +42,9 @@ const Signup = () => {
   });
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.signup_form}>
       <h1>РЕГИСТРАЦИЯ</h1>
+
       <input
         placeholder="Имя"
         type="text"
@@ -50,18 +52,24 @@ const Signup = () => {
         name="name"
         value={values.name}
         onChange={handleChange}
+        className={styles.user_name_field}
       />
-      {errors.name ? <div>{errors.name}</div> : null}
+      {touched.name && errors.name ? (
+        <span className={styles.error_message}>{errors.name}</span>
+      ) : null}
 
       <input
         placeholder="Почта"
-        type="email"
-        id="email"
-        name="email"
-        value={values.email}
+        type="text"
+        id="emailField"
+        name="emailField"
+        value={values.emailField}
         onChange={handleChange}
+        className={styles.email_field}
       />
-      {errors.email ? <div>{errors.email}</div> : null}
+      {touched.emailField && errors.emailField ? (
+        <span className={styles.error_message}>{errors.emailField}</span>
+      ) : null}
 
       <input
         placeholder="Пароль"
@@ -71,7 +79,9 @@ const Signup = () => {
         value={values.password}
         onChange={handleChange}
       />
-      {errors.password ? <div>{errors.password}</div> : null}
+      {touched.password && errors.password ? (
+        <span className={styles.error_message}>{errors.password}</span>
+      ) : null}
 
       <input
         placeholder="Повторите пароль"
@@ -81,7 +91,9 @@ const Signup = () => {
         value={values.passwordRep}
         onChange={handleChange}
       />
-      {errors.passwordRep ? <div>{errors.passwordRep}</div> : null}
+      {touched.passwordRep && errors.passwordRep ? (
+        <span className={styles.error_message}>{errors.passwordRep}</span>
+      ) : null}
 
       <button type="submit">Зарегистрироваться</button>
       <Link to="/login">Войти</Link>

@@ -9,7 +9,7 @@ import styles from "./Login.module.scss";
 const Login = () => {
   const dispatch = useDispatch();
 
-  const { handleSubmit, handleChange, values, errors } = useFormik({
+  const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues: {
       emailField: "",
       password: "",
@@ -28,7 +28,7 @@ const Login = () => {
   return (
     <form onSubmit={handleSubmit} className={styles.login_form}>
       <h1>Авторизация</h1>
-      {errors.emailField ? <span className={styles.error_message}>{errors.emailField}</span> : null}
+
       <input
         placeholder="Почта"
         type="text"
@@ -37,7 +37,10 @@ const Login = () => {
         value={values.emailField}
         onChange={handleChange}
       />
-      {errors.password ? <span className={styles.error_message}>{errors.password}</span> : null}
+      {touched.emailField && errors.emailField ? (
+        <span className={styles.error_message}>{errors.emailField}</span>
+      ) : null}
+
       <input
         placeholder="Пароль"
         type="password"
@@ -46,6 +49,9 @@ const Login = () => {
         value={values.password}
         onChange={handleChange}
       />
+      {touched.password && errors.password ? (
+        <span className={styles.error_message}>{errors.password}</span>
+      ) : null}
 
       <button type="submit">Войти</button>
       <div>
