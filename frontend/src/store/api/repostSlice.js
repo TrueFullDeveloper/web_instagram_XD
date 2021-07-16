@@ -45,7 +45,7 @@ export const fetchRepost = createAsyncThunk("repost/fetchRepost", async userId =
   }
 });
 
-export const addRepost = createAsyncThunk("repost/fetchRepost", async eventId => {
+export const addRepost = createAsyncThunk("repost/fetchRepost", async (eventId, userId) => {
   try {
     const res = await axios.get("https://jsonplaceholder.typicode.com/todos/?_start=0&_limit=5");
 

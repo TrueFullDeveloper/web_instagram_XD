@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../store/api/userSlice";
 import { addRepost } from "../../store/api/repostSlice";
+import styles from "./EventAnnotation.module.scss";
+import { selectUserId } from "../../store/api/authSlice";
 
 const EventAnnotation = ({ eventAnnotation }) => {
   const dispatch = useDispatch();
+  const userId = useSelector(selectUserId);
+
+  const [isUserRepost, setUserRepost] = useState(false);
+  const onClick = eventId => {
+    setUserRepost(true);
+    dispatch(addRepost(eventId, userId));
+  };
 
   return (
-    <div>
+    <div className={styles.event}>
       <img src={eventAnnotation.eventPhotoTitle} alt="No photo(" />
 
-      <div>
+      <div className={styles.info_section}>
         <h1>{eventAnnotation.eventTitle}</h1>
         <p>
           {eventAnnotation.eventDate +
@@ -22,20 +31,47 @@ const EventAnnotation = ({ eventAnnotation }) => {
             " " +
             eventAnnotation.eventRating}
         </p>
-        <h3>{eventAnnotation.eventGenre}</h3>
+        <h3>Направление мероприятия: {eventAnnotation.eventGenre}</h3>
         <p>{eventAnnotation.eventDesciption}</p>
-        <div>
-          <h2>Организатор мероприятия:</h2>
+
+        <h2>Организатор мероприятия:</h2>
+
+        <div className={styles.event_manager}>
           <NavLink
             to="/user"
             onClick={() => dispatch(fetchUser(eventAnnotation.eventManager.eventManagerId))}
           >
-            <h1>{eventAnnotation.eventManager.eventManagerName}</h1>
             <img src={eventAnnotation.eventManager.eventManagerPhoto} alt="No photo(" />
           </NavLink>
-        </div>
 
-        <button onClick={dispatch(addRepost(eventAnnotation.eventId))}>Репост</button>
+          <NavLink
+            to="/user"
+            onClick={() => dispatch(fetchUser(eventAnnotation.eventManager.eventManagerId))}
+          >
+            <div>
+              <h2>{eventAnnotation.eventManager.eventManagerName}</h2>
+              <p>Организатор</p>
+            </div>
+          </NavLink>
+
+          <button type="button">
+            <NavLink
+              to="/user"
+              onClick={() => dispatch(fetchUser(eventAnnotation.eventManager.eventManagerId))}
+            >
+              Перейти
+            </NavLink>
+          </button>
+        </div>
+        {isUserRepost ? (
+          <button type="button" className={styles.reposted_button} disabled>
+            Мероприятие доваленно
+          </button>
+        ) : (
+          <button type="button" onClick={() => onClick(eventAnnotation.eventId)}>
+            Репост
+          </button>
+        )}
       </div>
     </div>
   );
