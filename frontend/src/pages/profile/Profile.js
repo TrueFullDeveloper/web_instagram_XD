@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ProfileInfomation from "../../components/profileInfomation";
+import ProfileInformation from "../../components/profileInformation";
 import RepostList from "../../components/repostList";
 import Loader from "../../components/loader";
 import Footer from "../../components/footer/Footer";
@@ -29,7 +29,7 @@ const Profile = () => {
         <Loader />
       ) : (
         <>
-          <ProfileInfomation profileData={profileData} />
+          <ProfileInformation profileData={profileData} />
           {userRepostList.lenght != 0 ? (
             <RepostList repostList={userRepostList} isOwener={true} />
           ) : null}

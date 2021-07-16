@@ -10,6 +10,9 @@ const userData = {
   email: "wannakillms@gmail.com",
   userInformation: "Hi, I am from Russia, I am professional event manager! :D",
   phoneNumber: "8-(960)-906-10-87",
+  instagram: "https://www.instagram.com/?hl=ru",
+  facebook: "https://ru-ru.facebook.com",
+  vkontacte: "https://vk.com/",
 };
 // FAKE DATA BEGIN
 
