@@ -34,23 +34,6 @@ const payload = [
         eventManagerName: "Егор",
         eventManagerPhoto: fakeEventManager_2,
       },
-      parcicipantList: [
-        {
-          parcicipantId: 0,
-          parcicipantName: "Альберт",
-          parcicipantPhoto: fakeAuthor_1,
-        },
-        {
-          parcicipantId: 1,
-          parcicipantName: "Евгений",
-          parcicipantPhoto: fakeAuthor_2,
-        },
-        {
-          parcicipantId: 2,
-          parcicipantName: "Ван",
-          parcicipantPhoto: fakeAuthor_3,
-        },
-      ],
     },
     feedbackList: [
       {
@@ -98,23 +81,6 @@ const payload = [
         eventManagerName: "Роман",
         eventManagerPhoto: fakeEventManager_1,
       },
-      parcicipantList: [
-        {
-          parcicipantId: 0,
-          parcicipantName: "Альберт",
-          parcicipantPhoto: fakeAuthor_1,
-        },
-        {
-          parcicipantId: 1,
-          parcicipantName: "Евгений",
-          parcicipantPhoto: fakeAuthor_2,
-        },
-        {
-          parcicipantId: 2,
-          parcicipantName: "Ван",
-          parcicipantPhoto: fakeAuthor_3,
-        },
-      ],
     },
     feedbackList: [
       {
@@ -162,23 +128,6 @@ const payload = [
         eventManagerName: "Роман",
         eventManagerPhoto: fakeEventManager_1,
       },
-      parcicipantList: [
-        {
-          parcicipantId: 0,
-          parcicipantName: "Альберт",
-          parcicipantPhoto: fakeAuthor_1,
-        },
-        {
-          parcicipantId: 1,
-          parcicipantName: "Евгений",
-          parcicipantPhoto: fakeAuthor_2,
-        },
-        {
-          parcicipantId: 2,
-          parcicipantName: "Ван",
-          parcicipantPhoto: fakeAuthor_3,
-        },
-      ],
     },
     feedbackList: [
       {
@@ -226,23 +175,6 @@ const payload = [
         eventManagerName: "Егор",
         eventManagerPhoto: fakeEventManager_2,
       },
-      parcicipantList: [
-        {
-          parcicipantId: 0,
-          parcicipantName: "Альберт",
-          parcicipantPhoto: fakeAuthor_1,
-        },
-        {
-          parcicipantId: 1,
-          parcicipantName: "Евгений",
-          parcicipantPhoto: fakeAuthor_2,
-        },
-        {
-          parcicipantId: 2,
-          parcicipantName: "Ван",
-          parcicipantPhoto: fakeAuthor_3,
-        },
-      ],
     },
     feedbackList: [
       {
@@ -290,23 +222,6 @@ const payload = [
         eventManagerName: "Роман",
         eventManagerPhoto: fakeEventManager_1,
       },
-      parcicipantList: [
-        {
-          parcicipantId: 0,
-          parcicipantName: "Альберт",
-          parcicipantPhoto: fakeAuthor_1,
-        },
-        {
-          parcicipantId: 1,
-          parcicipantName: "Евгений",
-          parcicipantPhoto: fakeAuthor_2,
-        },
-        {
-          parcicipantId: 2,
-          parcicipantName: "Ван",
-          parcicipantPhoto: fakeAuthor_3,
-        },
-      ],
     },
     feedbackList: [
       {

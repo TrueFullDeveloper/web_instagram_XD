@@ -25,7 +25,7 @@ const EventPage = () => {
       ) : (
         <>
           <EventAnnotation eventAnnotation={eventAnnotation} />
-          {!userFeedbackId && <FeedbackForm />}
+          {!userFeedbackId ? <FeedbackForm /> : null}
           <FeedbackList feedbackList={feedbackList} userFeedbackId={userFeedbackId} />
           <Footer />
         </>
