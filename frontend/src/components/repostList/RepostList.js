@@ -9,11 +9,11 @@ const RepostList = ({ repostList, isOwener }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className={styles.news_section}>
+    <div className={styles.repost_section}>
       <h1>Собираюсь пойти:</h1>
 
       {repostList.map(repostItem => (
-        <div className={styles.news_item} key={repostItem.eventId}>
+        <div className={styles.repost_item} key={repostItem.eventId}>
           <NavLink to="/event" onClick={() => dispatch(fetchEvent(repostItem.eventId))}>
             <div className={styles.top_section}>
               <div className={styles.filledbar_3}></div>
