@@ -3,20 +3,28 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchEvent } from "../../store/api/eventSlice";
 import { deleteRepost } from "../../store/api/repostSlice";
+import styles from "./RepostList.module.scss";
 
 const RepostList = ({ repostList, isOwener }) => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={styles.news_section}>
+      <h1>Собираюсь пойти:</h1>
+
       {repostList.map(repostItem => (
-        <div key={repostItem.eventId}>
+        <div className={styles.news_item} key={repostItem.eventId}>
           <NavLink to="/event" onClick={() => dispatch(fetchEvent(repostItem.eventId))}>
-            <div>
+            <div className={styles.top_section}>
+              <div className={styles.filledbar_3}></div>
+              <div className={styles.filledbar_2}></div>
               <img src={repostItem.eventPhotoTitle} alt="No photo(" />
+              <div className={styles.filledbar_1}></div>
+              <div className={styles.filledbar_4}></div>
             </div>
           </NavLink>
-          <div>
+
+          <div className={styles.info_section}>
             <NavLink to="/event" onClick={() => dispatch(fetchEvent(repostItem.eventId))}>
               <h2>{repostItem.eventTitle}</h2>
             </NavLink>
@@ -25,14 +33,20 @@ const RepostList = ({ repostList, isOwener }) => {
             </p>
             <p>{repostItem.eventGenre}</p>
             <div>
-              <p>{repostItem.eventDesciption}</p>
+              <p className={styles.event_description}>{repostItem.eventDesciption}</p>
               <button>
                 <NavLink to="/event" onClick={() => dispatch(fetchEvent(repostItem.eventId))}>
                   Подробнее
                 </NavLink>
               </button>
               {isOwener ? (
-                <button onClick={() => dispatch(deleteRepost(repostItem.repostId))}>Удалить</button>
+                <button
+                  className={styles.delete_button}
+                  type="button"
+                  onClick={() => dispatch(deleteRepost(repostItem.repostId))}
+                >
+                  Удалить
+                </button>
               ) : null}
             </div>
           </div>
