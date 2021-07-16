@@ -3,10 +3,12 @@ import { useDispatch } from "react-redux";
 import { searchUser } from "../../store/api/userListSlice";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import styles from "./UserSearchForm.module.scss";
 
 const UserSearchForm = () => {
   const dispatch = useDispatch();
-  const { handleSubmit, handleChange, values, errors } = useFormik({
+
+  const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
       userQuery: "",
     },
@@ -22,7 +24,7 @@ const UserSearchForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <div className={styles.search_form}>
         <input
           type="search"
           name="userQuery"
@@ -32,8 +34,6 @@ const UserSearchForm = () => {
           onChange={handleChange}
         />
         <button type="submit">Поиск</button>
-
-        {errors.userQuery ? <div>{errors.userQuery}</div> : null}
       </div>
     </form>
   );

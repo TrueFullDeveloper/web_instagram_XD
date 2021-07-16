@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../../store/api/userSlice";
-import SendMessageForm from "../sendMessageForm";
 import styles from "./UserList.module.scss";
 
 const UserList = ({ userList }) => {
