@@ -14,26 +14,31 @@ const payload = [
   {
     userId: 0,
     userName: "Альберт",
+    role: "Пользователь",
     userPhoto: fakeAuthor_1,
   },
   {
     userId: 1,
     userName: "Евгений",
+    role: "Пользователь",
     userPhoto: fakeAuthor_2,
   },
   {
     userId: 2,
     userName: "Ван",
+    role: "Пользователь",
     userPhoto: fakeAuthor_3,
   },
   {
     userId: 3,
     userName: "Роман",
+    role: "Организатор",
     userPhoto: fakeUserListManager_1,
   },
   {
     userId: 4,
     userName: "Егор",
+    role: "Организатор",
     userPhoto: fakeUserListManager_2,
   },
 ];

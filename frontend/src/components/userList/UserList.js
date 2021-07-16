@@ -1,28 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../../store/api/userSlice";
+import SendMessageForm from "../sendMessageForm";
+import styles from "./UserList.module.scss";
 
 const UserList = ({ userList }) => {
   const dispatch = useDispatch();
 
   return (
     <div>
-      <h2>Список пользователей:</h2>
-      {userList.map(userListItem => (
-        <NavLink
-          to="/user"
-          key={userListItem.userId}
-          onClick={() => dispatch(fetchUser(userListItem.userId))}
-        >
-          <div>
-            <h1>{userListItem.userName}</h1>
-            <div>
+      <div className={styles.user_list_section}>
+        <h1>Список пользователей:</h1>
+        {userList.map(userListItem => (
+          <div className={styles.user_list_item} key={userListItem.userId}>
+            <NavLink to="/user" onClick={() => dispatch(fetchUser(userListItem.userId))}>
               <img src={userListItem.userPhoto} alt="No photo(" />
-            </div>
+            </NavLink>
+
+            <NavLink to="/user" onClick={() => dispatch(fetchUser(userListItem.userId))}>
+              <div>
+                <h2>{userListItem.userName}</h2>
+                <p>{userListItem.role}</p>
+              </div>
+            </NavLink>
+
+            <button type="button">
+              <NavLink to="/user" onClick={() => dispatch(fetchUser(userListItem.userId))}>
+                Перейти
+              </NavLink>
+            </button>
           </div>
-        </NavLink>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

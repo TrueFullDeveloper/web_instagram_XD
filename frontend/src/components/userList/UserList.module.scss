@@ -1,0 +1,102 @@
+.user_list_section {
+  font-family: Roboto;
+  font-style: normal;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 1170px;
+
+  h1 {
+    display: block;
+    width: 100%;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 42px;
+    letter-spacing: 0.14em;
+    text-align: justify;
+    color: #ffff;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.user_list_item {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-right: 50px;
+  margin-top: 30px;
+  outline: none;
+  width: 500px;
+  height: 120px;
+  border-radius: 5px;
+  background: #1a1a1a;
+  transition: 0.35s;
+
+  img {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 40px;
+    width: 90px;
+    height: 90px;
+    border-radius: 45px;
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 24px;
+
+    letter-spacing: 0.14em;
+    text-align: justify;
+    color: #ffff;
+  }
+
+  p {
+    font-weight: 450;
+    font-size: 18px;
+    line-height: 0;
+    text-align: justify;
+    color: #52616e;
+  }
+
+  div {
+    width: 130px;
+    margin-right: 50px;
+  }
+
+  button {
+    margin-top: 40px;
+    margin-left: 10px;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 130px;
+    transition: 0.25s;
+    background: #303bd5;
+    border: 0;
+    border-radius: 10px;
+
+    a {
+      text-decoration: none;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    &:hover {
+      background: #404bec;
+    }
+  }
+
+  &:hover {
+    background: #2d2d2d;
+  }
+}
