@@ -4,42 +4,75 @@ import { fetchUser } from "../../store/api/userSlice";
 import { useDispatch } from "react-redux";
 import { fetchProfile } from "../../store/api/profileSlice";
 import { removeFeedback } from "../../store/api/eventSlice";
+import styles from "./FeedbackList.module.scss";
 
 const FeedbackList = ({ feedbackList, userFeedbackId }) => {
   const dispatch = useDispatch();
 
+  const onClick = (isAuthor, userId) => {
+    if (isAuthor) {
+      dispatch(fetchProfile(userId));
+    } else {
+      dispatch(fetchUser(userId));
+    }
+  };
+
   return (
-    <div>
+    <div className={styles.feedback_section}>
       <h1>Отзывы о мероприятии:</h1>
+
       {feedbackList.map(feedbackItem => (
-        <div key={feedbackItem.feedbackId}>
-          {userFeedbackId === feedbackItem.feedbackId ? (
-            <>
-              <NavLink to="/profile" onClick={() => dispatch(fetchProfile(feedbackItem.authorId))}>
-                <h1>{feedbackItem.authorName + " " + feedbackItem.authorRating}</h1>
+        <div className={styles.feedback_box} key={feedbackItem.feedbackId}>
+          <div className={styles.top_section}>
+            <div className={styles.profile}>
+              <NavLink
+                to={userFeedbackId === feedbackItem.feedbackId ? "/profile" : "/user"}
+                onClick={() =>
+                  onClick(userFeedbackId === feedbackItem.feedbackId, feedbackItem.authorId)
+                }
+              >
+                <img src={feedbackItem.authorPhoto} alt="No photo(" />
+              </NavLink>
+
+              <NavLink
+                to={userFeedbackId === feedbackItem.feedbackId ? "/profile" : "/user"}
+                onClick={() =>
+                  onClick(userFeedbackId === feedbackItem.feedbackId, feedbackItem.authorId)
+                }
+              >
                 <div>
-                  <img src={feedbackItem.authorPhoto} alt="No photo(" />
+                  <h2>{feedbackItem.authorName}</h2>
+                  <span>{feedbackItem.createdAt}</span>
                 </div>
               </NavLink>
-              <p>{feedbackItem.feedback}</p>
+            </div>
+
+            <div className={styles.reviews}>
+              <i className="ion-star"></i>
+              <i className={`ion-star ${feedbackItem.authorRating < 2 && styles.empty_star}`}></i>
+              <i className={`ion-star ${feedbackItem.authorRating < 3 && styles.empty_star}`}></i>
+              <i className={`ion-star ${feedbackItem.authorRating < 4 && styles.empty_star}`}></i>
+              <i className={`ion-star ${feedbackItem.authorRating < 5 && styles.empty_star}`}></i>
+            </div>
+          </div>
+          <hr />
+
+          <div className={styles.feedback_text}>
+            <p>
+              {feedbackItem.feedback} Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Exercitationem, quaerat quis? Provident temporibus architecto asperiores nobis maiores
+              nisi a. Quae doloribus ipsum aliquam tenetur voluptates incidunt blanditiis sed atque
+              cumque.
+            </p>
+            {userFeedbackId === feedbackItem.feedbackId ? (
               <button
                 type="button"
                 onClick={() => dispatch(removeFeedback(4, feedbackItem.feedbackId))}
               >
                 Удалить отзыв
               </button>
-            </>
-          ) : (
-            <>
-              <NavLink to="/user" onClick={() => dispatch(fetchUser(feedbackItem.authorId))}>
-                <h1>{feedbackItem.authorName + " " + feedbackItem.authorRating}</h1>
-                <div>
-                  <img src={feedbackItem.authorPhoto} alt="No photo(" />
-                </div>
-              </NavLink>
-              <p>{feedbackItem.feedback}</p>
-            </>
-          )}
+            ) : null}
+          </div>
         </div>
       ))}
     </div>

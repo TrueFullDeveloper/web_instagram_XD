@@ -1,0 +1,115 @@
+@import url("http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");
+
+.feedback_section {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  text-decoration: none;
+  width: 1170px;
+
+  a {
+    text-decoration: none;
+    color: #ffff;
+  }
+
+  h1 {
+    color: #ffff;
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: 0.14em;
+    text-align: center;
+  }
+
+  hr {
+    height: 1px;
+    background: #8a8a8a;
+  }
+
+  button {
+    margin-top: 25px;
+    height: 35px;
+    width: 130px;
+    background: #d82b2b;
+    transition: 0.25s;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    //Text Setting
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+  }
+}
+
+.feedback_box {
+  background: #1a1a1a;
+  overflow: hidden;
+  font-family: "montserrat", sans-serif;
+  box-shadow: 20px #00000070;
+  width: 100%;
+  min-height: 200px;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+.top_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+}
+.profile {
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-left: 15px;
+    margin-top: 15px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  div {
+    margin-left: 15px;
+  }
+
+  h2 {
+    font-size: 20px;
+    line-height: 0;
+  }
+
+  span {
+    font-size: 14px;
+    color: #52616e;
+  }
+}
+.feedback_text {
+  padding: 0 20px 20px 20px;
+
+  p {
+    text-align: justify;
+    color: #ffff;
+  }
+}
+
+.reviews {
+  margin-right: 30px;
+  color: #f9d71c;
+
+  i {
+    font-size: 24px;
+    margin-right: 5px;
+  }
+
+  .empty_star {
+    color: #686868;
+  }
+}

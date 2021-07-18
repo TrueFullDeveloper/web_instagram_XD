@@ -3,13 +3,14 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../store/api/userSlice";
 import { addRepost } from "../../store/api/repostSlice";
-import styles from "./EventAnnotation.module.scss";
 import { selectUserId } from "../../store/api/authSlice";
+import styles from "./EventAnnotation.module.scss";
 
 const EventAnnotation = ({ eventAnnotation }) => {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
 
+  // TODO: Add Repost Status to eventSlice
   const [isUserRepost, setUserRepost] = useState(false);
   const onClick = eventId => {
     setUserRepost(true);
