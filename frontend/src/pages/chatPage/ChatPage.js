@@ -29,7 +29,6 @@ const ChatPage = () => {
         <Loader />
       ) : (
         <>
-          {" "}
           <ChatList chatList={chatList} />
           <Footer />
         </>

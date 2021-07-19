@@ -1,18 +1,19 @@
 import React from "react";
-import { AiOutlineDelete } from "react-icons/ai";
+import styles from "./MessageListItem.module.scss";
 
 const MessageListItem = ({ msgItem, removeMessage }) => {
-  const { messageId, messageText, authorName, createdAt, currentUser } = msgItem;
+  const { messageId, messageText, createdAt, currentUser } = msgItem;
   return (
-    <div>
-      <h3>{authorName}</h3>
-      <p>{createdAt}</p>
-      <h4>{messageText}</h4>
-      {currentUser && (
-        <button onClick={() => removeMessage(messageId)}>
-          <AiOutlineDelete />
-        </button>
-      )}
+    <div
+      className={`${styles.message_wrapper} ${
+        currentUser ? styles.current_user : styles.companion
+      }`}
+    >
+      <div className={`${styles.message_item} `}>
+        <span>{createdAt}</span>
+        <p>{messageText}</p>
+        {currentUser && <button onClick={() => removeMessage(messageId)}>Удалить</button>}
+      </div>
     </div>
   );
 };

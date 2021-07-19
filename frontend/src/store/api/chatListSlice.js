@@ -13,6 +13,7 @@ const payload = [
       userId: 0,
       userName: "Альберт",
       userPhoto: fakeAuthor_1,
+      onlineStatus: true,
     },
   },
   {
@@ -21,6 +22,7 @@ const payload = [
       userId: 1,
       userName: "Евгений",
       userPhoto: fakeAuthor_2,
+      onlineStatus: false,
     },
   },
 ];

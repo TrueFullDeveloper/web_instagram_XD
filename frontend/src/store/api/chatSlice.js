@@ -9,6 +9,7 @@ const chatSlice = createSlice({
       companionId: null,
       companionName: null,
       companionPhoto: null,
+      onlineStatus: null,
     },
   },
 
