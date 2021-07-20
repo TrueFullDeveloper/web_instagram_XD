@@ -12,7 +12,7 @@ const userData = {
   phoneNumber: "8-(960)-906-10-87",
   instagram: "https://www.instagram.com/?hl=ru",
   facebook: "https://ru-ru.facebook.com",
-  vkontacte: "https://vk.com/",
+  vkontakte: "https://vk.com/",
 };
 // FAKE DATA BEGIN
 
@@ -57,7 +57,7 @@ const profileSlice = createSlice({
       phoneNumber: null,
       instagram: null,
       facebook: null,
-      vkontacte: null,
+      vkontakte: null,
       userRepostList: [],
     },
     loading: false,

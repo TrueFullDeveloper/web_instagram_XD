@@ -5,6 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { profileUpdate } from "../../store/api/profileSlice";
 import { selectUserId } from "../../store/api/authSlice";
 import { createPortal } from "react-dom";
+import styles from "./ProfileForm.module.scss";
+//Icons
+import emailIcon from "../../static/images/contactIcon/email.svg";
+import phoneIcon from "../../static/images/contactIcon/phone.svg";
+import instagramIcon from "../../static/images/contactIcon/instagram.svg";
+import facebookIcon from "../../static/images/contactIcon/facebook.svg";
+import vkIcon from "../../static/images/contactIcon/vk.svg";
+
+//TODO: May be Add Validation for Every Url
 
 const ProfileForm = ({ profileData, setEditModel }) => {
   const dispatch = useDispatch();
@@ -17,16 +26,16 @@ const ProfileForm = ({ profileData, setEditModel }) => {
     return () => document.body.removeChild(profileFormModal.current);
   }, []);
 
-  const { handleSubmit, handleChange, values, errors, handleBlur } = useFormik({
+  const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues: {
-      userName: profileData.userName,
-      userPhoto: profileData.userPhoto,
-      email: profileData.email,
-      userInformation: profileData.userInformation,
-      phoneNumber: profileData.phoneNumber,
-      instagram: profileData.instagram,
-      facebook: profileData.facebook,
-      vkontacte: profileData.vkontacte,
+      userName: profileData.userName || "",
+      userPhoto: profileData.userPhoto || "",
+      email: profileData.email || "",
+      userInformation: profileData.userInformation || "",
+      phoneNumber: profileData.phoneNumber || "",
+      instagram: profileData.instagram || "",
+      facebook: profileData.facebook || "",
+      vkontakte: profileData.vkontakte || "",
     },
 
     validationSchema: yup.object({
@@ -43,9 +52,9 @@ const ProfileForm = ({ profileData, setEditModel }) => {
         .string()
         .max(400, "User information must be shorter than 400 characters"),
       phoneNumber: yup.string().max(30, "Phone number must be shorter than 30 characters"),
-      instagram: yup.string(),
-      facebook: yup.string(),
-      vkontacte: yup.string(),
+      instagram: yup.string().url("Должна быть ссылка"),
+      facebook: yup.string().url("Должна быть ссылка"),
+      vkontakte: yup.string().url("Должна быть ссылка"),
     }),
 
     onSubmit: ({
@@ -56,7 +65,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
       phoneNumber,
       instagram,
       facebook,
-      vkontacte,
+      vkontakte,
     }) => {
       setEditModel(false);
       dispatch(
@@ -69,7 +78,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
             phoneNumber,
             instagram,
             facebook,
-            vkontacte,
+            vkontakte,
           },
           userId
         )
@@ -78,114 +87,157 @@ const ProfileForm = ({ profileData, setEditModel }) => {
   });
 
   return createPortal(
-    <div>
-      <form onSubmit={handleSubmit}>
-        <span>Имя</span>
-        <input
-          type="text"
-          id="userName"
-          name="userName"
-          value={values.userName}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        {errors.userName ? <div>{errors.userName}</div> : null}
+    <div className={styles.profile_wrapper}>
+      <form className={styles.profile_form} onSubmit={handleSubmit}>
+        <div className={styles.about_section}>
+          <img src={profileData.userPhoto} />
 
-        <img src={profileData.userPhoto} />
-        <input
-          type="file"
-          id="userPhoto"
-          name="userPhoto"
-          accept=".jpg, .jpeg, .png"
-          onChange={handleChange}
-        />
-
-        <span>Email</span>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        {errors.email ? <div>{errors.email}</div> : null}
-
-        <span>Обо мне</span>
-        <textarea
-          type="text"
-          id="userInformation"
-          name="userInformation"
-          value={values.userInformation}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        {errors.userInformation ? <div>{errors.userInformation}</div> : null}
-
-        {values.phoneNumber ? (
-          <>
-            <span>Телефон</span>
+          <div>
             <input
+              type="file"
+              id="userPhoto"
+              name="userPhoto"
+              accept=".jpg, .jpeg, .png"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <span>Имя</span>
+            <input
+              className={styles.name_field}
+              type="text"
+              id="userName"
+              name="userName"
+              value={values.userName}
+              onChange={handleChange}
+            />
+          </div>
+
+          {touched.userName && errors.userName ? (
+            <span className={styles.error_message}>{errors.userName}</span>
+          ) : null}
+
+          <div>
+            <span>Обо мне</span>
+            <textarea
+              className={styles.about_field}
+              type="text"
+              id="userInformation"
+              name="userInformation"
+              value={values.userInformation}
+              onChange={handleChange}
+            />
+          </div>
+
+          {touched.userInformation && errors.userInformation ? (
+            <span className={styles.error_message}>{errors.userInformation}</span>
+          ) : null}
+        </div>
+
+        <div className={styles.contact_section}>
+          <div>
+            <span>
+              <img src={emailIcon} />
+              Email:
+            </span>
+            <input
+              className={styles.contact_field}
+              type="text"
+              id="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+            />
+          </div>
+
+          {touched.email && errors.email ? (
+            <span className={styles.error_message}>{errors.email}</span>
+          ) : null}
+
+          <div>
+            <span>
+              <img src={phoneIcon} />
+              Телефон
+            </span>
+            <input
+              className={styles.contact_field}
               type="text"
               id="phoneNumber"
               name="phoneNumber"
               value={values.phoneNumber}
               onChange={handleChange}
-              onBlur={handleBlur}
             />
-          </>
-        ) : null}
-        {errors.phoneNumber ? <div>{errors.phoneNumber}</div> : null}
+          </div>
 
-        {values.instagram ? (
-          <>
-            <span>Instagram</span>
+          {touched.phoneNumber && errors.phoneNumber ? (
+            <span className={styles.error_message}>{errors.phoneNumber}</span>
+          ) : null}
+
+          <div>
+            <span>
+              <img src={instagramIcon} />
+              Instagram
+            </span>
             <input
+              className={styles.contact_field}
               type="text"
               id="instagram"
               name="instagram"
               value={values.instagram}
               onChange={handleChange}
-              onBlur={handleBlur}
             />
-          </>
-        ) : null}
-        {errors.instagram ? <div>{errors.instagram}</div> : null}
+          </div>
 
-        {values.facebook ? (
-          <>
-            <span>Facebook</span>
+          {touched.instagram && errors.instagram ? (
+            <span className={styles.error_message}>{errors.instagram}</span>
+          ) : null}
+
+          <div>
+            <span>
+              <img src={facebookIcon} />
+              Facebook
+            </span>
             <input
+              className={styles.contact_field}
               type="text"
               id="facebook"
               name="facebook"
               value={values.facebook}
               onChange={handleChange}
-              onBlur={handleBlur}
             />
-          </>
-        ) : null}
-        {errors.facebook ? <div>{errors.facebook}</div> : null}
+          </div>
 
-        {values.vkontacte ? (
-          <>
-            <span>Вконтакте</span>
+          {touched.facebook && errors.facebook ? (
+            <span className={styles.error_message}>{errors.facebook}</span>
+          ) : null}
+
+          <div>
+            <span>
+              <img src={vkIcon} />
+              Vk
+            </span>
             <input
+              className={styles.contact_field}
               type="text"
-              id="vkontacte"
-              name="vkontacte"
-              value={values.vkontacte}
+              id="vkontakte"
+              name="vkontakte"
+              value={values.vkontakte}
               onChange={handleChange}
-              onBlur={handleBlur}
             />
-          </>
-        ) : null}
-        {errors.vkontacte ? <div>{errors.vkontacte}</div> : null}
+          </div>
 
-        <button type="submit">Принять изменения</button>
+          {touched.vkontakte && errors.vkontakte ? (
+            <span className={styles.error_message}>{errors.vkontakte}</span>
+          ) : null}
+
+          <button type="submit">Принять изменения</button>
+
+          <button type="button" onClick={() => setEditModel(false)}>
+            Закрыть
+          </button>
+        </div>
       </form>
-
-      <button onClick={() => setEditModel(false)}>Закрыть</button>
     </div>,
     profileFormModal.current
   );
