@@ -28,7 +28,17 @@ const configIntervalOptions = [
 ];
 
 const selectStyles = {
-  control: css => ({ ...css, marginTop: "20px", height: "60px" }),
+  control: css => ({
+    ...css,
+    marginTop: "20px",
+    height: "60px",
+    background: "#282828",
+    border: "0",
+  }),
+  singleValue: css => ({
+    ...css,
+    color: "#ffffff",
+  }),
 };
 
 const FilterForm = () => {

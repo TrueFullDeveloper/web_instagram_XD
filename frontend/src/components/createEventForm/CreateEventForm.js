@@ -7,13 +7,11 @@ import Calendar from "react-calendar";
 import TimeField from "react-simple-timefield";
 import "react-calendar/dist/Calendar.css";
 import { addEvent } from "../../store/api/createEventSlice";
+import styles from "./CreateEventForm.module.scss";
+import { LOCATIONS } from "../../config/constants";
 
 // TODO: Transfer it to Config
-const configLocationOptions = [
-  { value: "tomsk", label: "Томск" },
-  { value: "moscow", label: "Москва" },
-  { value: "novokuznetsk", label: "Новокузнецк" },
-];
+// TODO: Stylize Input Type File!!!
 
 const configGenreOptions = [
   { value: "sport", label: "Спорт" },
@@ -21,14 +19,33 @@ const configGenreOptions = [
   { value: "entertainment", label: "Развлечения" },
 ];
 
+const selectStyles = {
+  control: css => ({
+    ...css,
+    marginTop: "20px",
+    height: "60px",
+    background: "#282828",
+    border: "0",
+  }),
+  singleValue: css => ({
+    ...css,
+    color: "#ffffff",
+  }),
+};
+
 const CreateEventForm = () => {
   const [calendarIsOpen, setCalendarOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const { handleSubmit, handleChange, setFieldValue, values, errors } = useFormik({
+  const locationOptions = Object.entries(LOCATIONS).map(item => ({
+    value: item[0],
+    label: item[1],
+  }));
+
+  const { handleSubmit, handleChange, setFieldValue, values, errors, touched } = useFormik({
     initialValues: {
       title: "",
-      photo: null,
+      photo: "",
       description: "",
       location: "",
       genre: "",
@@ -69,106 +86,177 @@ const CreateEventForm = () => {
   });
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <div className={styles.create_event_form}>
+      <form onSubmit={handleSubmit}>
         <div>
-          <span>Укажите название мероприятия</span>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Название мероприятия"
-            value={values.title}
-            onChange={handleChange}
-          />
-          {errors.title ? <div>{errors.title}</div> : null}
-        </div>
-        <div>
-          <span>Фото для заголовка мероприятия</span>
-          <input
-            type="file"
-            id="photo"
-            name="photo"
-            accept=".jpg, .jpeg, .png"
-            onChange={handleChange}
-          />
-          {errors.photo ? <div>{errors.photo}</div> : null}
-        </div>
-        <div>
-          <span>Напишите описание мероприятия</span>
-          <textarea
-            type="text"
-            name="description"
-            id="description"
-            placeholder="Описание мероприятия"
-            value={values.description}
-            onChange={handleChange}
-          />
-          {errors.description ? <div>{errors.description}</div> : null}
-        </div>
-        <Select
-          name="location"
-          id="location"
-          options={configLocationOptions}
-          placeholder="Выберите город"
-          onChange={event => setFieldValue("location", event.value)}
-          isSearchable
-        />
-        {errors.location ? <div>{errors.location}</div> : null}
-
-        <Select
-          name="genre"
-          id="genre"
-          options={configGenreOptions}
-          onChange={event => setFieldValue("genre", event.value)}
-          placeholder="Выберите направление мероприятия"
-          isSearchable
-        />
-        {errors.genre ? <div>{errors.genre}</div> : null}
-
-        {calendarIsOpen ? (
-          <>
-            <span>Дата: {values.eventDate}</span>
-            <Calendar
-              name="eventDate"
-              id="eventDate"
-              onChange={event =>
-                setFieldValue(
-                  "eventDate",
-                  `${event.getDate()}.${event.getMonth()}.${event.getFullYear()}`
-                )
-              }
+          <div>
+            <span>Укажите название мероприятия</span>
+            <input
+              className={styles.title_field}
+              type="text"
+              name="title"
+              id="title"
+              placeholder="Название мероприятия"
+              value={values.title}
+              onChange={handleChange}
             />
-            <button onClick={() => setCalendarOpen(false)}>Закрыть</button>
-          </>
-        ) : (
-          <button onClick={() => setCalendarOpen(true)}>Выбать дату</button>
-        )}
-        {errors.eventDate ? <div>{errors.eventDate}</div> : null}
 
-        <div>
-          <span>Укажите время начала мероприятия</span>
-          <TimeField
-            value={values.beginTime}
-            onChange={(_, value) => setFieldValue("beginTime", value)}
-            colon=":"
+            {touched.title && errors.title ? (
+              <span className={styles.error_message}>{errors.title}</span>
+            ) : null}
+          </div>
+          <div>
+            <span>Фото для заголовка мероприятия</span>
+            <input
+              type="file"
+              id="photo"
+              name="photo"
+              accept=".jpg, .jpeg, .png"
+              onChange={handleChange}
+            />
+
+            {touched.photo && errors.photo ? (
+              <span className={styles.error_message}>{errors.photo}</span>
+            ) : null}
+          </div>
+          <div>
+            <span>Напишите описание мероприятия</span>
+            <textarea
+              className={styles.description_form_text}
+              type="text"
+              name="description"
+              id="description"
+              placeholder="Описание мероприятия"
+              value={values.description}
+              onChange={handleChange}
+            />
+
+            {touched.description && errors.description ? (
+              <span className={styles.error_message}>{errors.description}</span>
+            ) : null}
+          </div>
+          <Select
+            name="location"
+            id="location"
+            options={locationOptions}
+            width="200px"
+            menuColor="red"
+            placeholder="Выберите город"
+            onChange={event => setFieldValue("location", event.value)}
+            styles={selectStyles}
+            isSearchable
           />
-        </div>
-        {errors.beginTime ? <div>{errors.beginTime}</div> : null}
 
-        <div>
-          <span>Укажите время окончание мероприятия</span>
-          <TimeField
-            value={values.finishTime}
-            onChange={(_, value) => setFieldValue("finishTime", value)}
-            colon=":"
+          {touched.location && errors.location ? (
+            <span className={styles.error_message}>{errors.location}</span>
+          ) : null}
+
+          <Select
+            name="genre"
+            id="genre"
+            options={configGenreOptions}
+            onChange={event => setFieldValue("genre", event.value)}
+            styles={selectStyles}
+            placeholder="Выберите направление мероприятия"
+            isSearchable
           />
-        </div>
-        {errors.finishTime ? <div>{errors.finishTime}</div> : null}
 
-        <button type="submit">Зарегистрировать мероприятие</button>
-      </div>
-    </form>
+          {touched.genre && errors.genre ? (
+            <span className={styles.error_message}>{errors.genre}</span>
+          ) : null}
+
+          {calendarIsOpen ? (
+            <>
+              <Calendar
+                name="eventDate"
+                id="eventDate"
+                onChange={event => {
+                  setFieldValue(
+                    "eventDate",
+                    `${event.getDate()}.${event.getMonth()}.${event.getFullYear()}`
+                  );
+                  setCalendarOpen(false);
+                }}
+                styles={selectStyles}
+              />
+              <button
+                className={`${styles.calendar_button} ${styles.close_button}`}
+                type="button"
+                onClick={() => setCalendarOpen(false)}
+              >
+                Закрыть
+              </button>
+            </>
+          ) : (
+            <>
+              {values.eventDate ? (
+                <span>Дата: {values.eventDate}</span>
+              ) : (
+                <span>Дата не выбрана</span>
+              )}
+
+              <button
+                className={styles.calendar_button}
+                type="button"
+                onClick={() => setCalendarOpen(true)}
+              >
+                Выбать дату
+              </button>
+            </>
+          )}
+
+          {touched.eventDate && errors.eventDate ? (
+            <span className={styles.error_message}>{errors.eventDate}</span>
+          ) : null}
+
+          <div>
+            <span>Укажите время начала мероприятия</span>
+            <TimeField
+              style={{
+                border: "2px solid #666",
+                fontSize: 42,
+                width: 110,
+                padding: "5px 8px",
+                color: "#333",
+                borderRadius: 3,
+              }}
+              value={values.beginTime}
+              onChange={(_, value) => setFieldValue("beginTime", value)}
+              colon=":"
+            />
+          </div>
+
+          {touched.beginTime && errors.beginTime ? (
+            <span className={styles.error_message}>{errors.beginTime}</span>
+          ) : null}
+
+          <div>
+            <span>Укажите время окончание мероприятия</span>
+            <TimeField
+              style={{
+                border: "2px solid #666",
+                fontSize: 42,
+                width: 110,
+                padding: "5px 8px",
+                color: "#333",
+                borderRadius: 3,
+              }}
+              value={values.finishTime}
+              onChange={(_, value) => setFieldValue("finishTime", value)}
+              colon=":"
+            />
+          </div>
+
+          {touched.finishTime && errors.finishTime ? (
+            <span className={styles.error_message}>{errors.finishTime}</span>
+          ) : null}
+
+          <button className={styles.submit_button} type="submit">
+            Зарегистрировать мероприятие
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

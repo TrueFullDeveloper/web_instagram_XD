@@ -1,0 +1,137 @@
+.create_event_form {
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1170px;
+
+  span {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    color: #9b9797;
+  }
+
+  .error_message {
+    position: relative;
+    color: red;
+  }
+
+  .title_field {
+    width: 559px;
+    height: 59px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    outline: none;
+    border: 0;
+    background: #282828;
+    border-radius: 10px;
+    padding-left: 27px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    color: #9b9797;
+
+    &:focus {
+      color: white;
+    }
+  }
+  .photo_input {
+    width: 300px;
+    height: 60px;
+    margin-top: 20px;
+    background: #144d6d;
+    outline: none;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+
+    //Text Setting
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #ffffff;
+    &:hover {
+      background: #19608a;
+    }
+  }
+  .description_form_text {
+    display: block;
+    width: 100%;
+    height: 120px;
+    resize: none;
+    box-sizing: border-box;
+    margin: 16px 0;
+    border: 0;
+    border-radius: 10px;
+    background: rgb(43, 42, 42);
+    padding: 20px 40px;
+    outline: none;
+    //Text Setting
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 18px;
+    color: #ddd;
+    transition: 0.5s;
+
+    &:focus {
+      box-shadow: 0 0 10px 4px #34495e;
+    }
+  }
+
+  .submit_button {
+    width: 300px;
+    height: 60px;
+    margin-top: 20px;
+    background: #144d6d;
+    outline: none;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+
+    //Text Setting
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #ffffff;
+    &:hover {
+      background: #19608a;
+    }
+  }
+
+  .calendar_button {
+    width: 150px;
+    height: 60px;
+    margin-top: 20px;
+    background: #144d6d;
+    outline: none;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+
+    //Text Setting
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #ffffff;
+    &:hover {
+      background: #19608a;
+    }
+  }
+
+  .close_button {
+    background: #d4232c;
+    &:hover {
+      background: #ec333c;
+    }
+  }
+}
