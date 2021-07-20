@@ -7,6 +7,9 @@ import { createPortal } from "react-dom";
 import { sendMessage } from "../../store/api/userSlice";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
+import styles from "./SendMessageForm.module.scss";
+//Icon
+import smileIcon from "../../static/images/messageIcon/smile.svg";
 
 const SendMessageForm = ({ setMessageForm, userId }) => {
   const dispatch = useDispatch();
@@ -20,7 +23,7 @@ const SendMessageForm = ({ setMessageForm, userId }) => {
     return () => document.body.removeChild(sendMessageModal.current);
   }, []);
 
-  const { handleSubmit, handleChange, setFieldValue, values, errors } = useFormik({
+  const { handleSubmit, handleChange, setFieldValue, values } = useFormik({
     initialValues: {
       messageText: "",
     },
@@ -40,29 +43,52 @@ const SendMessageForm = ({ setMessageForm, userId }) => {
   });
 
   return createPortal(
-    <form onSubmit={handleSubmit}>
-      <textarea
-        type="text"
-        id="messageText"
-        name="messageText"
-        value={values.messageText}
-        onChange={handleChange}
-      />
-      {errors.messageText ? <div>{errors.messageText}</div> : null}
-
-      {pickerIsOpen && (
-        <Picker
-          set="apple"
-          onSelect={emoji => setFieldValue("messageText", `${values.messageText}${emoji.native}`)}
-          emojiSize={20}
+    <div className={styles.message_wrapper}>
+      <form className={styles.message_form} onSubmit={handleSubmit}>
+        <textarea
+          className={styles.message_form_text}
+          type="text"
+          id="messageText"
+          name="messageText"
+          placeholder="Написать сообщение"
+          value={values.messageText}
+          onChange={handleChange}
         />
-      )}
-      <button type="button" onClick={() => setPicker(!pickerIsOpen)}>
-        Смайлы
-      </button>
 
-      <button type="submit">Отправить</button>
-    </form>,
+        {pickerIsOpen && (
+          <div className={styles.picker}>
+            <Picker
+              set="apple"
+              onSelect={emoji => {
+                setFieldValue("messageText", `${values.messageText}${emoji.native}`);
+                setPicker(false);
+              }}
+              emojiSize={20}
+            />
+          </div>
+        )}
+
+        <button
+          className={styles.picker_button}
+          type="button"
+          onClick={() => setPicker(!pickerIsOpen)}
+        >
+          <img src={smileIcon} alt="Смайлы" />
+        </button>
+
+        <button className={styles.message_form_button} type="submit">
+          Отправить
+        </button>
+
+        <button
+          type="button"
+          className={styles.close_form_button}
+          onClick={() => setMessageForm(false)}
+        >
+          Закрыть
+        </button>
+      </form>
+    </div>,
     sendMessageModal.current
   );
 };
