@@ -9,6 +9,8 @@ import "react-calendar/dist/Calendar.css";
 import { addEvent } from "../../store/api/createEventSlice";
 import styles from "./CreateEventForm.module.scss";
 import { LOCATIONS } from "../../config/constants";
+//i18n
+import { useTranslation } from 'react-i18next';
 
 // TODO: Transfer it to Config
 // TODO: Stylize Input Type File!!!
@@ -34,6 +36,8 @@ const selectStyles = {
 };
 
 const CreateEventForm = () => {
+  const { t } = useTranslation("description");
+
   const [calendarIsOpen, setCalendarOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -90,7 +94,7 @@ const CreateEventForm = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <div>
-            <span>Укажите название мероприятия</span>
+            <span>{t('part2')}</span>
             <input
               className={styles.title_field}
               type="text"
