@@ -54,15 +54,6 @@ const EventAnnotation = ({ eventAnnotation }) => {
               <p>Организатор</p>
             </div>
           </NavLink>
-
-          <button type="button">
-            <NavLink
-              to="/user"
-              onClick={() => dispatch(fetchUser(eventAnnotation.eventManager.eventManagerId))}
-            >
-              Перейти
-            </NavLink>
-          </button>
         </div>
         {isUserRepost ? (
           <button type="button" className={styles.reposted_button} disabled>
