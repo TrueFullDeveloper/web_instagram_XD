@@ -45,7 +45,7 @@ const FilterForm = () => {
   const [calendarIsOpen, setCalendarOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const { handleSubmit, handleChange, setFieldValue, values, errors } = useFormik({
+  const { handleSubmit, handleChange, setFieldValue, values } = useFormik({
     initialValues: {
       userQuery: "",
       location: "",
@@ -55,7 +55,7 @@ const FilterForm = () => {
     },
 
     validationSchema: yup.object({
-      userQuery: yup.string("Should be string"),
+      userQuery: yup.string(),
     }),
 
     onSubmit: ({ userQuery, location, genre, eventDate, interval }) => {
@@ -80,8 +80,6 @@ const FilterForm = () => {
             Поиск
           </button>
 
-          {errors.userQuery ? <div>{errors.userQuery}</div> : null}
-
           <Select
             name="interval"
             id="interval"
@@ -105,6 +103,7 @@ const FilterForm = () => {
             name="genre"
             id="genre"
             options={configGenreOptions}
+            placeholder="Выберите направление мероприятия"
             onChange={event =>
               setFieldValue(
                 "genre",
@@ -112,7 +111,6 @@ const FilterForm = () => {
               )
             }
             styles={selectStyles}
-            placeholder="Выберите направление мероприятия"
             isSearchable
             isMulti
           />
@@ -152,7 +150,7 @@ const FilterForm = () => {
                 type="button"
                 onClick={() => setCalendarOpen(true)}
               >
-                Выбать дату
+                Выбрать дату
               </button>
             </>
           )}
