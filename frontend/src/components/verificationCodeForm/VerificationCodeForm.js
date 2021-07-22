@@ -25,7 +25,7 @@ const VerificationCodeForm = () => {
     },
 
     validationSchema: yup.object({
-      code: yup.string().required("Code Shoud be Required"),
+      code: yup.string().required("Код должен быть указан"),
       password: yup
         .string()
         .min(6, "Password must be longer than 6 characters")
@@ -66,6 +66,7 @@ const VerificationCodeForm = () => {
           value={values.code}
           onChange={handleChange}
         />
+
         {touched.code && errors.code ? (
           <span className={styles.error_message}>{errors.code}</span>
         ) : null}
@@ -78,6 +79,7 @@ const VerificationCodeForm = () => {
           value={values.password}
           onChange={handleChange}
         />
+
         {touched.password && errors.password ? (
           <span className={styles.error_message}>{errors.password}</span>
         ) : null}
@@ -90,6 +92,7 @@ const VerificationCodeForm = () => {
           value={values.passwordRep}
           onChange={handleChange}
         />
+
         {touched.passwordRep && errors.passwordRep ? (
           <span className={styles.error_message}>{errors.passwordRep}</span>
         ) : null}
@@ -103,7 +106,7 @@ const VerificationCodeForm = () => {
     return (
       <div className={styles.successful_message}>
         <h1>Вы успешно изменили свой пароль!</h1>
-        <img src={successfulIcon} alt="nothing" />
+        <img src={successfulIcon} alt="" />
 
         <button type="button">
           <Link to="/login">Ок</Link>

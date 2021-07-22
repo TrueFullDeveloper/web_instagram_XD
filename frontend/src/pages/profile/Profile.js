@@ -11,8 +11,8 @@ import { fetchRepost, selectRepostList, selectRepostLoading } from "../../store/
 const Profile = () => {
   const dispatch = useDispatch();
 
-  const profieLoading = useSelector(selectProfileLoading);
-  const repostlLoading = useSelector(selectRepostLoading);
+  const profileLoading = useSelector(selectProfileLoading);
+  const repostLoading = useSelector(selectRepostLoading);
   const profileData = useSelector(selectProfile);
   const userId = useSelector(selectUserId);
   const userRepostList = useSelector(selectRepostList);
@@ -25,7 +25,7 @@ const Profile = () => {
 
   return (
     <>
-      {profieLoading || repostlLoading ? (
+      {profileLoading || repostLoading ? (
         <Loader />
       ) : (
         <>

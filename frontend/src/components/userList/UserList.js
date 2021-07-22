@@ -23,12 +23,6 @@ const UserList = ({ userList }) => {
                 <p>{userListItem.role}</p>
               </div>
             </NavLink>
-
-            <button type="button">
-              <NavLink to="/user" onClick={() => dispatch(fetchUser(userListItem.userId))}>
-                Перейти
-              </NavLink>
-            </button>
           </div>
         ))}
       </div>

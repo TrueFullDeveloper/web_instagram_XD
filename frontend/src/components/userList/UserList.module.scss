@@ -67,35 +67,6 @@
     margin-right: 50px;
   }
 
-  button {
-    margin-top: 40px;
-    margin-left: 10px;
-    border: none;
-    cursor: pointer;
-    height: 40px;
-    width: 130px;
-    transition: 0.25s;
-    background: #303bd5;
-    border: 0;
-    border-radius: 10px;
-
-    a {
-      text-decoration: none;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #ffffff;
-      cursor: pointer;
-    }
-
-    &:hover {
-      background: #404bec;
-    }
-  }
-
   &:hover {
     background: #2d2d2d;
   }

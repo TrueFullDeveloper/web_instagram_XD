@@ -14,7 +14,7 @@ const UserSearchForm = () => {
     },
 
     validationSchema: yup.object({
-      userQuery: yup.string().required("User Query Shoud be Required"),
+      userQuery: yup.string().required(),
     }),
 
     onSubmit: ({ userQuery }) => {

@@ -59,18 +59,18 @@ const CreateEventForm = () => {
     },
 
     validationSchema: yup.object({
-      title: yup.string("Should be string").required("Title is not Required"),
-      photo: yup.string().required("Photo is not Required"),
+      title: yup.string().required("Заголовок должен быть написан"),
+      photo: yup.string().required("Фото должно быть загружено"),
       description: yup
-        .string("Should be string")
-        .min(40, "Description should be longer then 40 characters")
-        .max(400, "Description must be shorter than 400 characters")
-        .required("Description is not Required"),
-      location: yup.string("Should be string").required("Location is not Required"),
-      genre: yup.string("Should be string").required("Genre is not Required"),
-      eventDate: yup.string("Should be string").required("Event date is not Required"),
-      beginTime: yup.string("Should be string").required("Begin Time date is not Required"),
-      finishTime: yup.string("Should be string").required("Finish Time date is not Required"),
+        .string()
+        .min(40, "Описание не должно быть короче 40 символов")
+        .max(400, "Описание не должно превышать 400 символов")
+        .required("Описание должно быть написано"),
+      location: yup.string().required("Место проведения должно быть указано"),
+      genre: yup.string().required("Направление мероприятия должно быть указано"),
+      eventDate: yup.string().required("Дата должна быть указана"),
+      beginTime: yup.string().required("Время начала должно быть указано"),
+      finishTime: yup.string().required("Время окончания должно быть указано"),
     }),
 
     onSubmit: ({
@@ -94,7 +94,7 @@ const CreateEventForm = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <div>
-            <span>{t('part2')}</span>
+            <span>Укажите название мероприятия</span>
             <input
               className={styles.title_field}
               type="text"
@@ -123,6 +123,7 @@ const CreateEventForm = () => {
               <span className={styles.error_message}>{errors.photo}</span>
             ) : null}
           </div>
+          
           <div>
             <span>Напишите описание мероприятия</span>
             <textarea

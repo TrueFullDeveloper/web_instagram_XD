@@ -20,30 +20,33 @@ const Signup = () => {
     validationSchema: yup.object({
       name: yup
         .string()
-        .min(1, "User Name must be longer than 1 character")
-        .max(20, "User Name must be shorter than 20 characters")
-        .required("User Name Shoud be Required"),
-      emailField: yup.string().email("Should be valid Email").required("Email Shoud be Required"),
+        .min(1, "Имя должно содержать больше одного символа")
+        .max(20, "Имя не должно содерать больше 20 символов")
+        .required("Имя должно быть указано"),
+      emailField: yup
+        .string()
+        .email("Должена быть указана адрес электроной почты")
+        .required("Вы не указали адрес электронной почты"),
       password: yup
         .string()
-        .min(6, "Password must be longer than 6 characters")
-        .max(40, "Password must be shorter than 40 characters")
-        .required("Password Shoud be Required"),
-      passwordRep: yup.string().required("Repeat Password Please"),
+        .min(6, "Пароль должен содерать 6 или более символов")
+        .max(40, "Пароль не должен содерать больше 40 символов")
+        .required("Пароль должен быть указан"),
+      passwordRep: yup.string().required("Повторите пароль, пожалуйста"),
     }),
 
     onSubmit: ({ name, emailField, password, passwordRep }) => {
       if (password === passwordRep) {
         dispatch(fetchSignup(name, emailField, password));
       } else {
-        alert("Пароли не совпадатю");
+        alert("Пароли не совпадают");
       }
     },
   });
 
   return (
     <form onSubmit={handleSubmit} className={styles.signup_form}>
-      <h1>РЕГИСТРАЦИЯ</h1>
+      <h1>Регистрация</h1>
 
       <input
         placeholder="Имя"
@@ -54,6 +57,7 @@ const Signup = () => {
         onChange={handleChange}
         className={styles.user_name_field}
       />
+
       {touched.name && errors.name ? (
         <span className={styles.error_message}>{errors.name}</span>
       ) : null}
@@ -67,6 +71,7 @@ const Signup = () => {
         onChange={handleChange}
         className={styles.email_field}
       />
+
       {touched.emailField && errors.emailField ? (
         <span className={styles.error_message}>{errors.emailField}</span>
       ) : null}
@@ -79,6 +84,7 @@ const Signup = () => {
         value={values.password}
         onChange={handleChange}
       />
+
       {touched.password && errors.password ? (
         <span className={styles.error_message}>{errors.password}</span>
       ) : null}
@@ -91,6 +97,7 @@ const Signup = () => {
         value={values.passwordRep}
         onChange={handleChange}
       />
+
       {touched.passwordRep && errors.passwordRep ? (
         <span className={styles.error_message}>{errors.passwordRep}</span>
       ) : null}

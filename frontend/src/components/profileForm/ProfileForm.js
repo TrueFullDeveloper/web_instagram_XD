@@ -41,17 +41,16 @@ const ProfileForm = ({ profileData, setEditModel }) => {
     validationSchema: yup.object({
       userName: yup
         .string()
-        .max(20, "User must be shorter than 20 characters")
+        .min(1, "Имя должно содержать больше одного символа")
+        .max(20, "Имя не должно содерать больше 20 символов")
         .required("User Name is not Required"),
       email: yup
         .string()
         .max(30, "Email must be shorter than 30 characters")
         .email("Should be valid Email")
         .required("Email is not Required"),
-      userInformation: yup
-        .string()
-        .max(400, "User information must be shorter than 400 characters"),
-      phoneNumber: yup.string().max(30, "Phone number must be shorter than 30 characters"),
+      userInformation: yup.string().max(400, "Информация о вас должна быть короче 400 символов"),
+      phoneNumber: yup.string().max(30, "Номер телефона должен быть короче 30 символов"),
       instagram: yup.string().url("Должна быть ссылка"),
       facebook: yup.string().url("Должна быть ссылка"),
       vkontakte: yup.string().url("Должна быть ссылка"),

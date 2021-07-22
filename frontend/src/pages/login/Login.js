@@ -16,8 +16,8 @@ const Login = () => {
     },
 
     validationSchema: yup.object({
-      emailField: yup.string().email("Should be valid Email").required("Email Shoud be Required"),
-      password: yup.string().required("Password Shoud be Required"),
+      emailField: yup.string().email("Должена быть указана адрес электроной почты").required("Вы не указали адрес электронной почты"),
+      password: yup.string().required("Пароль должен быть указан"),
     }),
 
     onSubmit: ({ emailField, password }) => {
