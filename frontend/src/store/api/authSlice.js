@@ -1,50 +1,36 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const storageName = "UserData"; // TODO: Transfer it to Constants.js
-
-export const fetchLogin = createAsyncThunk("auth/fetchLogin", async userData => {
+export const doLogin = createAsyncThunk("auth/fetchLogin", async ({ email, password }) => {
   try {
     const res = await axios.post(
       "https://jsonplaceholder.typicode.com/posts",
       JSON.stringify(userData)
     );
 
-    localStorage.setItem(
-      storageName,
-      JSON.stringify({
-        userId: 10, // Here Should Be res.userId
-        userConcierge: { сonciergeName: "Sam", conciergeId: 15 }, // Here Should Be res.userConcierge
-      })
-    );
+    localStorage.setItem("userToken", "S9Zs/8/uEGGTVVtLggFTizCsMtwOJnRhjaQ2BMUQhcY");
 
     return {
-      userId: 10, // Here Should Be res.userId
-      userConcierge: { сonciergeName: "Sam", conciergeId: 15 }, // Here Should Be res.userConcierge
+      userId: 10,
+      userConcierge: { сonciergeName: "Sam", conciergeId: 15 },
     };
   } catch (e) {
     console.log(e.message);
   }
 });
 
-export const fetchSignup = createAsyncThunk("auth/fetchSignup", async userData => {
+export const doSignup = createAsyncThunk("auth/fetchSignup", async userData => {
   try {
     const res = await axios.post(
       "https://jsonplaceholder.typicode.com/posts",
       JSON.stringify(userData)
     );
 
-    localStorage.setItem(
-      storageName,
-      JSON.stringify({
-        userId: 10, // Here Should Be res.userId
-        userConcierge: { сonciergeName: "Sam", conciergeId: 15 }, // Here Should Be res.userConcierge
-      })
-    );
+    localStorage.setItem("userToken", "S9Zs/8/uEGGTVVtLggFTizCsMtwOJnRhjaQ2BMUQhcY");
 
     return {
-      userId: 10, // Here Should Be res.userId
-      userConcierge: { сonciergeName: "Sam", conciergeId: 15 }, // Here Should Be res.userConcierge
+      userId: 10,
+      userConcierge: { сonciergeName: "Sam", conciergeId: 15 },
     };
   } catch (e) {
     console.log(e.message);
@@ -61,18 +47,16 @@ const authSlice = createSlice({
   },
 
   reducers: {
-    logout(state) {
-      console.log(state);
+    tokenUpdate(state) {
       state.userId = null;
       state.userConcierge = null;
       state.isAuthenticated = false;
       state.loading = false;
     },
-
-    login(state, { payload: { userId, userConcierge } }) {
-      state.userId = userId;
-      state.userConcierge = userConcierge;
-      state.isAuthenticated = true;
+    logout(state) {
+      state.userId = null;
+      state.userConcierge = null;
+      state.isAuthenticated = false;
       state.loading = false;
     },
   },
@@ -102,26 +86,22 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, login } = authSlice.actions;
-
+export const { logout } = authSlice.actions;
 export const selectUserId = state => state.auth.userId;
-
 export const selectUserConcierge = state => state.auth.userConcierge;
-
 export const selectAuthenticateStatus = state => state.auth.isAuthenticated;
-
 export const selectAuthLoading = state => state.auth.loading;
 
 export const userLogout = () => dispatch => {
-  localStorage.removeItem(storageName);
+  localStorage.removeItem("userToken");
   dispatch(logout());
 };
 
 export const userLogin = () => dispatch => {
-  const userData = JSON.parse(localStorage.getItem(storageName));
+  const userToken = localStorage.getItem("userToken");
 
-  if (userData && userData.userId) {
-    dispatch(login({ userId: userData.userId, userConcierge: userData.userConcierge }));
+  if (userToken) {
+    dispatch(fetchLogin(userToken));
   }
 };
 
