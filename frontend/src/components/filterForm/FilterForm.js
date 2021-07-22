@@ -5,27 +5,11 @@ import * as yup from "yup";
 import Select from "react-select";
 import Calendar from "react-calendar";
 import { searchEvent } from "../../store/api/newsSlice";
+import { LOCATIONS, GENRE, INTERVAL } from "../../config/constants";
 import "react-calendar/dist/Calendar.css";
 import styles from "./FilterForm.module.scss";
 
 // TODO: Transfer it to Config
-const configLocationOptions = [
-  { value: "tomsk", label: "Томск" },
-  { value: "moscow", label: "Москва" },
-  { value: "novokuznetsk", label: "Новокузнецк" },
-];
-
-const configGenreOptions = [
-  { value: "sport", label: "Спорт" },
-  { value: "theatre", label: "Театр" },
-  { value: "entertainment", label: "Развлечения" },
-];
-
-const configIntervalOptions = [
-  { value: "future", label: "Будущие" },
-  { value: "past", label: "Прошедшие" },
-  { value: "all", label: "Все" },
-];
 
 const selectStyles = {
   control: css => ({
@@ -42,8 +26,23 @@ const selectStyles = {
 };
 
 const FilterForm = () => {
-  const [calendarIsOpen, setCalendarOpen] = useState(false);
   const dispatch = useDispatch();
+  const [calendarIsOpen, setCalendarOpen] = useState(false);
+
+  const intervalOptions = Object.entries(INTERVAL).map(item => ({
+    value: item[0],
+    label: item[1],
+  }));
+
+  const locationOptions = Object.entries(LOCATIONS).map(item => ({
+    value: item[0],
+    label: item[1],
+  }));
+
+  const genreOptions = Object.entries(GENRE).map(item => ({
+    value: item[0],
+    label: item[1],
+  }));
 
   const { handleSubmit, handleChange, setFieldValue, values } = useFormik({
     initialValues: {
@@ -51,7 +50,7 @@ const FilterForm = () => {
       location: "",
       genre: "",
       eventDate: "",
-      interval: "",
+      interval: "Все",
     },
 
     validationSchema: yup.object({
@@ -83,16 +82,17 @@ const FilterForm = () => {
           <Select
             name="interval"
             id="interval"
-            options={configIntervalOptions}
+            options={intervalOptions}
             placeholder="Выберите временной промежуток"
             onChange={event => setFieldValue("interval", event.value)}
             styles={selectStyles}
+            defaultValue={intervalOptions[0]}
           />
 
           <Select
             name="location"
             id="location"
-            options={configLocationOptions}
+            options={locationOptions}
             placeholder="Выберите город"
             onChange={event => setFieldValue("location", event.value)}
             styles={selectStyles}
@@ -102,7 +102,7 @@ const FilterForm = () => {
           <Select
             name="genre"
             id="genre"
-            options={configGenreOptions}
+            options={genreOptions}
             placeholder="Выберите направление мероприятия"
             onChange={event =>
               setFieldValue(

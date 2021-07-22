@@ -8,18 +8,11 @@ import TimeField from "react-simple-timefield";
 import "react-calendar/dist/Calendar.css";
 import { addEvent } from "../../store/api/createEventSlice";
 import styles from "./CreateEventForm.module.scss";
-import { LOCATIONS } from "../../config/constants";
+import { LOCATIONS, GENRE } from "../../config/constants";
 //i18n
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-// TODO: Transfer it to Config
 // TODO: Stylize Input Type File!!!
-
-const configGenreOptions = [
-  { value: "sport", label: "Спорт" },
-  { value: "theatre", label: "Театр" },
-  { value: "entertainment", label: "Развлечения" },
-];
 
 const selectStyles = {
   control: css => ({
@@ -36,12 +29,16 @@ const selectStyles = {
 };
 
 const CreateEventForm = () => {
-  const { t } = useTranslation("description");
-
-  const [calendarIsOpen, setCalendarOpen] = useState(false);
   const dispatch = useDispatch();
+  const { t } = useTranslation("description");
+  const [calendarIsOpen, setCalendarOpen] = useState(false);
 
   const locationOptions = Object.entries(LOCATIONS).map(item => ({
+    value: item[0],
+    label: item[1],
+  }));
+
+  const genreOptions = Object.entries(GENRE).map(item => ({
     value: item[0],
     label: item[1],
   }));
@@ -123,7 +120,7 @@ const CreateEventForm = () => {
               <span className={styles.error_message}>{errors.photo}</span>
             ) : null}
           </div>
-          
+
           <div>
             <span>Напишите описание мероприятия</span>
             <textarea
@@ -159,7 +156,7 @@ const CreateEventForm = () => {
           <Select
             name="genre"
             id="genre"
-            options={configGenreOptions}
+            options={genreOptions}
             onChange={event => setFieldValue("genre", event.value)}
             styles={selectStyles}
             placeholder="Выберите направление мероприятия"
