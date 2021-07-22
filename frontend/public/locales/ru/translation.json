@@ -1,7 +1,61 @@
 {
-    "title": "Willkommen zu react und react-i18next",
-    "description": {
-        "part1": "Suka? Work blyt",
-        "part2": "Wechsle die Sprache zwischen deutsch und englisch mit Hilfe der beiden Schalter."
+    "title": "Eventer",
+    "pages": {
+        "header": {
+            "usersLink":"Пользователи",
+            "chatsLink":"Ваши чаты",
+            "profileLink":"Профиль",
+            "createEventLink":"Добавить мероприятие"
+        },
+        "home": {
+            "searchPlaceholder":"Поиск мероприятия",
+            "selectIntervalPlaceholder":"Выберите временной промежуток",
+            "selectLocationPlaceholder":"Выберите город",
+            "selectGenrePlaceholder":"Выберите направление мероприятия",
+            "closeButton":"Закрыть",
+            "eventDate":"Дата:",
+            "eventDateNotSelected":"Дата не выбрана",
+            "selectDateButton":"Выбрать дату",
+            "searchButton":"Поиск",
+            "eventGenre": "Направление мероприятия:",
+            "moreDetailsButton": "Подробнее"
+        },
+        "eventPage": {
+            "eventGenre":"Направление мероприятия:",
+            "eventManager":"Организатор мероприятия:",
+            "manager":"Организатор",
+            "eventAdded":"Мероприятие доваленно",
+            "repost":"Репост",
+            "eventFeedbacks":"Отзывы о мероприятии:",
+            "deleteFeedback":"Удалить отзыв"
+        },
+        "chatPage": {
+            "userChatList":"Список ваших чатов:"
+        },
+        "chatRoom": {
+            "deleteButton":"Удалить",
+            "messageExceedsLimitError":"Сообщение не должно превышать 400 символов",
+            "messageNotRequiredError":"Вы не написали сообщение",
+            "writeMessagePlaceholder":"Написать сообщение",
+            "smiles":"Смайлы"
+        },
+        "createEventPage": {
+            "title":"xcxcxc"
+        },
+        "login": {
+            "title":"xcxcxc"
+        },
+        "signup": {
+            "title":"xcxcxc"
+        },
+        "profile": {
+            "title":"xcxcxc"
+        },
+        "user": {
+            "title":"xcxcxc"
+        },
+        "usersPage": {
+            "title":"xcxcxc"
+        }
     }   
 }

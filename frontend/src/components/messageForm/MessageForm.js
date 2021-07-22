@@ -18,8 +18,8 @@ const MessageForm = ({ userName, sendMessage }) => {
     validationSchema: yup.object({
       messageText: yup
         .string()
-        .max(400, "Message must be shorter than 400 characters")
-        .required("Message is not Required"),
+        .max(400, "Сообщение не должно превышать 400 символов")
+        .required("Вы не написали сообщение"),
     }),
 
     onSubmit: ({ messageText }) => {
