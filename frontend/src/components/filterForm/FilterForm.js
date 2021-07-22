@@ -5,44 +5,30 @@ import * as yup from "yup";
 import Select from "react-select";
 import Calendar from "react-calendar";
 import { searchEvent } from "../../store/api/newsSlice";
-import { LOCATIONS, GENRE, INTERVAL } from "../../config/constants";
 import "react-calendar/dist/Calendar.css";
 import styles from "./FilterForm.module.scss";
+// Config
+import { LOCATIONS, GENRE, INTERVAL } from "../../config/constants";
+import { SELECT_STYLES } from "../../config/styles";
 
-// TODO: Transfer it to Config
+const intervalOptions = Object.entries(INTERVAL).map(item => ({
+  value: item[0],
+  label: item[1],
+}));
 
-const selectStyles = {
-  control: css => ({
-    ...css,
-    marginTop: "20px",
-    height: "60px",
-    background: "#282828",
-    border: "0",
-  }),
-  singleValue: css => ({
-    ...css,
-    color: "#ffffff",
-  }),
-};
+const locationOptions = Object.entries(LOCATIONS).map(item => ({
+  value: item[0],
+  label: item[1],
+}));
+
+const genreOptions = Object.entries(GENRE).map(item => ({
+  value: item[0],
+  label: item[1],
+}));
 
 const FilterForm = () => {
   const dispatch = useDispatch();
   const [calendarIsOpen, setCalendarOpen] = useState(false);
-
-  const intervalOptions = Object.entries(INTERVAL).map(item => ({
-    value: item[0],
-    label: item[1],
-  }));
-
-  const locationOptions = Object.entries(LOCATIONS).map(item => ({
-    value: item[0],
-    label: item[1],
-  }));
-
-  const genreOptions = Object.entries(GENRE).map(item => ({
-    value: item[0],
-    label: item[1],
-  }));
 
   const { handleSubmit, handleChange, setFieldValue, values } = useFormik({
     initialValues: {
@@ -85,7 +71,7 @@ const FilterForm = () => {
             options={intervalOptions}
             placeholder="Выберите временной промежуток"
             onChange={event => setFieldValue("interval", event.value)}
-            styles={selectStyles}
+            styles={SELECT_STYLES}
             defaultValue={intervalOptions[0]}
           />
 
@@ -95,7 +81,7 @@ const FilterForm = () => {
             options={locationOptions}
             placeholder="Выберите город"
             onChange={event => setFieldValue("location", event.value)}
-            styles={selectStyles}
+            styles={SELECT_STYLES}
             isSearchable
           />
 
@@ -110,7 +96,7 @@ const FilterForm = () => {
                 event.map(eventItem => eventItem.value)
               )
             }
-            styles={selectStyles}
+            styles={SELECT_STYLES}
             isSearchable
             isMulti
           />
@@ -127,7 +113,6 @@ const FilterForm = () => {
                   );
                   setCalendarOpen(false);
                 }}
-                styles={selectStyles}
               />
               <button
                 className={`${styles.calendar_button} ${styles.close_button}`}

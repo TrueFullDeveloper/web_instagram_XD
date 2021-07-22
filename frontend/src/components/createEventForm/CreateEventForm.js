@@ -8,40 +8,28 @@ import TimeField from "react-simple-timefield";
 import "react-calendar/dist/Calendar.css";
 import { addEvent } from "../../store/api/createEventSlice";
 import styles from "./CreateEventForm.module.scss";
+//Config
 import { LOCATIONS, GENRE } from "../../config/constants";
+import { SELECT_STYLES } from "../../config/styles";
 //i18n
 import { useTranslation } from "react-i18next";
 
-// TODO: Stylize Input Type File!!!
+const locationOptions = Object.entries(LOCATIONS).map(item => ({
+  value: item[0],
+  label: item[1],
+}));
 
-const selectStyles = {
-  control: css => ({
-    ...css,
-    marginTop: "20px",
-    height: "60px",
-    background: "#282828",
-    border: "0",
-  }),
-  singleValue: css => ({
-    ...css,
-    color: "#ffffff",
-  }),
-};
+const genreOptions = Object.entries(GENRE).map(item => ({
+  value: item[0],
+  label: item[1],
+}));
+
+// TODO: Stylize Input Type File!!!
 
 const CreateEventForm = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation("description");
   const [calendarIsOpen, setCalendarOpen] = useState(false);
-
-  const locationOptions = Object.entries(LOCATIONS).map(item => ({
-    value: item[0],
-    label: item[1],
-  }));
-
-  const genreOptions = Object.entries(GENRE).map(item => ({
-    value: item[0],
-    label: item[1],
-  }));
 
   const { handleSubmit, handleChange, setFieldValue, values, errors, touched } = useFormik({
     initialValues: {
@@ -145,7 +133,7 @@ const CreateEventForm = () => {
             menuColor="red"
             placeholder="Выберите город"
             onChange={event => setFieldValue("location", event.value)}
-            styles={selectStyles}
+            styles={SELECT_STYLES}
             isSearchable
           />
 
@@ -158,7 +146,7 @@ const CreateEventForm = () => {
             id="genre"
             options={genreOptions}
             onChange={event => setFieldValue("genre", event.value)}
-            styles={selectStyles}
+            styles={SELECT_STYLES}
             placeholder="Выберите направление мероприятия"
             isSearchable
           />
@@ -179,7 +167,6 @@ const CreateEventForm = () => {
                   );
                   setCalendarOpen(false);
                 }}
-                styles={selectStyles}
               />
               <button
                 className={`${styles.calendar_button} ${styles.close_button}`}
