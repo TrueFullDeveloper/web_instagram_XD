@@ -89,7 +89,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
     <div className={styles.profile_wrapper}>
       <form className={styles.profile_form} onSubmit={handleSubmit}>
         <div className={styles.about_section}>
-          <img src={profileData.userPhoto} />
+          <img src={profileData.userPhoto} alt="No photo(" />
 
           <div>
             <input
@@ -137,7 +137,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
         <div className={styles.contact_section}>
           <div>
             <span>
-              <img src={emailIcon} />
+              <img src={emailIcon} alt="" />
               Email:
             </span>
             <input
@@ -156,7 +156,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
 
           <div>
             <span>
-              <img src={phoneIcon} />
+              <img src={phoneIcon} alt="" />
               Телефон
             </span>
             <input
@@ -175,7 +175,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
 
           <div>
             <span>
-              <img src={instagramIcon} />
+              <img src={instagramIcon} alt="" />
               Instagram
             </span>
             <input
@@ -194,7 +194,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
 
           <div>
             <span>
-              <img src={facebookIcon} />
+              <img src={facebookIcon} alt="" />
               Facebook
             </span>
             <input
@@ -213,7 +213,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
 
           <div>
             <span>
-              <img src={vkIcon} />
+              <img src={vkIcon} alt="" />
               Vk
             </span>
             <input

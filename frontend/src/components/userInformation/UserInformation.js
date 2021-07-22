@@ -14,7 +14,7 @@ const UserInformation = ({ userData }) => {
   return (
     <div className={styles.user}>
       <div className={styles.about_section}>
-        <img src={userData.userPhoto} />
+        <img src={userData.userPhoto} alt="" />
         <h1>{userData.userName}</h1>
         <h2>Обо мне</h2>
         <p>{userData.userInformation}</p>
@@ -25,7 +25,7 @@ const UserInformation = ({ userData }) => {
 
         <div>
           <span>
-            <img src={emailIcon} />
+            <img src={emailIcon} alt="" />
             Email:
           </span>
           <p>{userData.email}</p>
@@ -34,7 +34,7 @@ const UserInformation = ({ userData }) => {
         {userData.phoneNumber ? (
           <div className={styles.contact_item}>
             <span>
-              <img src={phoneIcon} />
+              <img src={phoneIcon} alt="" />
               Телефон
             </span>
             <p>{userData.phoneNumber}</p>
@@ -44,7 +44,7 @@ const UserInformation = ({ userData }) => {
         {userData.instagram ? (
           <div className={styles.contact_item}>
             <span>
-              <img src={instagramIcon} />
+              <img src={instagramIcon} alt="" />
               Instagram
             </span>
             <div>
@@ -56,7 +56,7 @@ const UserInformation = ({ userData }) => {
         {userData.facebook ? (
           <div className={styles.contact_item}>
             <span>
-              <img src={facebookIcon} />
+              <img src={facebookIcon} alt="" />
               Facebook
             </span>
             <div>
@@ -68,7 +68,7 @@ const UserInformation = ({ userData }) => {
         {userData.vkontacte ? (
           <div className={styles.contact_item}>
             <span>
-              <img src={vkIcon} />
+              <img src={vkIcon} alt="" />
               Vk
             </span>
             <div>

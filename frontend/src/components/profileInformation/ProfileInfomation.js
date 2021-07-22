@@ -17,7 +17,7 @@ const ProfileInformation = ({ profileData }) => {
   return (
     <div className={styles.profile}>
       <div className={styles.about_section}>
-        <img src={profileData.userPhoto} />
+        <img src={profileData.userPhoto} alt="" />
         <h1>{profileData.userName}</h1>
         <h2>Обо мне</h2>
         <p>{profileData.userInformation}</p>
@@ -28,7 +28,7 @@ const ProfileInformation = ({ profileData }) => {
 
         <div>
           <span>
-            <img src={emailIcon} />
+            <img src={emailIcon} alt="" />
             Email:
           </span>
           <p>{profileData.email}</p>
@@ -37,7 +37,7 @@ const ProfileInformation = ({ profileData }) => {
         {profileData.phoneNumber ? (
           <div className={styles.contact_item}>
             <span>
-              <img src={phoneIcon} />
+              <img src={phoneIcon} alt="" />
               Телефон
             </span>
             <p>{profileData.phoneNumber}</p>
@@ -47,7 +47,7 @@ const ProfileInformation = ({ profileData }) => {
         {profileData.instagram ? (
           <div className={styles.contact_item}>
             <span>
-              <img src={instagramIcon} />
+              <img src={instagramIcon} alt="" />
               Instagram
             </span>
             <div>
@@ -59,7 +59,7 @@ const ProfileInformation = ({ profileData }) => {
         {profileData.facebook ? (
           <div className={styles.contact_item}>
             <span>
-              <img src={facebookIcon} />
+              <img src={facebookIcon} alt="" />
               Facebook
             </span>
             <div>
@@ -71,7 +71,7 @@ const ProfileInformation = ({ profileData }) => {
         {profileData.vkontacte ? (
           <div className={styles.contact_item}>
             <span>
-              <img src={vkIcon} />
+              <img src={vkIcon} alt="" />
               Vk
             </span>
             <div>

@@ -36,7 +36,7 @@ const FilterForm = () => {
       location: "",
       genre: "",
       eventDate: "",
-      interval: "Все",
+      interval: "all",
     },
 
     validationSchema: yup.object({

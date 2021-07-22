@@ -20,7 +20,7 @@ const ChatRoom = ({ chatId }) => {
     <>
       <div className={styles.companion_profile}>
         <NavLink to="/user" onClick={() => dispatch(fetchUser(companion.companionId))}>
-          <img src={companion.companionPhoto} alt="Nothing(" />
+          <img src={companion.companionPhoto} alt="No photo(" />
         </NavLink>
         <NavLink to="/user" onClick={() => dispatch(fetchUser(companion.companionId))}>
           <div>
