@@ -1,146 +1,142 @@
 {
     "title": "Eventer",
-
     "pages": {
         "login": {
-            "loginTitle":"Авторизация",
-            "signinButton":"Войти",
-            "forgotPasswordLink":"Забыли пароль?",
-            "signupLink":"Регистрация"  
+            "loginTitle": "Авторизация",
+            "signinButton": "Войти",
+            "forgotPasswordLink": "Забыли пароль?",
+            "signupLink": "Регистрация"
         },
         "signup": {
-            "userNamePlaceholder":"Имя",
-            "signupButton":"Зарегистрироваться",
-            "loginLink":"Войти"  
+            "userNamePlaceholder": "Имя",
+            "signupButton": "Зарегистрироваться",
+            "loginLink": "Войти"
         },
         "passwordReset": {
-            "forgotPasswordTitle":"Забыли пароль?",
-            "forgotPasswordMessage":"Для восстановления пароля укажите e-mail, на который зарегистрирована ваша учетнаязапись!",
-            "sendEmailButton":"Отправить",
-            "forgotPasswordLink":"Забыли пароль?",
-            "codeNotRequiredError":"Код должен быть указан",
-            "codePlaceholder":"Код",
-            "newPasswordPlaceholder":"Новый Пароль",
-            "recoveryButton":"Востановить",
-            "successRecoveryMessage":"Вы успешно изменили свой пароль!"  
+            "forgotPasswordTitle": "Забыли пароль?",
+            "forgotPasswordMessage": "Для восстановления пароля укажите e-mail, на который зарегистрирована ваша учетнаязапись!",
+            "sendEmailButton": "Отправить",
+            "forgotPasswordLink": "Забыли пароль?",
+            "codeNotRequiredError": "Код должен быть указан",
+            "codePlaceholder": "Код",
+            "newPasswordPlaceholder": "Новый Пароль",
+            "recoveryButton": "Востановить",
+            "successRecoveryMessage": "Вы успешно изменили свой пароль!"
         },
         "home": {
-            "searchPlaceholder":"Поиск мероприятия",
-            "selectIntervalPlaceholder":"Выберите временной промежуток",
-            "selectLocationPlaceholder":"Выберите город",
-            "selectGenrePlaceholder":"Выберите направление мероприятия",
-            "searchButton":"Поиск",
+            "searchPlaceholder": "Поиск мероприятия",
+            "selectIntervalPlaceholder": "Выберите временной промежуток",
+            "selectLocationPlaceholder": "Выберите город",
+            "selectGenrePlaceholder": "Выберите направление мероприятия",
+            "searchButton": "Поиск",
             "eventGenre": "Направление мероприятия:",
             "moreDetailsButton": "Подробнее"
         },
         "eventPage": {
-            "eventGenre":"Направление мероприятия:",
-            "eventManager":"Организатор мероприятия:",
-            "manager":"Организатор",
-            "eventAdded":"Мероприятие довалено",
-            "repost":"Репост",
-            "eventFeedbacks":"Отзывы о мероприятии:",
-            "deleteFeedback":"Удалить отзыв"
+            "eventGenre": "Направление мероприятия:",
+            "eventManager": "Организатор мероприятия:",
+            "manager": "Организатор",
+            "eventAdded": "Мероприятие довалено",
+            "repost": "Репост",
+            "eventFeedbacks": "Отзывы о мероприятии:",
+            "deleteFeedback": "Удалить отзыв"
         },
         "chatPage": {
-            "userChatList":"Список ваших чатов:"
+            "userChatList": "Список ваших чатов:"
         },
         "chatRoom": {
-            "deleteButton":"Удалить",
-            "messageExceedsLimitError":"Сообщение не должно превышать 400 символов",
-            "messageNotRequiredError":"Вы не написали сообщение",
-            "writeMessagePlaceholder":"Написать сообщение",
-            "smiles":"Смайлы"
+            "deleteButton": "Удалить",
+            "messageExceedsLimitError": "Сообщение не должно превышать 400 символов",
+            "messageNotRequiredError": "Вы не написали сообщение",
+            "writeMessagePlaceholder": "Написать сообщение",
+            "smiles": "Смайлы"
         },
         "createEventPage": {
-            "titleNotRequiredError":"Заголовок должен быть написан",
-            "photoNotRequiredError":"Фото должно быть загружено",
-            "descriptionShortError":"Описание не должно быть короче 40 символов",
-            "descriptionExceedsLimitError":"Описание не должно превышать 400 символов",
-            "descriptionNotRequiredError":"Описание должно быть написано",
-            "locationNotRequiredError":"Место проведения должно быть указано",
-            "genreNotRequiredError":"Направление мероприятия должно быть указано",
-            "eventDateNotRequiredError":"Дата должна быть указана",
-            "beginTimeNotRequiredError":"Время начала должно быть указано",
-            "finishTimeNotRequiredError":"Время окончания должно быть указано",
-            "enterTitleMessage":"Укажите название мероприятия",
-            "eventTitlePlaceholder":"Название мероприятия",
-            "enterTitlePhotoMessage":"Фото для заголовка мероприятия",
-            "enterEventDescriptionMessage":"Напишите описание мероприятия",
-            "eventDescriptionPlaceholder":"Описание мероприятия",
-            "selectLocationPlaceholder":"Выберите город",
-            "selectGenrePlaceholder":"Выберите направление мероприятия",
-            "enterEventBeginTimeError":"Укажите время начала мероприятия",
-            "enterEventFinishTimeError":"Укажите время окончание мероприятия",
-            "signupEventButton":"Зарегистрировать мероприятие"    
+            "titleNotRequiredError": "Заголовок должен быть написан",
+            "photoNotRequiredError": "Фото должно быть загружено",
+            "descriptionShortError": "Описание не должно быть короче 40 символов",
+            "descriptionExceedsLimitError": "Описание не должно превышать 400 символов",
+            "descriptionNotRequiredError": "Описание должно быть написано",
+            "locationNotRequiredError": "Место проведения должно быть указано",
+            "genreNotRequiredError": "Направление мероприятия должно быть указано",
+            "eventDateNotRequiredError": "Дата должна быть указана",
+            "beginTimeNotRequiredError": "Время начала должно быть указано",
+            "finishTimeNotRequiredError": "Время окончания должно быть указано",
+            "enterTitleMessage": "Укажите название мероприятия",
+            "eventTitlePlaceholder": "Название мероприятия",
+            "enterTitlePhotoMessage": "Фото для заголовка мероприятия",
+            "enterEventDescriptionMessage": "Напишите описание мероприятия",
+            "eventDescriptionPlaceholder": "Описание мероприятия",
+            "selectLocationPlaceholder": "Выберите город",
+            "selectGenrePlaceholder": "Выберите направление мероприятия",
+            "enterEventBeginTimeError": "Укажите время начала мероприятия",
+            "enterEventFinishTimeError": "Укажите время окончание мероприятия",
+            "signupEventButton": "Зарегистрировать мероприятие"
         },
         "profile": {
-            "aboutTitle":"Обо мне",
-            "contactSectionTitle":"Мои Контакты:",
-            "userPhoneTitle":"Телефон",
-            "userInstagramLink":"Мой Instagram",
-            "userFacebookLink":"Мой Facebook",
-            "userVkontakteLink":"Мой Vk",
-            "editProfileButton":"Редактировать Профиль",
-            "logoutButton":"Выйти",
-            "aboutExceedsLimitError":"Информация о вас должна быть короче 400 символов",
-            "phoneExceedsLimitError":"Номер телефона должен быть короче 30 символов",
-            "urlValidationError":"Должна быть ссылка",
-            "acceptChangesButton":"Принять изменения",
-            "closeButton":"Закрыть"
+            "aboutTitle": "Обо мне",
+            "contactSectionTitle": "Мои Контакты:",
+            "userPhoneTitle": "Телефон",
+            "userInstagramLink": "Мой Instagram",
+            "userFacebookLink": "Мой Facebook",
+            "userVkontakteLink": "Мой Vk",
+            "editProfileButton": "Редактировать Профиль",
+            "logoutButton": "Выйти",
+            "aboutExceedsLimitError": "Информация о вас должна быть короче 400 символов",
+            "phoneExceedsLimitError": "Номер телефона должен быть короче 30 символов",
+            "urlValidationError": "Должна быть ссылка",
+            "acceptChangesButton": "Принять изменения",
+            "closeButton": "Закрыть"
         },
         "user": {
-            "aboutTitle":"Обо мне",
-            "contactSectionTitle":"Мои Контакты:",
-            "userPhoneTitle":"Телефон",
-            "userInstagramLink":"Мой Instagram",
-            "userFacebookLink":"Мой Facebook",
-            "userVkontakteLink":"Мой Vk",
-            "sendMessageButton":"Написать сообщение"
-            
+            "aboutTitle": "Обо мне",
+            "contactSectionTitle": "Мои Контакты:",
+            "userPhoneTitle": "Телефон",
+            "userInstagramLink": "Мой Instagram",
+            "userFacebookLink": "Мой Facebook",
+            "userVkontakteLink": "Мой Vk",
+            "sendMessageButton": "Написать сообщение"
         },
         "usersPage": {
-            "userSearchPlaceholder":"Поиск пользователей",
-            "userSearchButton":"Поиск",
-            "userListTitle":"Список пользователей:"
-        }
-    }, 
-    
-    "components": {
-        "header": {
-            "usersLink":"Пользователи",
-            "chatsLink":"Ваши чаты",
-            "profileLink":"Профиль",
-            "createEventLink":"Добавить мероприятие"
+            "userSearchPlaceholder": "Поиск пользователей",
+            "userSearchButton": "Поиск",
+            "userListTitle": "Список пользователей:"
         }
     },
-
+    "components": {
+        "header": {
+            "usersLink": "Пользователи",
+            "chatsLink": "Ваши чаты",
+            "profileLink": "Профиль",
+            "createEventLink": "Добавить мероприятие"
+        }
+    },
     "common": {
         "emailField": {
-            "emailValidationError":"Должена быть указана адрес электроной почты",
-            "emailNotRequiredError":"Вы не указали адрес электронной почты",
-            "emailPlaceholder":"Почта"
-        }, 
+            "emailValidationError": "Должен быть указан адрес электроной почты",
+            "emailNotRequiredError": "Вы не указали адрес электронной почты",
+            "emailPlaceholder": "Почта"
+        },
         "userNameField": {
-            "userNameShortError":"Имя должно содержать больше одного символа",
-            "userNameExceedsLimitError":"Имя не должно содерать больше 20 символов",
-            "userNameNotRequiredError":"Имя должно быть указано"
+            "userNameShortError": "Имя должно содержать больше одного символа",
+            "userNameExceedsLimitError": "Имя не должно содерать больше 20 символов",
+            "userNameNotRequiredError": "Имя должно быть указано"
         },
         "passwordField": {
-            "passwordShortError":"Пароль должен содерать 6 или более символов",
-            "passwordExceedsLimitError":"Пароль не должен содерать больше 40 символов",
-            "passwordNotRequiredError":"Пароль должен быть указан",
-            "repeatPasswordError":"Повторите пароль, пожалуйста",
-            "passwordsNotMatchUpError":"Пароли не совпадают",
-            "userNamePlaceholder":"Имя",
-            "passwordPlaceholder":"Пароль",
-            "repeatPasswordPlaceholder":"Повторите пароль"
+            "passwordShortError": "Пароль должен содерать 6 или более символов",
+            "passwordExceedsLimitError": "Пароль не должен содерать больше 40 символов",
+            "passwordNotRequiredError": "Пароль должен быть указан",
+            "repeatPasswordError": "Повторите пароль, пожалуйста",
+            "passwordsNotMatchUpError": "Пароли не совпадают",
+            "userNamePlaceholder": "Имя",
+            "passwordPlaceholder": "Пароль",
+            "repeatPasswordPlaceholder": "Повторите пароль"
         },
         "calendar": {
-            "closeButton":"Закрыть",
-            "eventDate":"Дата:",
-            "eventDateNotSelected":"Дата не выбрана",
-            "selectDateButton":"Выбрать дату"
+            "closeButton": "Закрыть",
+            "eventDate": "Дата:",
+            "eventDateNotSelected": "Дата не выбрана",
+            "selectDateButton": "Выбрать дату"
         }
     }
 }
