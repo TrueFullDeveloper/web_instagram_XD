@@ -28,7 +28,7 @@ const genreOptions = Object.entries(GENRE).map(item => ({
 
 const CreateEventForm = () => {
   const dispatch = useDispatch();
-  const { t } = useTranslation("description");
+  const { t } = useTranslation();
   const [calendarIsOpen, setCalendarOpen] = useState(false);
 
   const { handleSubmit, handleChange, setFieldValue, values, errors, touched } = useFormik({
@@ -44,18 +44,18 @@ const CreateEventForm = () => {
     },
 
     validationSchema: yup.object({
-      title: yup.string().required("Заголовок должен быть написан"),
-      photo: yup.string().required("Фото должно быть загружено"),
+      title: yup.string().required(t("pages.createEventPage.titleNotRequiredError")),
+      photo: yup.string().required(t("pages.createEventPage.photoNotRequiredError")),
       description: yup
         .string()
-        .min(40, "Описание не должно быть короче 40 символов")
-        .max(400, "Описание не должно превышать 400 символов")
-        .required("Описание должно быть написано"),
-      location: yup.string().required("Место проведения должно быть указано"),
-      genre: yup.string().required("Направление мероприятия должно быть указано"),
-      eventDate: yup.string().required("Дата должна быть указана"),
-      beginTime: yup.string().required("Время начала должно быть указано"),
-      finishTime: yup.string().required("Время окончания должно быть указано"),
+        .min(40, t("pages.createEventPage.descriptionShortError"))
+        .max(400, t("pages.createEventPage.descriptionExceedsLimitError"))
+        .required(t("pages.createEventPage.descriptionNotRequiredError")),
+      location: yup.string().required(t("pages.createEventPage.locationNotRequiredError")),
+      genre: yup.string().required(t("pages.createEventPage.genreNotRequiredError")),
+      eventDate: yup.string().required(t("pages.createEventPage.eventDateNotRequiredError")),
+      beginTime: yup.string().required(t("pages.createEventPage.beginTimeNotRequiredError")),
+      finishTime: yup.string().required(t("pages.createEventPage.finishTimeNotRequiredError")),
     }),
 
     onSubmit: ({
@@ -79,13 +79,13 @@ const CreateEventForm = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <div>
-            <span>Укажите название мероприятия</span>
+            <span>{t("pages.createEventPage.enterTitleMessage")}</span>
             <input
               className={styles.title_field}
               type="text"
               name="title"
               id="title"
-              placeholder="Название мероприятия"
+              placeholder={t("pages.createEventPage.eventTitlePlaceholder")}
               value={values.title}
               onChange={handleChange}
             />
@@ -95,7 +95,7 @@ const CreateEventForm = () => {
             ) : null}
           </div>
           <div>
-            <span>Фото для заголовка мероприятия</span>
+            <span>{t("pages.createEventPage.enterTitlePhotoMessage")}</span>
             <input
               type="file"
               id="photo"
@@ -110,13 +110,13 @@ const CreateEventForm = () => {
           </div>
 
           <div>
-            <span>Напишите описание мероприятия</span>
+            <span>{t("pages.createEventPage.enterEventDescriptionMessage")}</span>
             <textarea
               className={styles.description_form_text}
               type="text"
               name="description"
               id="description"
-              placeholder="Описание мероприятия"
+              placeholder={t("pages.createEventPage.eventDescriptionPlaceholder")}
               value={values.description}
               onChange={handleChange}
             />
@@ -131,7 +131,7 @@ const CreateEventForm = () => {
             options={locationOptions}
             width="200px"
             menuColor="red"
-            placeholder="Выберите город"
+            placeholder={t("pages.createEventPage.selectLocationPlaceholder")}
             onChange={event => setFieldValue("location", event.value)}
             styles={SELECT_STYLES}
             isSearchable
@@ -147,7 +147,7 @@ const CreateEventForm = () => {
             options={genreOptions}
             onChange={event => setFieldValue("genre", event.value)}
             styles={SELECT_STYLES}
-            placeholder="Выберите направление мероприятия"
+            placeholder={t("pages.createEventPage.selectGenrePlaceholder")}
             isSearchable
           />
 
@@ -173,15 +173,17 @@ const CreateEventForm = () => {
                 type="button"
                 onClick={() => setCalendarOpen(false)}
               >
-                Закрыть
+                {t("common.calendar.closeButton")}
               </button>
             </>
           ) : (
             <>
               {values.eventDate ? (
-                <span>Дата: {values.eventDate}</span>
+                <span>
+                  {t("common.calendar.eventDate")} {values.eventDate}
+                </span>
               ) : (
-                <span>Дата не выбрана</span>
+                <span>{t("common.calendar.eventDateNotSelected")}</span>
               )}
 
               <button
@@ -189,7 +191,7 @@ const CreateEventForm = () => {
                 type="button"
                 onClick={() => setCalendarOpen(true)}
               >
-                Выбать дату
+                {t("common.calendar.selectDateButton")}
               </button>
             </>
           )}
@@ -199,7 +201,7 @@ const CreateEventForm = () => {
           ) : null}
 
           <div>
-            <span>Укажите время начала мероприятия</span>
+            <span>{t("pages.createEventPage.enterEventBeginTimeTitle")}</span>
             <TimeField
               style={{
                 border: "2px solid #666",
@@ -220,7 +222,7 @@ const CreateEventForm = () => {
           ) : null}
 
           <div>
-            <span>Укажите время окончание мероприятия</span>
+            <span>{t("pages.createEventPage.enterEventFinishTimeTitle")}</span>
             <TimeField
               style={{
                 border: "2px solid #666",
@@ -241,7 +243,7 @@ const CreateEventForm = () => {
           ) : null}
 
           <button className={styles.submit_button} type="submit">
-            Зарегистрировать мероприятие
+            {t("pages.createEventPage.signupEventButton")}
           </button>
         </div>
       </form>

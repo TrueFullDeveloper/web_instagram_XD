@@ -79,8 +79,8 @@
             "eventDescriptionPlaceholder": "Описание мероприятия",
             "selectLocationPlaceholder": "Выберите город",
             "selectGenrePlaceholder": "Выберите направление мероприятия",
-            "enterEventBeginTimeError": "Укажите время начала мероприятия",
-            "enterEventFinishTimeError": "Укажите время окончание мероприятия",
+            "enterEventBeginTimeTitle": "Укажите время начала мероприятия",
+            "enterEventFinishTimeTitle": "Укажите время окончание мероприятия",
             "signupEventButton": "Зарегистрировать мероприятие"
         },
         "profile": {
