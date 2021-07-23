@@ -77,7 +77,6 @@ const chatListSlice = createSlice({
 });
 
 export const selectChatListLoading = state => state.chatList.loading;
-
 export const selectChatList = state => state.chatList.chatList;
 
 export default chatListSlice.reducer;

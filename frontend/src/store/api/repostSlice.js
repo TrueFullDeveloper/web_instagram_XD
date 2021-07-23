@@ -107,7 +107,6 @@ const repostSlice = createSlice({
 });
 
 export const selectRepostLoading = state => state.repost.loading;
-
 export const selectRepostList = state => state.repost.userRepostList;
 
 export default repostSlice.reducer;

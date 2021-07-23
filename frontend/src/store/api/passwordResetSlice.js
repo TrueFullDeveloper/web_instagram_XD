@@ -59,7 +59,6 @@ const passwordResetSlice = createSlice({
 });
 
 export const selectResetStatus = state => state.passwordReset.status;
-
 export const selectResetLoading = state => state.passwordReset.loading;
 
 export default passwordResetSlice.reducer;

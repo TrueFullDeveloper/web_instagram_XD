@@ -116,7 +116,6 @@ const newsSlice = createSlice({
 });
 
 export const selectNewsLoading = state => state.news.loading;
-
 export const selectNewsList = state => state.news.newsList;
 
 export default newsSlice.reducer;
