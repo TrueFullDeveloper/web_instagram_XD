@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { userLogout } from "../../store/api/authSlice";
+import { logout } from "../../store/api/authSlice";
 import ProfileForm from "../profileForm";
 import styles from "./ProfileInformation.module.scss";
 //Icons
@@ -85,7 +85,7 @@ const ProfileInformation = ({ profileData }) => {
         <button type="button" onClick={() => setEditModel(true)}>
           Редактировать Профиль
         </button>
-        <button onClick={() => dispatch(userLogout())}>Выйти</button>
+        <button onClick={() => dispatch(logout())}>Выйти</button>
       </div>
     </div>
   );

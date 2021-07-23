@@ -4,7 +4,7 @@ import Loader from "./components/loader";
 import Header from "./components/header";
 import { getRoutes } from "./pages/routes";
 import { useSelector, useDispatch } from "react-redux";
-import { selectAuthenticateStatus, selectAuthLoading, userLogin } from "./store/api/authSlice";
+import { selectAuthenticateStatus, selectAuthLoading, tokenUpdate } from "./store/api/authSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ function App() {
   const routes = getRoutes(isAuthenticated);
 
   useEffect(() => {
-    dispatch(userLogin());
+    dispatch(tokenUpdate());
   }, [dispatch]);
 
   return loading ? (

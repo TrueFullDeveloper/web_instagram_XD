@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { fetchSignup } from "../../store/api/authSlice";
+import { signup } from "../../store/api/authSlice";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import styles from "./Signup.module.scss";
@@ -37,7 +37,7 @@ const Signup = () => {
 
     onSubmit: ({ name, emailField, password, passwordRep }) => {
       if (password === passwordRep) {
-        dispatch(fetchSignup(name, emailField, password));
+        dispatch(signup({ email: emailField, password, userName: name }));
       } else {
         alert("Пароли не совпадают");
       }

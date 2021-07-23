@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { fetchLogin } from "../../store/api/authSlice";
+import { login } from "../../store/api/authSlice";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import styles from "./Login.module.scss";
@@ -16,12 +16,15 @@ const Login = () => {
     },
 
     validationSchema: yup.object({
-      emailField: yup.string().email("Должена быть указана адрес электроной почты").required("Вы не указали адрес электронной почты"),
+      emailField: yup
+        .string()
+        .email("Должена быть указана адрес электроной почты")
+        .required("Вы не указали адрес электронной почты"),
       password: yup.string().required("Пароль должен быть указан"),
     }),
 
     onSubmit: ({ emailField, password }) => {
-      dispatch(fetchLogin({ emailField, password }));
+      dispatch(login({ email: emailField, password }));
     },
   });
 
