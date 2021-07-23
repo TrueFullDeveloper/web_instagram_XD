@@ -5,9 +5,12 @@ import { useDispatch } from "react-redux";
 import { fetchProfile } from "../../store/api/profileSlice";
 import { removeFeedback } from "../../store/api/eventSlice";
 import styles from "./FeedbackList.module.scss";
+//i18n
+import { useTranslation } from "react-i18next";
 
 const FeedbackList = ({ feedbackList, userFeedbackId }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const onClick = (isAuthor, userId) => {
     if (isAuthor) {
@@ -19,7 +22,7 @@ const FeedbackList = ({ feedbackList, userFeedbackId }) => {
 
   return (
     <div className={styles.feedback_section}>
-      <h1>Отзывы о мероприятии:</h1>
+      <h1>{t("pages.eventPage.eventFeedbacks")}</h1>
 
       {feedbackList.map(feedbackItem => (
         <div className={styles.feedback_box} key={feedbackItem.feedbackId}>
@@ -69,7 +72,7 @@ const FeedbackList = ({ feedbackList, userFeedbackId }) => {
                 type="button"
                 onClick={() => dispatch(removeFeedback(4, feedbackItem.feedbackId))}
               >
-                Удалить отзыв
+                {t("pages.eventPage.deleteFeedback")}
               </button>
             ) : null}
           </div>

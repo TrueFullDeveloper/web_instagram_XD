@@ -40,7 +40,15 @@
             "eventAdded": "Мероприятие довалено",
             "repost": "Репост",
             "eventFeedbacks": "Отзывы о мероприятии:",
-            "deleteFeedback": "Удалить отзыв"
+            "deleteFeedback": "Удалить отзыв", 
+            "ratingNotRequiredError": "Поставьте оценку мероприятию",
+            "feedbackExceedsLimitError": "Отзыв должен содерать меньше 400 символов",
+            "feedbackNotRequiredError": "Напишите отзыв",
+            "feedbackFormTitle": "Оставьте отзыв",
+            "ratingMessage": "Ваша оценка:",
+            "feedbackFormPlaceholder": "Оставьте отзыв",
+            "feedbackFormButton": "Оставить отзыв",
+            "smileButtonAlt": "Смайлы"
         },
         "chatPage": {
             "userChatList": "Список ваших чатов:"

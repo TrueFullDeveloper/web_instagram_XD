@@ -5,9 +5,12 @@ import { fetchUser } from "../../store/api/userSlice";
 import { addRepost } from "../../store/api/repostSlice";
 import { selectUserId } from "../../store/api/authSlice";
 import styles from "./EventAnnotation.module.scss";
+//i18n
+import { useTranslation } from "react-i18next";
 
 const EventAnnotation = ({ eventAnnotation }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const userId = useSelector(selectUserId);
 
   // TODO: Add Repost Status to eventSlice
@@ -32,10 +35,12 @@ const EventAnnotation = ({ eventAnnotation }) => {
             " " +
             eventAnnotation.eventRating}
         </p>
-        <h3>Направление мероприятия: {eventAnnotation.eventGenre}</h3>
+        <h3>
+          {t("pages.eventPage.eventGenre")} {eventAnnotation.eventGenre}
+        </h3>
         <p>{eventAnnotation.eventDesciption}</p>
 
-        <h2>Организатор мероприятия:</h2>
+        <h2>{t("pages.eventPage.eventManager")}</h2>
 
         <div className={styles.event_manager}>
           <NavLink
@@ -51,17 +56,17 @@ const EventAnnotation = ({ eventAnnotation }) => {
           >
             <div>
               <h2>{eventAnnotation.eventManager.eventManagerName}</h2>
-              <p>Организатор</p>
+              <p>{t("pages.eventPage.manager")}</p>
             </div>
           </NavLink>
         </div>
         {isUserRepost ? (
           <button type="button" className={styles.reposted_button} disabled>
-            Мероприятие доваленно
+            {t("pages.eventPage.eventAdded")}
           </button>
         ) : (
           <button type="button" onClick={() => onClick(eventAnnotation.eventId)}>
-            Репост
+            {t("pages.eventPage.repost")}
           </button>
         )}
       </div>
