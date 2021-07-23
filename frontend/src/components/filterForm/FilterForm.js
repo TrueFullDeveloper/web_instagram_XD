@@ -10,6 +10,8 @@ import styles from "./FilterForm.module.scss";
 // Config
 import { LOCATIONS, GENRE, INTERVAL } from "../../config/constants";
 import { SELECT_STYLES } from "../../config/styles";
+//i18n
+import { useTranslation } from "react-i18next";
 
 const intervalOptions = Object.entries(INTERVAL).map(item => ({
   value: item[0],
@@ -28,6 +30,7 @@ const genreOptions = Object.entries(GENRE).map(item => ({
 
 const FilterForm = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const [calendarIsOpen, setCalendarOpen] = useState(false);
 
   const { handleSubmit, handleChange, setFieldValue, values } = useFormik({
@@ -57,19 +60,19 @@ const FilterForm = () => {
             type="search"
             name="userQuery"
             id="userQuery"
-            placeholder="Поиск мероприятия"
+            placeholder={t("pages.home.searchPlaceholder")}
             value={values.userQuery}
             onChange={handleChange}
           />
           <button type="submit" className={styles.search_button}>
-            Поиск
+            {t("pages.home.searchButton")}
           </button>
 
           <Select
             name="interval"
             id="interval"
             options={intervalOptions}
-            placeholder="Выберите временной промежуток"
+            placeholder={t("pages.home.selectIntervalPlaceholder")}
             onChange={event => setFieldValue("interval", event.value)}
             styles={SELECT_STYLES}
             defaultValue={intervalOptions[0]}
@@ -79,7 +82,7 @@ const FilterForm = () => {
             name="location"
             id="location"
             options={locationOptions}
-            placeholder="Выберите город"
+            placeholder={t("pages.home.selectLocationPlaceholder")}
             onChange={event => setFieldValue("location", event.value)}
             styles={SELECT_STYLES}
             isSearchable
@@ -89,7 +92,7 @@ const FilterForm = () => {
             name="genre"
             id="genre"
             options={genreOptions}
-            placeholder="Выберите направление мероприятия"
+            placeholder={t("pages.home.selectGenrePlaceholder")}
             onChange={event =>
               setFieldValue(
                 "genre",
@@ -119,15 +122,17 @@ const FilterForm = () => {
                 type="button"
                 onClick={() => setCalendarOpen(false)}
               >
-                Закрыть
+                {t("common.calendar.closeButton")}
               </button>
             </>
           ) : (
             <>
               {values.eventDate ? (
-                <span>Дата: {values.eventDate}</span>
+                <span>
+                  {t("common.calendar.eventDate")} {values.eventDate}
+                </span>
               ) : (
-                <span>Дата не выбрана</span>
+                <span>{t("common.calendar.eventDateNotSelected")}</span>
               )}
 
               <button
@@ -135,7 +140,7 @@ const FilterForm = () => {
                 type="button"
                 onClick={() => setCalendarOpen(true)}
               >
-                Выбрать дату
+                {t("common.calendar.selectDateButton")}
               </button>
             </>
           )}

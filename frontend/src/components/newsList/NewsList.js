@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchEvent } from "../../store/api/eventSlice";
 import { selectUserId } from "../../store/api/authSlice";
 import styles from "./NewsList.module.scss";
+//i18n
+import { useTranslation } from "react-i18next";
 
 const NewsList = ({ newsItems }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const userId = useSelector(selectUserId);
 
   const onClick = eventId => {
@@ -32,12 +35,14 @@ const NewsList = ({ newsItems }) => {
               <h2>{newsItem.eventTitle}</h2>
             </NavLink>
             <p>{newsItem.eventDate + " " + newsItem.eventTime + " " + newsItem.eventLocation}</p>
-            <p>Направление мероприятия: {newsItem.eventGenre}</p>
+            <p>
+              {t("pages.home.eventGenre")} {newsItem.eventGenre}
+            </p>
             <div>
               <p className={styles.event_description}>{newsItem.eventDesciption}</p>
               <button type="button">
                 <NavLink to="/event" onClick={() => onClick(newsItem.eventId)}>
-                  Подробнее
+                  {t("pages.home.moreDetailsButton")}
                 </NavLink>
               </button>
             </div>
