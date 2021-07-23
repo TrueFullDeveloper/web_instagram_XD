@@ -5,9 +5,12 @@ import { sendEmail, selectResetLoading } from "../../store/api/passwordResetSlic
 import { useFormik } from "formik";
 import * as yup from "yup";
 import styles from "./SendEmailForm.module.scss";
+//i18n
+import { useTranslation } from "react-i18next";
 
 const SendEmailForm = ({ setResetStep }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const loading = useSelector(selectResetLoading);
 
   const { handleSubmit, handleChange, values, errors, touched } = useFormik({
@@ -16,7 +19,10 @@ const SendEmailForm = ({ setResetStep }) => {
     },
 
     validationSchema: yup.object({
-      emailField: yup.string().email("Should be valid Email").required("Email Shoud be Required"),
+      emailField: yup
+        .string()
+        .email(t("common.emailField.emailValidationError"))
+        .required(t("common.emailField.emailNotRequiredError")),
     }),
 
     onSubmit: ({ emailField }) => {
@@ -31,24 +37,22 @@ const SendEmailForm = ({ setResetStep }) => {
         <Loader />
       ) : (
         <form onSubmit={handleSubmit} className={styles.send_email_form}>
-          <h1>Забыли пароль?</h1>
-          <p>
-            Для восстановления пароля укажите e-mail, на который зарегистрирована ваша учетная
-            запись!
-          </p>
+          <h1>{t("pages.passwordReset.forgotPasswordTitle")}</h1>
+          <p>{t("pages.passwordReset.forgotPasswordMessage")}</p>
           <input
-            placeholder="Почта"
+            placeholder={t("common.emailField.emailPlaceholder")}
             type="text"
             id="emailField"
             name="emailField"
             value={values.emailField}
             onChange={handleChange}
           />
+
           {touched.emailField && errors.emailField ? (
             <span className={styles.error_message}>{errors.emailField}</span>
           ) : null}
 
-          <button type="submit">Отправить</button>
+          <button type="submit">{t("pages.passwordReset.sendEmailButton")}</button>
         </form>
       )}
     </>

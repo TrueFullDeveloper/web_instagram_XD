@@ -11,9 +11,12 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import successfulIcon from "../../static/images/resetPassword/successful_icon.svg";
 import styles from "./VerificationCodeForm.module.scss";
+//i18n
+import { useTranslation } from "react-i18next";
 
 const VerificationCodeForm = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const loading = useSelector(selectResetLoading);
   const resetStatus = useSelector(selectResetStatus);
 
@@ -25,12 +28,12 @@ const VerificationCodeForm = () => {
     },
 
     validationSchema: yup.object({
-      code: yup.string().required("Код должен быть указан"),
+      code: yup.string().required(t("pages.passwordReset.codeNotRequiredError")),
       password: yup
         .string()
-        .min(6, "Password must be longer than 6 characters")
-        .max(40, "Password must be shorter than 40 characters")
-        .required("Password Shoud be Required"),
+        .min(6, t("common.passwordField.passwordShortError"))
+        .max(40, t("common.passwordField.passwordExceedsLimitError"))
+        .required(t("common.passwordField.passwordNotRequiredError")),
       passwordRep: yup.string().required("Repeat Password Please"),
     }),
 
@@ -52,14 +55,11 @@ const VerificationCodeForm = () => {
   if (resetStatus != "success") {
     return (
       <form onSubmit={handleSubmit} className={styles.verification_code_form}>
-        <h1>Введите код</h1>
-        <p>
-          Введите код для подтверждения сброса пароля. Код был выслан на указанный вами адрес
-          электронной почты!
-        </p>
+        <h1>{t("pages.passwordReset.codeVerificationTitle")}</h1>
+        <p>{t("pages.passwordReset.codeVerificationMessage")}</p>
 
         <input
-          placeholder="Код"
+          placeholder={t("pages.passwordReset.codePlaceholder")}
           type="text"
           id="code"
           name="code"
@@ -72,7 +72,7 @@ const VerificationCodeForm = () => {
         ) : null}
 
         <input
-          placeholder="Новый Пароль"
+          placeholder={t("pages.passwordReset.newPasswordPlaceholder")}
           type="password"
           id="password"
           name="password"
@@ -85,7 +85,7 @@ const VerificationCodeForm = () => {
         ) : null}
 
         <input
-          placeholder="Повторите Пароль"
+          placeholder={t("common.passwordField.repeatPasswordPlaceholder")}
           type="password"
           id="passwordRep"
           name="passwordRep"
@@ -97,7 +97,7 @@ const VerificationCodeForm = () => {
           <span className={styles.error_message}>{errors.passwordRep}</span>
         ) : null}
 
-        <button type="submit">Востановить</button>
+        <button type="submit">{t("pages.passwordReset.recoveryButton")}</button>
       </form>
     );
   }
@@ -105,7 +105,7 @@ const VerificationCodeForm = () => {
   if (resetStatus === "success") {
     return (
       <div className={styles.successful_message}>
-        <h1>Вы успешно изменили свой пароль!</h1>
+        <h1>{t("pages.passwordReset.successRecoveryMessage")}</h1>
         <img src={successfulIcon} alt="" />
 
         <button type="button">
