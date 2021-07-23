@@ -8,7 +8,7 @@
             "signupLink": "Регистрация"
         },
         "signup": {
-            "userNamePlaceholder": "Имя",
+            "signupTitle": "Регистрация",
             "signupButton": "Зарегистрироваться",
             "loginLink": "Войти"
         },
@@ -120,7 +120,8 @@
         "userNameField": {
             "userNameShortError": "Имя должно содержать больше одного символа",
             "userNameExceedsLimitError": "Имя не должно содерать больше 20 символов",
-            "userNameNotRequiredError": "Имя должно быть указано"
+            "userNameNotRequiredError": "Имя должно быть указано",
+            "userNamePlaceholder": "Имя"
         },
         "passwordField": {
             "passwordShortError": "Пароль должен содерать 6 или более символов",
@@ -128,7 +129,6 @@
             "passwordNotRequiredError": "Пароль должен быть указан",
             "repeatPasswordError": "Повторите пароль, пожалуйста",
             "passwordsNotMatchUpError": "Пароли не совпадают",
-            "userNamePlaceholder": "Имя",
             "passwordPlaceholder": "Пароль",
             "repeatPasswordPlaceholder": "Повторите пароль"
         },

@@ -5,9 +5,12 @@ import { signup } from "../../store/api/authSlice";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import styles from "./Signup.module.scss";
+//i18n
+import { useTranslation } from "react-i18next";
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues: {
@@ -20,33 +23,33 @@ const Signup = () => {
     validationSchema: yup.object({
       name: yup
         .string()
-        .min(1, "Имя должно содержать больше одного символа")
-        .max(20, "Имя не должно содерать больше 20 символов")
-        .required("Имя должно быть указано"),
+        .min(1, t("common.userNameField.userNameShortError"))
+        .max(20, t("common.userNameField.userNameExceedsLimitError"))
+        .required(t("common.userNameField.userNameNotRequiredError")),
       emailField: yup
         .string()
-        .email("Должена быть указана адрес электроной почты")
-        .required("Вы не указали адрес электронной почты"),
+        .email(t("common.emailField.emailValidationError"))
+        .required(t("common.emailField.emailNotRequiredError")),
       password: yup
         .string()
-        .min(6, "Пароль должен содерать 6 или более символов")
-        .max(40, "Пароль не должен содерать больше 40 символов")
-        .required("Пароль должен быть указан"),
-      passwordRep: yup.string().required("Повторите пароль, пожалуйста"),
+        .min(6, t("common.passwordField.passwordShortError"))
+        .max(40, t("common.passwordField.passwordExceedsLimitError"))
+        .required(t("common.passwordField.passwordNotRequiredError")),
+      passwordRep: yup.string().required(t("common.passwordField.repeatPasswordPlaceholder")),
     }),
 
     onSubmit: ({ name, emailField, password, passwordRep }) => {
       if (password === passwordRep) {
         dispatch(signup({ email: emailField, password, userName: name }));
       } else {
-        alert("Пароли не совпадают");
+        alert(t("common.passwordField.passwordsNotMatchUpError"));
       }
     },
   });
 
   return (
     <form onSubmit={handleSubmit} className={styles.signup_form}>
-      <h1>Регистрация</h1>
+      <h1>{t("pages.signup.signupTitle")}</h1>
 
       <input
         placeholder="Имя"
@@ -63,7 +66,7 @@ const Signup = () => {
       ) : null}
 
       <input
-        placeholder="Почта"
+        placeholder={t("common.userNameField.userNamePlaceholder")}
         type="text"
         id="emailField"
         name="emailField"
@@ -77,7 +80,7 @@ const Signup = () => {
       ) : null}
 
       <input
-        placeholder="Пароль"
+        placeholder={t("common.passwordField.passwordPlaceholder")}
         type="password"
         id="password"
         name="password"
@@ -90,7 +93,7 @@ const Signup = () => {
       ) : null}
 
       <input
-        placeholder="Повторите пароль"
+        placeholder={t("common.passwordField.repeatPasswordPlaceholder")}
         type="password"
         id="passwordRep"
         name="passwordRep"
@@ -102,8 +105,8 @@ const Signup = () => {
         <span className={styles.error_message}>{errors.passwordRep}</span>
       ) : null}
 
-      <button type="submit">Зарегистрироваться</button>
-      <Link to="/login">Войти</Link>
+      <button type="submit">{t("pages.signup.signupButton")}</button>
+      <Link to="/login">{t("pages.signup.loginLink")}</Link>
     </form>
   );
 };
