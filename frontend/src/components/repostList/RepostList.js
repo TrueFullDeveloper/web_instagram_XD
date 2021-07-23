@@ -4,13 +4,16 @@ import { useDispatch } from "react-redux";
 import { fetchEvent } from "../../store/api/eventSlice";
 import { deleteRepost } from "../../store/api/repostSlice";
 import styles from "./RepostList.module.scss";
+//i18n
+import { useTranslation } from "react-i18next";
 
 const RepostList = ({ repostList, isOwener }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   return (
     <div className={styles.repost_section}>
-      <h1>Собираюсь пойти:</h1>
+      <h1>{t("pages.profile.repostListTitle")}</h1>
 
       {repostList.map(repostItem => (
         <div className={styles.repost_item} key={repostItem.eventId}>
@@ -36,7 +39,7 @@ const RepostList = ({ repostList, isOwener }) => {
               <p className={styles.event_description}>{repostItem.eventDesciption}</p>
               <button>
                 <NavLink to="/event" onClick={() => dispatch(fetchEvent(repostItem.eventId))}>
-                  Подробнее
+                  {t("pages.profile.moreDetailsButton")}
                 </NavLink>
               </button>
               {isOwener ? (
@@ -45,7 +48,7 @@ const RepostList = ({ repostList, isOwener }) => {
                   type="button"
                   onClick={() => dispatch(deleteRepost(repostItem.repostId))}
                 >
-                  Удалить
+                  {t("pages.profile.deleteButton")}
                 </button>
               ) : null}
             </div>

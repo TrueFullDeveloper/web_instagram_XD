@@ -9,9 +9,12 @@ import phoneIcon from "../../static/images/contactIcon/phone.svg";
 import instagramIcon from "../../static/images/contactIcon/instagram.svg";
 import facebookIcon from "../../static/images/contactIcon/facebook.svg";
 import vkIcon from "../../static/images/contactIcon/vk.svg";
+//i18n
+import { useTranslation } from "react-i18next";
 
 const ProfileInformation = ({ profileData }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const [editModalIsOpen, setEditModel] = useState(false);
 
   return (
@@ -19,12 +22,12 @@ const ProfileInformation = ({ profileData }) => {
       <div className={styles.about_section}>
         <img src={profileData.userPhoto} alt="" />
         <h1>{profileData.userName}</h1>
-        <h2>Обо мне</h2>
+        <h2>{t("pages.profile.aboutTitle")}</h2>
         <p>{profileData.userInformation}</p>
       </div>
 
       <div className={styles.contact_section}>
-        <h2>Мои Контакты:</h2>
+        <h2>{t("pages.profile.contactSectionTitle")}</h2>
 
         <div>
           <span>
@@ -38,7 +41,7 @@ const ProfileInformation = ({ profileData }) => {
           <div className={styles.contact_item}>
             <span>
               <img src={phoneIcon} alt="" />
-              Телефон
+              {t("pages.profile.userPhoneTitle")}
             </span>
             <p>{profileData.phoneNumber}</p>
           </div>
@@ -51,7 +54,7 @@ const ProfileInformation = ({ profileData }) => {
               Instagram
             </span>
             <div>
-              <a href={profileData.instagram}>Мой Instagram</a>
+              <a href={profileData.instagram}>{t("pages.profile.userInstagramLink")}</a>
             </div>
           </div>
         ) : null}
@@ -63,7 +66,7 @@ const ProfileInformation = ({ profileData }) => {
               Facebook
             </span>
             <div>
-              <a href={profileData.facebook}>Мой Facebook</a>
+              <a href={profileData.facebook}>{t("pages.profile.userFacebookLink")}</a>
             </div>
           </div>
         ) : null}
@@ -75,7 +78,7 @@ const ProfileInformation = ({ profileData }) => {
               Vk
             </span>
             <div>
-              <a href={profileData.vkontacte}>Мой Vk</a>
+              <a href={profileData.vkontacte}>{t("pages.profile.userVkontakteLink")}</a>
             </div>
           </div>
         ) : null}
@@ -83,9 +86,9 @@ const ProfileInformation = ({ profileData }) => {
         {editModalIsOpen && <ProfileForm profileData={profileData} setEditModel={setEditModel} />}
 
         <button type="button" onClick={() => setEditModel(true)}>
-          Редактировать Профиль
+          {t("pages.profile.editProfileButton")}
         </button>
-        <button onClick={() => dispatch(logout())}>Выйти</button>
+        <button onClick={() => dispatch(logout())}>{t("pages.profile.logoutButton")}</button>
       </div>
     </div>
   );

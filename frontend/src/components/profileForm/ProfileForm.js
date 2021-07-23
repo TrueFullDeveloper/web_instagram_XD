@@ -12,11 +12,14 @@ import phoneIcon from "../../static/images/contactIcon/phone.svg";
 import instagramIcon from "../../static/images/contactIcon/instagram.svg";
 import facebookIcon from "../../static/images/contactIcon/facebook.svg";
 import vkIcon from "../../static/images/contactIcon/vk.svg";
+//i18n
+import { useTranslation } from "react-i18next";
 
 //TODO: May be Add Validation for Every Url
 
 const ProfileForm = ({ profileData, setEditModel }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const userId = useSelector(selectUserId);
   const profileFormModal = useRef(document.createElement("div"));
 
@@ -41,19 +44,18 @@ const ProfileForm = ({ profileData, setEditModel }) => {
     validationSchema: yup.object({
       userName: yup
         .string()
-        .min(1, "Имя должно содержать больше одного символа")
-        .max(20, "Имя не должно содерать больше 20 символов")
-        .required("User Name is not Required"),
+        .min(1, t("common.userNameField.userNameShortError"))
+        .max(20, t("common.userNameField.userNameExceedsLimitError"))
+        .required(t("common.userNameField.userNameNotRequiredError")),
       email: yup
         .string()
-        .max(30, "Email must be shorter than 30 characters")
-        .email("Should be valid Email")
-        .required("Email is not Required"),
-      userInformation: yup.string().max(400, "Информация о вас должна быть короче 400 символов"),
-      phoneNumber: yup.string().max(30, "Номер телефона должен быть короче 30 символов"),
-      instagram: yup.string().url("Должна быть ссылка"),
-      facebook: yup.string().url("Должна быть ссылка"),
-      vkontakte: yup.string().url("Должна быть ссылка"),
+        .email(t("common.emailField.emailValidationError"))
+        .required(t("common.emailField.emailNotRequiredError")),
+      userInformation: yup.string().max(400, t("pages.profile.aboutExceedsLimitError")),
+      phoneNumber: yup.string().max(30, t("pages.profile.phoneExceedsLimitError")),
+      instagram: yup.string().url(t("pages.profile.urlValidationError")),
+      facebook: yup.string().url(t("pages.profile.urlValidationError")),
+      vkontakte: yup.string().url(t("pages.profile.urlValidationError")),
     }),
 
     onSubmit: ({
@@ -102,7 +104,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
           </div>
 
           <div>
-            <span>Имя</span>
+            <span>{t("pages.profile.userNameTitle")}</span>
             <input
               className={styles.name_field}
               type="text"
@@ -118,7 +120,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
           ) : null}
 
           <div>
-            <span>Обо мне</span>
+            <span>{t("pages.profile.aboutTitle")}</span>
             <textarea
               className={styles.about_field}
               type="text"
@@ -157,7 +159,7 @@ const ProfileForm = ({ profileData, setEditModel }) => {
           <div>
             <span>
               <img src={phoneIcon} alt="" />
-              Телефон
+              {t("pages.profile.userPhoneTitle")}
             </span>
             <input
               className={styles.contact_field}
@@ -230,10 +232,10 @@ const ProfileForm = ({ profileData, setEditModel }) => {
             <span className={styles.error_message}>{errors.vkontakte}</span>
           ) : null}
 
-          <button type="submit">Принять изменения</button>
+          <button type="submit">{t("pages.profile.acceptChangesButton")}</button>
 
           <button type="button" onClick={() => setEditModel(false)}>
-            Закрыть
+            {t("pages.profile.closeButton")}
           </button>
         </div>
       </form>

@@ -85,6 +85,7 @@
         },
         "profile": {
             "aboutTitle": "Обо мне",
+            "userNameTitle": "Имя",
             "contactSectionTitle": "Мои Контакты:",
             "userPhoneTitle": "Телефон",
             "userInstagramLink": "Мой Instagram",
@@ -96,7 +97,10 @@
             "phoneExceedsLimitError": "Номер телефона должен быть короче 30 символов",
             "urlValidationError": "Должна быть ссылка",
             "acceptChangesButton": "Принять изменения",
-            "closeButton": "Закрыть"
+            "closeButton": "Закрыть",
+            "repostListTitle": "Собираюсь пойти:",
+            "moreDetailsButton": "Подробнее",
+            "deleteButton": "Удалить"
         },
         "user": {
             "aboutTitle": "Обо мне",
