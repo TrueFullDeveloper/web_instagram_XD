@@ -6,9 +6,12 @@ import styles from "./MessageForm.module.scss";
 import "emoji-mart/css/emoji-mart.css";
 //Icon
 import smileIcon from "../../static/images/messageIcon/smile.svg";
+//i18n
+import { useTranslation } from "react-i18next";
 
 const MessageForm = ({ userName, sendMessage }) => {
   const [pickerIsOpen, setPicker] = useState(false);
+  const { t } = useTranslation();
 
   const { handleSubmit, handleChange, setFieldValue, values } = useFormik({
     initialValues: {
@@ -18,8 +21,8 @@ const MessageForm = ({ userName, sendMessage }) => {
     validationSchema: yup.object({
       messageText: yup
         .string()
-        .max(400, "Сообщение не должно превышать 400 символов")
-        .required("Вы не написали сообщение"),
+        .max(400, t("pages.chatRoom.messageExceedsLimitError"))
+        .required(t("pages.chatRoom.messageNotRequiredError")),
     }),
 
     onSubmit: ({ messageText }) => {
@@ -36,7 +39,7 @@ const MessageForm = ({ userName, sendMessage }) => {
           type="text"
           id="messageText"
           name="messageText"
-          placeholder="Написать сообщение"
+          placeholder={t("pages.chatRoom.writeMessagePlaceholder")}
           value={values.messageText}
           onChange={handleChange}
         />
@@ -59,11 +62,11 @@ const MessageForm = ({ userName, sendMessage }) => {
           type="button"
           onClick={() => setPicker(!pickerIsOpen)}
         >
-          <img src={smileIcon} alt="Смайлы" />
+          <img src={smileIcon} alt={t("pages.chatRoom.smileButtonAlt")} />
         </button>
 
         <button className={styles.message_form_button} type="submit">
-          Отправить
+          {t("pages.chatRoom.sendMessageButton")}
         </button>
       </form>
     </div>

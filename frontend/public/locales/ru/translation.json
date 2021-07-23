@@ -58,7 +58,8 @@
             "messageExceedsLimitError": "Сообщение не должно превышать 400 символов",
             "messageNotRequiredError": "Вы не написали сообщение",
             "writeMessagePlaceholder": "Написать сообщение",
-            "smiles": "Смайлы"
+            "smileButtonAlt": "Смайлы",
+            "sendMessageButton": "Отправить"
         },
         "createEventPage": {
             "titleNotRequiredError": "Заголовок должен быть написан",
