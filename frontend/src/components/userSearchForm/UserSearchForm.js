@@ -4,9 +4,12 @@ import { searchUser } from "../../store/api/userListSlice";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import styles from "./UserSearchForm.module.scss";
+//i18n
+import { useTranslation } from "react-i18next";
 
 const UserSearchForm = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
@@ -29,11 +32,11 @@ const UserSearchForm = () => {
           type="search"
           name="userQuery"
           id="userQuery"
-          placeholder="Поиск пользователей"
+          placeholder={t("pages.usersPage.userSearchPlaceholder")}
           value={values.userQuery}
           onChange={handleChange}
         />
-        <button type="submit">Поиск</button>
+        <button type="submit">{t("pages.usersPage.userSearchButton")}</button>
       </div>
     </form>
   );
